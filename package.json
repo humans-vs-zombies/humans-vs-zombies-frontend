@@ -1,5 +1,6 @@
 {
   "name": "humans-vs-zombies-frontend",
+  "homepage": "https://jorgsaa.github.io/humans-vs-zombies-frontend/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
