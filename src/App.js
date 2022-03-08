@@ -17,6 +17,9 @@ function App() {
         >
           Learn React
         </a>
+        <div className='rounded-xl shadow-xl p-5 bg-gradient-to-br from-indigo-500'>
+          TailwindCSS test
+        </div>
       </header>
     </div>
   );
