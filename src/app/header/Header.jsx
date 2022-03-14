@@ -1,7 +1,14 @@
+import { useSelector } from 'react-redux'
 import { NavLink} from 'react-router-dom'
 
 
 const Header = () => {
+
+    const { loggedIn } = useSelector(state => state.sessionReducer)
+
+    const handleBtnLoginUserClick = event => {
+        console.log(loggedIn);
+    }
     
     return (
         <>
@@ -17,6 +24,9 @@ const Header = () => {
                         </li>
                     </ul>
                 </nav>
+                { !loggedIn && 
+                <button type="button" onClick={ handleBtnLoginUserClick }>Login (as user)</button>
+                }
                 <div className='rounded-xl shadow-xl p-5 bg-gradient-to-br from-indigo-500'>
                     TailwindCSS test (Header above ^)
                 </div>
