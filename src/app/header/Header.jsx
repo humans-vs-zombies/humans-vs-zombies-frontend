@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink} from 'react-router-dom'
-import { sessionLoginUserSetAction } from '../../store/actions/sessionActions'
+import { sessionLoginUserSetAction, sessionLogoutSetAction } from '../../store/actions/sessionActions'
 
 
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
     }
 
     const handleBtnLogoutClick = event => {
-        
+        dispatch(sessionLogoutSetAction())
     }
     
     return (
