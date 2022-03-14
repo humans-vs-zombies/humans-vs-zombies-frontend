@@ -6,7 +6,7 @@ import { sessionLoginUserSetAction, sessionLogoutSetAction } from '../../store/a
 const Header = () => {
 
     const dispatch = useDispatch()
-    const { loggedIn } = useSelector(state => state.sessionReducer)
+    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
 
     const handleBtnLoginUserClick = event => {
         dispatch(sessionLoginUserSetAction("User"))
@@ -19,7 +19,7 @@ const Header = () => {
     return (
         <>
             <header className="app-header">
-                <h1>Human vs. Zombies</h1>
+                <h1>Human vs. Zombies { (userType !== "") && `(${ userType })`}</h1>
                 <nav>
                     <ul>
                         <li>
