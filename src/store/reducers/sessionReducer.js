@@ -1,4 +1,4 @@
-import { ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET } from "../actions/sessionActions"
+import { ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET } from "../actions/sessionActions"
 
 
 const initialState = {
@@ -17,6 +17,13 @@ export const sessionReducer = (state = initialState, action) => {
                 user: action.payload,
                 loggedIn: true,
                 userType: "user"
+            }
+        case ACTION_SESSION_LOGIN_ADMIN_SET:
+            return {
+                ...state,
+                user: action.payload,
+                loggedIn: true,
+                userType: "admin"
             }
         case ACTION_SESSION_LOGOUT_SET:
             return {
