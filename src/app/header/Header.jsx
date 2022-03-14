@@ -9,11 +9,11 @@ const Header = () => {
     const { loggedIn, userType } = useSelector(state => state.sessionReducer)
 
     const handleBtnLoginUserClick = event => {
-        dispatch(sessionLoginUserSetAction("some user data"))
+        dispatch(sessionLoginUserSetAction({userType: "user"}))
     }
 
     const handleBtnLoginAdminClick = event => {
-        dispatch(sessionLoginAdminSetAction("some user data"))
+        dispatch(sessionLoginAdminSetAction({userType: "admin"}))
     }
 
     const handleBtnLogoutClick = event => {
