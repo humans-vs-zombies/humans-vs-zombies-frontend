@@ -1,0 +1,6 @@
+import { sessionMiddleware } from "./sessionMiddlware";
+
+
+export default applyMiddleware(
+    sessionMiddleware,
+)
