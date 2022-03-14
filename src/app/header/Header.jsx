@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink} from 'react-router-dom'
-import { sessionLoginUserSetAction, sessionLogoutSetAction } from '../../store/actions/sessionActions'
+import { sessionLoginAdminSetAction, sessionLoginUserSetAction, sessionLogoutSetAction } from '../../store/actions/sessionActions'
 
 
 const Header = () => {
@@ -9,7 +9,11 @@ const Header = () => {
     const { loggedIn, userType } = useSelector(state => state.sessionReducer)
 
     const handleBtnLoginUserClick = event => {
-        dispatch(sessionLoginUserSetAction("User"))
+        dispatch(sessionLoginUserSetAction("some user data"))
+    }
+
+    const handleBtnLoginAdminClick = event => {
+        dispatch(sessionLoginAdminSetAction("some user data"))
     }
 
     const handleBtnLogoutClick = event => {
@@ -31,7 +35,10 @@ const Header = () => {
                     </ul>
                 </nav>
                 { !loggedIn && 
-                <button type="button" onClick={ handleBtnLoginUserClick }>Login (as user)</button>
+                <div>
+                    <button type="button" onClick={ handleBtnLoginUserClick }>Login (as user)</button>
+                    <button type="button" onClick={ handleBtnLoginAdminClick }>Login (as admin)</button>
+                </div>
                 }
                 { loggedIn && 
                 <button type="button" onClick={ handleBtnLogoutClick }>Logout</button>
