@@ -11,6 +11,10 @@ const Header = () => {
     const handleBtnLoginUserClick = event => {
         dispatch(sessionLoginUserSetAction("User"))
     }
+
+    const handleBtnLogoutClick = event => {
+        
+    }
     
     return (
         <>
@@ -28,6 +32,9 @@ const Header = () => {
                 </nav>
                 { !loggedIn && 
                 <button type="button" onClick={ handleBtnLoginUserClick }>Login (as user)</button>
+                }
+                { loggedIn && 
+                <button type="button" onClick={ handleBtnLogoutClick }>Logout</button>
                 }
                 <div className='rounded-xl shadow-xl p-5 bg-gradient-to-br from-indigo-500'>
                     TailwindCSS test (Header above ^)
