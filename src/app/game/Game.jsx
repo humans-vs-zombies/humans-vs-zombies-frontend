@@ -19,7 +19,7 @@ const Game = () => {
         </div>
 
         <div className="h-full flex flex-grow bg-red-600 h-100">
-          <div className="flex-grow text-center bg-blue-600">
+          <div className="flex-grow-0 text-center bg-blue-600 md:px-2">
             <h1 className="font-semibold">Squads</h1>
             <SquadList
               squads={[
@@ -29,7 +29,7 @@ const Game = () => {
               ]}
             />
           </div>
-          <div className="flex-grow-1 aspect-square bg-green-600 text-center align">Map</div>
+          <div className="flex-grow bg-green-600 text-center align">Map</div>
         </div>
       </div>
     </>
