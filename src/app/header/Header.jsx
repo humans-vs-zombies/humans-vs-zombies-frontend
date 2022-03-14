@@ -1,13 +1,15 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink} from 'react-router-dom'
+import { sessionLoginUserSetAction } from '../../store/actions/sessionActions'
 
 
 const Header = () => {
 
+    const dispatch = useDispatch()
     const { loggedIn } = useSelector(state => state.sessionReducer)
 
     const handleBtnLoginUserClick = event => {
-        console.log(loggedIn);
+        dispatch(sessionLoginUserSetAction("User"))
     }
     
     return (
