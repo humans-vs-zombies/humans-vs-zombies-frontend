@@ -1,4 +1,8 @@
-
+export const createHeaders = () => {
+    return {
+        'Content-Type': 'application/json',
+    }
+}
 
 export const handleFirstResponse = async response => {
     if (!response.ok) {
