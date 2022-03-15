@@ -23,6 +23,7 @@ export const sessionReducer = (state = initialState, action) => {
                 loggedIn: true,
                 userType: userTypes.USER
             }
+
         case ACTION_SESSION_LOGIN_ADMIN_SET:
             return {
                 ...state,
@@ -30,10 +31,12 @@ export const sessionReducer = (state = initialState, action) => {
                 loggedIn: true,
                 userType: userTypes.ADMIN
             }
+
         case ACTION_SESSION_LOGOUT_SET:
             return {
                 ...initialState
             }
+            
         default:
             return state
     }
