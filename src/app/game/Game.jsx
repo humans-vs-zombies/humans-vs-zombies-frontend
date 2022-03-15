@@ -20,15 +20,25 @@ const Game = () => {
         </div>
 
         <div className="h-full flex flex-grow bg-red-600 h-100 overflow-clip">
-          { !inSquad && <div className="flex-grow-0 text-center sm:block hidden bg-blue-600 md:px-2 overflow-y-scroll">
-            <h1 className="font-semibold">Squads</h1>
-            <SquadList
-              squads={(Array.from({ length: 10 }, (_, i) => "Squad " + (i + 1)  ).map(name => { return { name } }))}
-            />
-          </div> }
-          <div className="flex-grow bg-green-600 text-center">
-            Map
-          </div>
+          {!inSquad && (
+            <div className="flex-grow-0 text-center sm:block hidden bg-blue-600 md:px-2 overflow-y-scroll">
+              <h1 className="font-semibold">Squads</h1>
+              <SquadList
+                squads={Array.from(
+                  { length: 10 },
+                  (_, i) => "Squad " + (i + 1)
+                ).map((name) => {
+                  return {
+                    name,
+                    players: Array.from({ length: 10 }, (_, i) => {
+                      return { name: "asd", isAlive: Math.random() * 100 > 50 };
+                    }),
+                  };
+                })}
+              />
+            </div>
+          )}
+          <div className="flex-grow bg-green-600 text-center">Map</div>
         </div>
       </div>
     </>
