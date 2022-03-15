@@ -17,11 +17,15 @@ TODO: Fill out this long description.
 ## Install
 
 ```
+git clone https://github.com/humans-vs-zombies/humans-vs-zombies-frontend.git
+cd humans-vs-zombies-frontend
+npm install
 ```
 
 ## Usage
 
 ```
+npm start
 ```
 
 ## Maintainers
