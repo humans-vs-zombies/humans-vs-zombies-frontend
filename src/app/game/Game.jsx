@@ -4,6 +4,7 @@ import { SquadList } from "./SquadList";
 
 const Game = () => {
   const { loggedIn } = useSelector((state) => state.sessionReducer);
+  //TODO: fetch squad state using redux
   const inSquad = false;
 
   return (
