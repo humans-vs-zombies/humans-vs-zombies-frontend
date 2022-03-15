@@ -27,11 +27,11 @@ const Game = () => {
               <SquadList
                 squads={Array.from(
                   { length: 10 },
-                  (_, i) => "Squad " + (i + 1)
+                  (_, i) => "Squad " + i
                 ).map((name) => {
                   return {
                     name,
-                    players: Array.from({ length: 10 }, (_, i) => {
+                    players: Array.from({ length: 10 }, (_) => {
                       return { name: "asd", isAlive: Math.random() * 100 > 50 };
                     }),
                   };
