@@ -4,6 +4,7 @@ import { SquadList } from "./SquadList";
 
 const Game = () => {
   const { loggedIn } = useSelector((state) => state.sessionReducer);
+  const inSquad = false;
 
   return (
     <>
@@ -19,12 +20,12 @@ const Game = () => {
         </div>
 
         <div className="h-full flex flex-grow bg-red-600 h-100 overflow-clip">
-          <div className="flex-grow-0 text-center sm:block hidden bg-blue-600 md:px-2 overflow-y-scroll">
+          { !inSquad && <div className="flex-grow-0 text-center sm:block hidden bg-blue-600 md:px-2 overflow-y-scroll">
             <h1 className="font-semibold">Squads</h1>
             <SquadList
               squads={(Array.from({ length: 10 }, (_, i) => "Squad " + (i + 1)  ).map(name => { return { name } }))}
             />
-          </div>
+          </div> }
           <div className="flex-grow bg-green-600 text-center">
             Map
           </div>
