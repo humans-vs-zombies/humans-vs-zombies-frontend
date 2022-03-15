@@ -1,3 +1,5 @@
+import AvailableGame from "./AvailableGame"
+
 const AvailableGameList = () => {
 
     return (
@@ -13,7 +15,7 @@ const AvailableGameList = () => {
                             <th className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">State</th>
                         </tr>
                     </thead>
-                    
+                    <AvailableGame />
                 </table>
             </main>
         </>
