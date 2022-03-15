@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const BiteCodeDisplay = () => {
+export const BiteCodeDisplay = ({ code }) => {
   return (
-    <div>Bite code: 1234</div>
+    <div>Bite code: { code }</div>
   )
 }

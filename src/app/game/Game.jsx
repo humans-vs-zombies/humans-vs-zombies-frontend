@@ -12,6 +12,7 @@ const Game = () => {
   //TODO: fetch squad state using redux
   const inSquad = false;
   const isZombie = false;
+  const biteCode = "1234";
 
   return (
     <>
@@ -43,7 +44,11 @@ const Game = () => {
             <GameChat />
             <div className="absolute sm:top-1 sm:right-1 sm:w-64 top-0 right-auto w-full content-center">
               <div className="w-full h-10 p-1 bg-red-500 sm:rounded-lg">
-                {isZombie ? <BiteCodeInput /> : <BiteCodeDisplay />}
+                {isZombie ? (
+                  <BiteCodeInput />
+                ) : (
+                  <BiteCodeDisplay code={biteCode} />
+                )}
               </div>
             </div>
           </div>
