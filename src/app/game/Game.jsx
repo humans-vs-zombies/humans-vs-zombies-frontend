@@ -11,7 +11,7 @@ const Game = () => {
       {!loggedIn && <Navigate to="/" />}
       <div className="h-full flex flex-col bg-orange-400">
         <div className="flex flex-grow bg-gray-300 md:py-2 md:px-6 p-0 px-3">
-          <button>Join</button>
+          <button className={`${ inSquad ? "invisible" : ""}`}>Join</button>
           <div className="flex-grow text-center">
             <div className="font-bold">Game Name</div>
             <div className="font-thin">Game description</div>
