@@ -21,18 +21,24 @@ export const sessionMiddleware = ({ dispatch }) => next => action => {
                 }
             }
             break
+
         case ACTION_SESSION_LOGIN_USER_SET:
             localStorage.setItem(userSessionKey, JSON.stringify(action.payload))
             break
+
         case ACTION_SESSION_LOGIN_ADMIN_SET:
             localStorage.setItem(userSessionKey, JSON.stringify(action.payload))
             break
+
         case ACTION_SESSION_LOGOUT_SET:
             localStorage.removeItem(currentGameSessionKey)
             localStorage.removeItem(userSessionKey)
             break
+
         case ACTION_SESSION_CURRENT_GAME_SET:
             localStorage.setItem(currentGameSessionKey, JSON.stringify(action.payload))
+            break
+            
         default:
             break
     }
