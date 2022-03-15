@@ -39,14 +39,14 @@ const AvailableGameList = () => {
                             title: "Test title 2",
                             date: "25.03.2022 12:00",
                             participants: "20/50",
-                            state: "Not started"
+                            state: "Registration"
                         },
                         {
                             id: 3,
                             title: "Test title 3",
                             date: "31.03.2022 12:00",
                             participants: "30/50",
-                            state: "Not started"
+                            state: "Registration"
                         }
                     ]
                 })
