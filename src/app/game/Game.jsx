@@ -25,17 +25,19 @@ const Game = () => {
             <div className="flex-grow-0 text-center sm:block hidden bg-blue-600 md:px-2 overflow-y-scroll">
               <h1 className="font-semibold">Squads</h1>
               <SquadList
-                squads={Array.from(
-                  { length: 10 },
-                  (_, i) => "Squad " + i
-                ).map((name) => {
-                  return {
-                    name,
-                    players: Array.from({ length: 10 }, (_) => {
-                      return { name: "asd", isAlive: Math.random() * 100 > 50 };
-                    }),
-                  };
-                })}
+                squads={Array.from({ length: 10 }, (_, i) => "Squad " + i).map(
+                  (name) => {
+                    return {
+                      name,
+                      players: Array.from({ length: 10 }, (_) => {
+                        return {
+                          name: "asd",
+                          isAlive: Math.random() * 100 > 50,
+                        };
+                      }),
+                    };
+                  }
+                )}
               />
             </div>
           )}
