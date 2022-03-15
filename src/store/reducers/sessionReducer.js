@@ -1,10 +1,11 @@
-import { ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET } from "../actions/sessionActions"
+import { ACTION_SESSION_CURRENT_GAME_SET, ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET } from "../actions/sessionActions"
 
 
 const initialState = {
     user: "",
     loggedIn: false,
-    userType: ""
+    userType: "",
+    currentGame: "",
 }
 
 
@@ -36,7 +37,13 @@ export const sessionReducer = (state = initialState, action) => {
             return {
                 ...initialState
             }
-            
+
+        case ACTION_SESSION_CURRENT_GAME_SET:
+            return {
+                ...state,
+                currentGame: action.payload
+            }
+
         default:
             return state
     }
