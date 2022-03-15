@@ -11,7 +11,9 @@ const AvailableGame = ({ index, game }) => {
     let rowHover = loggedIn ? "hover:bg-gray-200 cursor-pointer" : ""
 
     const handleGameBtnClick = event => {
-        dispatch(sessionCurrentGameSetAction(game.id))
+        if (loggedIn) {
+            dispatch(sessionCurrentGameSetAction(game.id))
+        }
     }
 
     return (
