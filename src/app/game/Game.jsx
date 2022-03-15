@@ -9,7 +9,7 @@ const Game = () => {
     <>
       {!loggedIn && <Navigate to="/" />}
       <div className="h-full flex flex-col bg-orange-400">
-        <div className="flex flex-grow bg-gray-300 md:pt-2 p-0 px-4">
+        <div className="flex flex-grow bg-gray-300 md:py-2 md:px-6 p-0 px-3">
           <button>Join</button>
           <div className="flex-grow text-center">
             <div className="font-bold">Game Name</div>
@@ -18,18 +18,16 @@ const Game = () => {
           <button>Rules</button>
         </div>
 
-        <div className="h-full flex flex-grow bg-red-600 h-100">
-          <div className="flex-grow-0 text-center bg-blue-600 md:px-2">
+        <div className="h-full flex flex-grow bg-red-600 h-100 overflow-clip">
+          <div className="flex-grow-0 text-center sm:block hidden bg-blue-600 md:px-2 overflow-y-scroll">
             <h1 className="font-semibold">Squads</h1>
             <SquadList
-              squads={[
-                { name: "Squad 1" },
-                { name: "Squad 2" },
-                { name: "Squad 3" },
-              ]}
+              squads={(Array.from({ length: 10 }, (_, i) => "Squad " + (i + 1)  ).map(name => { return { name } }))}
             />
           </div>
-          <div className="flex-grow bg-green-600 text-center align">Map</div>
+          <div className="flex-grow bg-green-600 text-center">
+            Map
+          </div>
         </div>
       </div>
     </>
