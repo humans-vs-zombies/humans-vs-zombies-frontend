@@ -7,7 +7,7 @@ export const GameChat = () => {
         Chat
         <textarea disabled className="flex-grow" value={"Username1: Hello\nUsername2: Hello world!"}></textarea>
         <div className="flex gap-1">
-            <input className="flex-grow-0" placeholder="Chat message"></input>
+            <input className="flex-grow" placeholder="Chat message"></input>
             <button className="rounded-md bg-gray-500">Send</button>
         </div>
       </div>
