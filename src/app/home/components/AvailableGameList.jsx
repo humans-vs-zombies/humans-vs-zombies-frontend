@@ -20,7 +20,7 @@ const AvailableGameList = () => {
         setTimeout(() => {
             // Emulate (un/)successful request
             let error = false;
-            let emptyListReturned = false;
+            let emptyListReturned = true;
             
             if (error) {
                 dispatch(gamesGetErrorAction())
@@ -61,6 +61,23 @@ const AvailableGameList = () => {
     }, [])
 
 
+    const Tbody = () => {
+        return (
+            <>
+                { gamesGetAttempting && <AvailableGame 
+                    index={ 0 }/>
+                }
+                { gamesGetSuccess && (localState.games.length !== 0) && localState.games.map((game, index) => 
+                    <AvailableGame
+                        key={ index }
+                        game={ game }
+                        index={ index }/>
+                ) }
+                { gamesGetSuccess && (localState.games.length === 0) && <AvailableGame 
+                    index={ 0 }/>}
+            </>
+        )
+    }
 
     return (
         <>
@@ -75,15 +92,7 @@ const AvailableGameList = () => {
                             <th className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">State</th>
                         </tr>
                     </thead>
-                    { gamesGetAttempting && <AvailableGame 
-                        index={ 0 }/>
-                    }
-                    { localState.games.map((game, index) => 
-                    <AvailableGame
-                        key={ index }
-                        game={ game }
-                        index={ index }/>
-                     ) }
+                    <Tbody />
                 </table>
             </main>
         </>

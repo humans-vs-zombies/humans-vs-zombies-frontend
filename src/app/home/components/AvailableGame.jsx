@@ -25,12 +25,17 @@ const AvailableGame = ({ index, game }) => {
                     <td className="py-3 px-6 text-s text-center" colSpan="5">Loading...</td>
                 </tr>
                 }
-                { gamesGetSuccess &&
+                { gamesGetSuccess && game !== undefined &&
                 <tr className={`border ${rowBg} ${rowHover}`}>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.title }</td>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.date }</td>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.participants}</td>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.state }</td>
+                </tr>
+                }
+                { gamesGetSuccess && game === undefined &&
+                <tr className={`border ${rowBg}`}>
+                    <td className="py-3 px-6 text-s text-center" colSpan="5">No games found</td>
                 </tr>
                 }
             </tbody>
