@@ -20,7 +20,7 @@ const AvailableGameList = () => {
 
         setTimeout(() => {
             // Emulate (un/)successful request
-            let error = true;
+            let error = false;
             let emptyListReturned = false;
             
             if (error) {
@@ -65,8 +65,12 @@ const AvailableGameList = () => {
     const TbodyGamesTable = () => {
         return (
             <>
-                { gamesGetAttempting && <AvailableGame 
-                    index={ 0 }/>
+                { (
+                    gamesGetAttempting ||
+                    (gamesGetSuccess && (localState.games.length === 0)) ||
+                    gamesGetError !== ""
+                ) &&
+                    <AvailableGame index={ 0 }/>
                 }
                 { gamesGetSuccess && (localState.games.length !== 0) && localState.games.map((game, index) => 
                     <AvailableGame
@@ -74,14 +78,6 @@ const AvailableGameList = () => {
                         game={ game }
                         index={ index }/>
                 ) }
-                { gamesGetSuccess && (localState.games.length === 0) && 
-                    <AvailableGame 
-                        index={ 0 }/>
-                }
-                { gamesGetError !== "" &&
-                    <AvailableGame 
-                        index={ 0 }/>
-                }
             </>
         )
     }
