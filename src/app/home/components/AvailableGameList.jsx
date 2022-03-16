@@ -22,7 +22,7 @@ const AvailableGameList = () => {
         setTimeout(() => {
             // Emulate (un/)successful request
             let error = false;
-            let emptyListReturned = false;
+            let emptyListReturned = true;
             
             if (error) {
                 dispatch(gamesGetErrorAction("Unable to fetch games"))

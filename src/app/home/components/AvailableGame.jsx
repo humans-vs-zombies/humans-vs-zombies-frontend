@@ -22,7 +22,7 @@ const AvailableGame = ({ index, game }) => {
                     (gamesGetSuccess && game === undefined) ||
                     gamesGetError
                     ) && 
-                    <tr className={`border ${rowBg}`} onClick={ handleRowClick }>
+                    <tr className={`border ${rowBg}`}>
                         { children }
                     </tr>
                 }
