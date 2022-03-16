@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
+import TdMessageGamesTable from "./hoc/tdMessageGamesTable";
 
 const AvailableGame = ({ index, game }) => {
 
@@ -40,10 +41,10 @@ const AvailableGame = ({ index, game }) => {
             <tbody>
                 <TrGamesTable>
                 { gamesGetAttempting &&
-                    <td className="py-3 px-6 text-s text-center" colSpan="5">Loading...</td>
+                    <TdMessageGamesTable>Loading...</TdMessageGamesTable>
                 }
                 { gamesGetSuccess && game === undefined &&
-                    <td className="py-3 px-6 text-s text-center" colSpan="5">No games found</td>
+                    <TdMessageGamesTable>No games found</TdMessageGamesTable>
                 }
                 { gamesGetSuccess && game !== undefined &&
                 <>
