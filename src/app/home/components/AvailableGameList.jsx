@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { gamesGetAttemptAction, gamesGetErrorAction, gamesGetSuccessAction } from "../../../store/actions/gameActions"
 import AvailableGame from "./AvailableGame"
+import ThGamesTable from "./hoc/ThGamesTable"
 
 const AvailableGameList = () => {
 
@@ -61,7 +62,7 @@ const AvailableGameList = () => {
     }, [])
 
 
-    const Tbody = () => {
+    const TbodyGamesTable = () => {
         return (
             <>
                 { gamesGetAttempting && <AvailableGame 
@@ -86,13 +87,13 @@ const AvailableGameList = () => {
                 <table className="border-collapse border-4 min-w-full">
                     <thead className="bg-gray-100">
                         <tr className="border-2">
-                            <th className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Title</th>
-                            <th className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Date</th>
-                            <th className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">Participants</th>
-                            <th className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">State</th>
+                            <ThGamesTable>Title</ThGamesTable>
+                            <ThGamesTable>Date</ThGamesTable>
+                            <ThGamesTable>Participants</ThGamesTable>
+                            <ThGamesTable>State</ThGamesTable>
                         </tr>
                     </thead>
-                    <Tbody />
+                    <TbodyGamesTable />
                 </table>
             </main>
         </>
