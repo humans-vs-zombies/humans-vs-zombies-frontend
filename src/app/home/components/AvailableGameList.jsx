@@ -53,7 +53,6 @@ const AvailableGameList = () => {
                 ]
 
                 setLocalState({
-                    ...localState,
                     games: listWithGames
                 })
 
