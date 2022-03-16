@@ -14,7 +14,7 @@ const AvailableGameList = () => {
     ({
         games: [],
     })
-
+    
     useEffect(() => {
         dispatch(gamesGetAttemptAction())
         
@@ -60,7 +60,7 @@ const AvailableGameList = () => {
                 dispatch(gamesGetSuccessAction())
             }
         }, 800);
-    }, [localState])
+    }, [dispatch])
 
 
     const TbodyGamesTable = () => {
