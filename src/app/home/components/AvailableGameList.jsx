@@ -60,7 +60,7 @@ const AvailableGameList = () => {
                 dispatch(gamesGetSuccessAction())
             }
         }, 800);
-    }, [])
+    }, [localState])
 
 
     const TbodyGamesTable = () => {
