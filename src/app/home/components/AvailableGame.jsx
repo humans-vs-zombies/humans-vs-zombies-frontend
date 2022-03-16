@@ -15,8 +15,11 @@ const AvailableGame = ({ index, game }) => {
     const TrGamesTable = ({ children }) => {
         return (
             <>
-                { (gamesGetAttempting ||
-                  (gamesGetSuccess && game === undefined)) && 
+                { (
+                    gamesGetAttempting ||
+                    (gamesGetSuccess && game === undefined) ||
+                    gamesGetError !== ""
+                    ) && 
                     <tr className={`border ${rowBg}`}>
                         { children }
                     </tr>
@@ -40,6 +43,9 @@ const AvailableGame = ({ index, game }) => {
                 }
                 { gamesGetSuccess && game === undefined &&
                     <TdMessageGamesTable>No games found</TdMessageGamesTable>
+                }
+                { gamesGetError !== "" &&
+                    <TdMessageGamesTable>{ gamesGetError }</TdMessageGamesTable>
                 }
                 { gamesGetSuccess && game !== undefined &&
                 <>

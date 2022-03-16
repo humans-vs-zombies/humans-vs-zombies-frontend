@@ -20,11 +20,11 @@ const AvailableGameList = () => {
 
         setTimeout(() => {
             // Emulate (un/)successful request
-            let error = false;
+            let error = true;
             let emptyListReturned = false;
             
             if (error) {
-                dispatch(gamesGetErrorAction())
+                dispatch(gamesGetErrorAction("Unable to fetch games"))
             }
             else {
                 let listWithGames = emptyListReturned ? [] : [
@@ -74,8 +74,14 @@ const AvailableGameList = () => {
                         game={ game }
                         index={ index }/>
                 ) }
-                { gamesGetSuccess && (localState.games.length === 0) && <AvailableGame 
-                    index={ 0 }/>}
+                { gamesGetSuccess && (localState.games.length === 0) && 
+                    <AvailableGame 
+                        index={ 0 }/>
+                }
+                { gamesGetError !== "" &&
+                    <AvailableGame 
+                        index={ 0 }/>
+                }
             </>
         )
     }
