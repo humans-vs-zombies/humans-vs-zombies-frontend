@@ -6,6 +6,7 @@ import TdMessageGamesTable from "./hoc/tdMessageGamesTable";
 
 const AvailableGame = ({ index, game }) => {
 
+    const dispatch = useDispatch()
     const { loggedIn, userType } = useSelector(state => state.sessionReducer)
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage } = useSelector(state => state.gameReducer)
 
@@ -21,17 +22,24 @@ const AvailableGame = ({ index, game }) => {
                     (gamesGetSuccess && game === undefined) ||
                     gamesGetError
                     ) && 
-                    <tr className={`border ${rowBg}`}>
+                    <tr className={`border ${rowBg}`} onClick={ handleRowClick }>
                         { children }
                     </tr>
                 }
                 { gamesGetSuccess && game !== undefined &&
-                    <tr className={`border ${rowBg} ${rowHover}`}>
+                    <tr className={`border ${rowBg} ${rowHover}`} onClick={ handleRowClick }>
                         { children }
                     </tr>
                 }
             </>
         )
+    }
+
+    const handleRowClick = event => {
+        if (loggedIn) {
+            dispatch(sessionCurrentGameSetAction(game.id))
+            console.log("Row clicked");
+        }
     }
 
 
@@ -50,12 +58,12 @@ const AvailableGame = ({ index, game }) => {
                 }
                 { gamesGetSuccess && game !== undefined &&
                 <>
-                    <TdGamesTable gameId={ game.id }>{ game.title }</TdGamesTable>
-                    <TdGamesTable gameId={ game.id }>{ game.date }</TdGamesTable>
-                    <TdGamesTable gameId={ game.id }>{ game.participants }</TdGamesTable>
-                    <TdGamesTable gameId={ game.id }>{ game.state }</TdGamesTable>
+                    <TdGamesTable>{ game.title }</TdGamesTable>
+                    <TdGamesTable>{ game.date }</TdGamesTable>
+                    <TdGamesTable>{ game.participants }</TdGamesTable>
+                    <TdGamesTable>{ game.state }</TdGamesTable>
                     { loggedIn && userType === "admin" &&
-                        <TdEditGamesTable gameId={ game.id }>Edit</TdEditGamesTable>
+                        <TdEditGamesTable>Edit</TdEditGamesTable>
                     }
                 </>
                 }

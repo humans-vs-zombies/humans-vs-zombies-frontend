@@ -1,18 +1,6 @@
-import { useDispatch, useSelector } from "react-redux"
-
-const TdEditGamesTable = ({ children, gameId }) => {
-
-    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
-
-    const handleEditBtnClick = event => {
-        if (loggedIn && userType === "admin") {
-            console.log("Go to edit page to edit game with id: " + gameId);
-        }
-    }
-
-
+const TdEditGamesTable = ({ children }) => {
     return (
-        <td className="py-3 px-6 text-s text-left text-blue-700 hover:underline" onClick={ handleEditBtnClick }>{ children }</td>
+        <td className="py-3 px-6 text-s text-left text-blue-700 hover:underline">{ children }</td>
     )
 }
 
