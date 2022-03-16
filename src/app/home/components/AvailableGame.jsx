@@ -6,7 +6,7 @@ import TdMessageGamesTable from "./hoc/tdMessageGamesTable";
 const AvailableGame = ({ index, game }) => {
 
     const { loggedIn } = useSelector(state => state.sessionReducer)
-    const { gamesGetAttempting, gamesGetSuccess, gamesGetError } = useSelector(state => state.gameReducer)
+    const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage } = useSelector(state => state.gameReducer)
 
     // Tailwind class-variables
     let rowBg = index % 2 === 0 ? "bg-white" : "bg-gray-100"
@@ -18,7 +18,7 @@ const AvailableGame = ({ index, game }) => {
                 { (
                     gamesGetAttempting ||
                     (gamesGetSuccess && game === undefined) ||
-                    gamesGetError !== ""
+                    gamesGetError
                     ) && 
                     <tr className={`border ${rowBg}`}>
                         { children }
@@ -44,8 +44,8 @@ const AvailableGame = ({ index, game }) => {
                 { gamesGetSuccess && game === undefined &&
                     <TdMessageGamesTable>No games found</TdMessageGamesTable>
                 }
-                { gamesGetError !== "" &&
-                    <TdMessageGamesTable>{ gamesGetError }</TdMessageGamesTable>
+                { gamesGetError &&
+                    <TdMessageGamesTable>{ gamesGetErrorMessage }</TdMessageGamesTable>
                 }
                 { gamesGetSuccess && game !== undefined &&
                 <>

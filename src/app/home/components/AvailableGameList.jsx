@@ -68,7 +68,7 @@ const AvailableGameList = () => {
                 { (
                     gamesGetAttempting ||
                     (gamesGetSuccess && (localState.games.length === 0)) ||
-                    gamesGetError !== ""
+                    gamesGetError
                 ) &&
                     <AvailableGame index={ 0 }/>
                 }

@@ -3,7 +3,8 @@ import { ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_S
 const initialState = {
     gamesGetAttempting: false,
     gamesGetSuccess: false,
-    gamesGetError: ""
+    gamesGetError: false,
+    gamesGetErrorMessage: ""
 }
 
 
@@ -15,7 +16,8 @@ export const gameReducer = (state = initialState, action) => {
                 ...state,
                 gamesGetAttempting: true,
                 gamesGetSuccess: false,
-                gamesGetError: "",
+                gamesGetError: false,
+                gamesGetErrorMessage: "",
             }
 
         case ACTION_GAMES_GET_SUCCESS:
@@ -29,7 +31,8 @@ export const gameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 gamesGetAttempting: false,
-                gamesGetError: action.payload,
+                gamesGetError: true,
+                gamesGetErrorMessage: action.payload,
             }
 
         default:

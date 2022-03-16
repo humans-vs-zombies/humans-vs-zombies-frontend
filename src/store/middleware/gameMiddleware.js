@@ -6,15 +6,15 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
 
     switch (action.type) {
         case ACTION_GAMES_GET_ATTEMPTING:
-            console.log("attempting middleware")
+            console.log("attempting (middleware)")
             break
 
         case ACTION_GAMES_GET_SUCCESS:
-            console.log("success middleware")
+            console.log("success (middleware)")
             break
 
         case ACTION_GAMES_GET_ERROR:
-            console.log("error middleware")
+            console.log("error (middleware)")
             break
 
         default:
