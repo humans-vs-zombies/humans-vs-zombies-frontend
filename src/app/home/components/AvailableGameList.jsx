@@ -22,7 +22,7 @@ const AvailableGameList = () => {
         setTimeout(() => {
             // Emulate (un/)successful request
             let error = false;
-            let emptyListReturned = true;
+            let emptyListReturned = false;
             
             if (error) {
                 dispatch(gamesGetErrorAction("Unable to fetch games"))
@@ -73,7 +73,7 @@ const AvailableGameList = () => {
                 ) &&
                     <AvailableGame index={ 0 }/>
                 }
-                { gamesGetSuccess && (localState.games.length !== 0) && localState.games.map((game, index) => 
+                { gamesGetSuccess && (localState.games.length > 0) && localState.games.map((game, index) => 
                     <AvailableGame
                         key={ index }
                         game={ game }
@@ -94,7 +94,7 @@ const AvailableGameList = () => {
                             <ThGamesTable>Date</ThGamesTable>
                             <ThGamesTable>Participants</ThGamesTable>
                             <ThGamesTable>State</ThGamesTable>
-                            { loggedIn && userType === "admin" &&
+                            { loggedIn && userType === "admin" && !gamesGetError && (localState.games.length > 0) &&
                                 <ThGamesTable></ThGamesTable>
                             }
                         </tr>

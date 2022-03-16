@@ -38,7 +38,6 @@ const AvailableGame = ({ index, game }) => {
     const handleRowClick = event => {
         if (loggedIn) {
             dispatch(sessionCurrentGameSetAction(game.id))
-            console.log("Row clicked");
         }
     }
 
