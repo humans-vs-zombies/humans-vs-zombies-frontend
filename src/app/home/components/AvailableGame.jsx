@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
-import TdEditGamesTable from "./hoc/tdEditGamesTable";
+import TdEditGamesTable from "./hoc/TdEditGamesTable";
 import TdGamesTable from "./hoc/TdGameTable";
 import TdMessageGamesTable from "./hoc/TdMessageGamesTable";
 
