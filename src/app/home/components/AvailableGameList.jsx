@@ -21,7 +21,7 @@ const AvailableGameList = () => {
         setTimeout(() => {
             // Emulate (un/)successful request
             let error = false;
-            let emptyListReturned = true;
+            let emptyListReturned = false;
             
             if (error) {
                 dispatch(gamesGetErrorAction())
