@@ -17,27 +17,43 @@ const AvailableGame = ({ index, game }) => {
         }
     }
 
+    const TrGamesTable = ({ children }) => {
+        return (
+            <>
+                { (gamesGetAttempting ||
+                  (gamesGetSuccess && game === undefined)) && 
+                    <tr className={`border ${rowBg}`}>
+                        { children }
+                    </tr>
+                }
+                { gamesGetSuccess && game !== undefined &&
+                    <tr className={`border ${rowBg} ${rowHover}`}>
+                        { children }
+                    </tr>
+                }
+            </>
+        )
+    }
+
     return (
         <>
             <tbody>
+                <TrGamesTable>
                 { gamesGetAttempting &&
-                <tr className={`border ${rowBg}`}>
                     <td className="py-3 px-6 text-s text-center" colSpan="5">Loading...</td>
-                </tr>
+                }
+                { gamesGetSuccess && game === undefined &&
+                    <td className="py-3 px-6 text-s text-center" colSpan="5">No games found</td>
                 }
                 { gamesGetSuccess && game !== undefined &&
-                <tr className={`border ${rowBg} ${rowHover}`}>
+                <>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.title }</td>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.date }</td>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.participants}</td>
                     <td className="py-3 px-6 text-s text-left" onClick={ handleGameBtnClick }>{ game.state }</td>
-                </tr>
+                </>
                 }
-                { gamesGetSuccess && game === undefined &&
-                <tr className={`border ${rowBg}`}>
-                    <td className="py-3 px-6 text-s text-center" colSpan="5">No games found</td>
-                </tr>
-                }
+                </TrGamesTable>
             </tbody>
         </>
     )
