@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
+import TdEditGamesTable from "./hoc/tdEditGamesTable";
 import TdGamesTable from "./hoc/tdGameTable";
 import TdMessageGamesTable from "./hoc/tdMessageGamesTable";
 
 const AvailableGame = ({ index, game }) => {
 
-    const { loggedIn } = useSelector(state => state.sessionReducer)
+    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage } = useSelector(state => state.gameReducer)
 
     // Tailwind class-variables
@@ -53,6 +54,9 @@ const AvailableGame = ({ index, game }) => {
                     <TdGamesTable gameId={ game.id }>{ game.date }</TdGamesTable>
                     <TdGamesTable gameId={ game.id }>{ game.participants }</TdGamesTable>
                     <TdGamesTable gameId={ game.id }>{ game.state }</TdGamesTable>
+                    { loggedIn && userType === "admin" &&
+                        <TdEditGamesTable gameId={ game.id }>Edit</TdEditGamesTable>
+                    }
                 </>
                 }
                 </TrGamesTable>

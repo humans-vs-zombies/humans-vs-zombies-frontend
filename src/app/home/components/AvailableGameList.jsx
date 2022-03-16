@@ -95,7 +95,7 @@ const AvailableGameList = () => {
                             <ThGamesTable>Participants</ThGamesTable>
                             <ThGamesTable>State</ThGamesTable>
                             { loggedIn && userType === "admin" &&
-                                <ThGamesTable>Edit</ThGamesTable>
+                                <ThGamesTable></ThGamesTable>
                             }
                         </tr>
                     </thead>
