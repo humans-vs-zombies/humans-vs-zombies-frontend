@@ -23,7 +23,6 @@ export const gameReducer = (state = initialState, action) => {
                 ...state,
                 gamesGetAttempting: false,
                 gamesGetSuccess: true,
-                //...initialState?
             }
 
         case ACTION_GAMES_GET_ERROR:
