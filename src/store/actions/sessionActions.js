@@ -2,6 +2,7 @@ export const ACTION_SESSION_INIT = '[session] INIT'
 export const ACTION_SESSION_LOGIN_USER_SET = '[userLoginSession] SET'
 export const ACTION_SESSION_LOGIN_ADMIN_SET = '[adminLoginSession] SET'
 export const ACTION_SESSION_LOGOUT_SET = '[logoutSession] SET'
+export const ACTION_SESSION_CURRENT_GAME_SET = '[currentGameSession] SET'
 
 
 export const sessionInitAction = () => ({
@@ -20,4 +21,9 @@ export const sessionLoginAdminSetAction = admin => ({
 
 export const sessionLogoutSetAction = () => ({
     type: ACTION_SESSION_LOGOUT_SET
+})
+
+export const sessionCurrentGameSetAction = gameId => ({
+    type: ACTION_SESSION_CURRENT_GAME_SET,
+    payload: gameId
 })
