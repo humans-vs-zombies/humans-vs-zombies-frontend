@@ -8,20 +8,7 @@ import { useKeycloak } from '@react-keycloak/web'
 const Header = () => {
     useKeycloak();
 
-    const dispatch = useDispatch()
-    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
-
-    const handleBtnLoginUserClick = event => {
-        dispatch(sessionLoginUserSetAction({ userType: "user" }))
-    }
-
-    const handleBtnLoginAdminClick = event => {
-        dispatch(sessionLoginAdminSetAction({ userType: "admin" }))
-    }
-
-    const handleBtnLogoutClick = event => {
-        dispatch(sessionLogoutSetAction())
-    }
+    const { userType } = useSelector(state => state.sessionReducer)
 
     return (
         <>
