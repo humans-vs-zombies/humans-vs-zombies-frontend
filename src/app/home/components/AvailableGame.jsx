@@ -65,7 +65,7 @@ const AvailableGame = ({ index, game }) => {
                     { loggedIn && userType === "admin" &&
                 <>
                     <TdEditGamesTable>Edit</TdEditGamesTable>
-                    <TdDeleteGamesTable>Delete</TdDeleteGamesTable>
+                    <TdDeleteGamesTable gameId={ game.id }>Delete</TdDeleteGamesTable>
                 </>
                     }
                 </>

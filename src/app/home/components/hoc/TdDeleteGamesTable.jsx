@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 
-const TdDeleteGamesTable = ({ children }) => {
+const TdDeleteGamesTable = ({ children, gameId }) => {
 
     const { loggedIn, userType } = useSelector(state => state.sessionReducer)
 
     const handleDeleteGameClick = event => {
         if (loggedIn && userType === "admin") {
-            console.log("Delete game");
+            console.log("Delete game with id: " + gameId);
         }
     }
 
