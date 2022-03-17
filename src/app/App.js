@@ -1,5 +1,5 @@
 import './App.css';
-import {Routes, Route, HashRouter } from 'react-router-dom';
+import {Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './home/Home';
 import Game from './game/Game';
 import NotFound from './notFound/NotFound';
@@ -9,7 +9,7 @@ import EditGame from './editGame/EditGame';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="App">
         <Header />
         <Routes>
@@ -19,7 +19,7 @@ function App() {
           <Route path="*" element={< NotFound />} />
         </Routes>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
