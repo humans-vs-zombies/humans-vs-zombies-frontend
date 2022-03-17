@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { sessionLoginAdminSetAction, sessionLoginUserSetAction, sessionLogoutSetAction } from '../../store/actions/sessionActions'
 
 import UserService from '../../services/UserService'
 import { useKeycloak } from '@react-keycloak/web'
