@@ -6,7 +6,7 @@ import { sessionLoginAdminSetAction, sessionLoginUserSetAction, sessionLogoutSet
 const Header = () => {
 
     const dispatch = useDispatch()
-    const { loggedIn, userType, currentSquad } = useSelector(state => state.sessionReducer)
+    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
 
     const handleBtnLoginUserClick = event => {
         dispatch(sessionLoginUserSetAction({ userType: "user" }))
