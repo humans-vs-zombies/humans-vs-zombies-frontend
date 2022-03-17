@@ -13,7 +13,6 @@ const Game = () => {
   const { loggedIn } = useSelector((state) => state.sessionReducer);
   //TODO: fetch squad state using redux
   const { currentSquad } = useSelector(state => state.sessionReducer)
-  const inSquad = false;
   const isZombie = true;
   const biteCode = "1234";
 
