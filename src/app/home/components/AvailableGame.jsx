@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
+import TdDeleteGamesTable from "./hoc/TdDeleteGamesTable";
 import TdEditGamesTable from "./hoc/TdEditGamesTable";
 import TdGamesTable from "./hoc/TdGamesTable";
 import TdMessageGamesTable from "./hoc/TdMessageGamesTable";
@@ -62,7 +63,10 @@ const AvailableGame = ({ index, game }) => {
                     <TdGamesTable>{ game.participants }</TdGamesTable>
                     <TdGamesTable>{ game.state }</TdGamesTable>
                     { loggedIn && userType === "admin" &&
-                        <TdEditGamesTable>Edit</TdEditGamesTable>
+                <>
+                    <TdEditGamesTable>Edit</TdEditGamesTable>
+                    <TdDeleteGamesTable>Delete</TdDeleteGamesTable>
+                </>
                     }
                 </>
                 }

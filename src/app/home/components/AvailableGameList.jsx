@@ -94,7 +94,10 @@ const AvailableGameList = () => {
                             <ThGamesTable>Participants</ThGamesTable>
                             <ThGamesTable>State</ThGamesTable>
                             { loggedIn && userType === "admin" && !gamesGetError && (localState.games.length > 0) &&
-                                <ThGamesTable></ThGamesTable>
+                        <>
+                            <ThGamesTable></ThGamesTable>
+                            <ThGamesTable></ThGamesTable>
+                        </>
                             }
                         </tr>
                     </thead>
