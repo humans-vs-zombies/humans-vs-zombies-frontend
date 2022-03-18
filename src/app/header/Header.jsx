@@ -21,6 +21,9 @@ const Header = () => {
                         <li>
                             <NavLink className="app-link" to="/game">Game</NavLink>
                         </li>
+                        <li>
+                            <NavLink className="app-link" to="/testauthorizedendpoint">Go to authorized route (requires admin)</NavLink>
+                        </li>
                     </ul>
                 </nav>
                 {!UserService.getLoggedIn() && (
