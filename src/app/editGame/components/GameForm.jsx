@@ -71,13 +71,23 @@ const GameForm = () => {
                     <label className={ lableStyle } htmlFor="participants">Game participants:</label>
                     
                     <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants10" value="option1" />
-                        <label className={ radioBtnLableStyle } htmlFor="participants10">10</label>
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="option1" />
+                        <label className={ radioBtnLableStyle } htmlFor="participants25">25</label>
                     </div>
 
                     <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="option2" />
-                        <label className={ radioBtnLableStyle } htmlFor="participants25">25</label>
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants50" value="option2" />
+                        <label className={ radioBtnLableStyle } htmlFor="participants50">50</label>
+                    </div>
+
+                    <div className={ radioBtnContainerStyle }>
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants100" value="option3" />
+                        <label className={ radioBtnLableStyle } htmlFor="participants100">100</label>
+                    </div>
+
+                    <div className={ radioBtnContainerStyle }>
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="option4" />
+                        <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
                     </div>
                 </fieldset>
 
