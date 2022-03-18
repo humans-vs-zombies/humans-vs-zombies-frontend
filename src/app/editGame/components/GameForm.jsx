@@ -6,6 +6,7 @@ const GameForm = () => {
     const originalGameDescription = "Jk"
     const originalGameDateFrom = "2022-04-01T12:00"
     const originalGameDateTo = "2022-04-07T12:00"
+    const originalGameParticipants = "50"
 
     // Local states
     const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState(false);
@@ -15,6 +16,7 @@ const GameForm = () => {
         description: originalGameDescription,
         dateFrom: originalGameDateFrom,
         dateTo: originalGameDateTo,
+        participants: originalGameParticipants,
     })
 
     // Style className constants
@@ -29,7 +31,8 @@ const GameForm = () => {
         if (originalGameTitle === game.title &&
             originalGameDescription === game.description &&
             originalGameDateFrom === game.dateFrom &&
-            originalGameDateTo === game.dateTo) {
+            originalGameDateTo === game.dateTo &&
+            originalGameParticipants === game.participants) {
             setHasUnsavedChanges(false)
             setSumbitBtnBgTW("bg-gray-500")
         }
@@ -43,6 +46,13 @@ const GameForm = () => {
         setGame({
             ...game,
             [target.id]: target.value
+        })
+    }
+
+    const handleParticipantsChange = ({ target}) => {
+        setGame({
+            ...game,
+            participants: target.value
         })
     }
 
@@ -71,22 +81,22 @@ const GameForm = () => {
                     <label className={ lableStyle } htmlFor="participants">Game participants:</label>
                     
                     <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="option1" />
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="25" onChange={ handleParticipantsChange } defaultChecked={"25" === game.participants ? "checked" : ""} />
                         <label className={ radioBtnLableStyle } htmlFor="participants25">25</label>
                     </div>
 
                     <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants50" value="option2" />
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants50" value="50" onChange={ handleParticipantsChange } defaultChecked={"50" === game.participants ? "checked" : ""} />
                         <label className={ radioBtnLableStyle } htmlFor="participants50">50</label>
                     </div>
 
                     <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants100" value="option3" />
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants100" value="100" onChange={ handleParticipantsChange } defaultChecked={"100" === game.participants ? "checked" : ""} />
                         <label className={ radioBtnLableStyle } htmlFor="participants100">100</label>
                     </div>
 
                     <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="option4" />
+                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={"500" === game.participants ? "checked" : ""} />
                         <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
                     </div>
                 </fieldset>
