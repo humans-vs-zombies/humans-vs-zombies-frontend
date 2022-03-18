@@ -23,7 +23,7 @@ const GameForm = () => {
     const datetimeStyle = "shadow border text-gray-700 rounded ml-4 w-64 pl-10 py-2 px-3"
     const radioBtnContainerStyle = "inline-block"
     const radioBtnStyle = "hidden peer"
-    const radioBtnLableStyle = "inline-grid text-gray-700 cursor-pointer appearance-none rounded h-8 w-16 text-center content-center border bg-blue-400 peer-checked:bg-blue-600 focus:outline-none"
+    const radioBtnLableStyle = "inline-grid text-white font-bold cursor-pointer appearance-none rounded h-9 w-16 ml-2 text-center content-center border bg-blue-600 peer-checked:bg-blue-800 focus:outline-none"
 
     useEffect(() => {
         if (originalGameTitle === game.title &&
@@ -78,7 +78,7 @@ const GameForm = () => {
                     <div className={ radioBtnContainerStyle }>
                         <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="option2" />
                         <label className={ radioBtnLableStyle } htmlFor="participants25">25</label>
-                    </div>                    
+                    </div>
                 </fieldset>
 
                 <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
