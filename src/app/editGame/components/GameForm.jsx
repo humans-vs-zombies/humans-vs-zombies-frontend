@@ -60,6 +60,13 @@ const GameForm = () => {
         })
     }
 
+    const handleGameStateChange = ({ target}) => {
+        setGame({
+            ...game,
+            state: target.value
+        })
+    }
+
 
     return (
         <>
@@ -105,9 +112,9 @@ const GameForm = () => {
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="state">Game state:</label>
-                    <select className={ selectStyle } defaultValue="2">
+                    <select className={ selectStyle } defaultValue="3" onChange={ handleGameStateChange }>
                         <option value="1">Configuration</option>
-                        <option value="2">Registration</option>
+                        <option value="Registration">Registration</option>
                         <option value="3">In progress</option>
                         <option value="4">Complete</option>
                     </select>
