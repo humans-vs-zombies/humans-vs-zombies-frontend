@@ -1,7 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+
+// Form input requirements
+const titleConfig = {
+    required: true,
+    minLength: 2,
+}
+
 
 const GameForm = () => {
 
+    const {register, handleSubmit, formState: { errors }} = useForm()
+
+    // Values before they are edited
     const originalGameTitle = "testtitle"
     const originalGameDescription = "Jk"
     const originalGameDateFrom = "2022-04-01T12:00"
@@ -46,6 +58,7 @@ const GameForm = () => {
         }
     }, [ game ])
 
+    // Event handlers
     const handleOnInputChange = ({ target }) => {
         setGame({
             ...game,
@@ -53,28 +66,33 @@ const GameForm = () => {
         })
     }
 
-    const handleParticipantsChange = ({ target}) => {
+    const handleParticipantsChange = ({ target }) => {
         setGame({
             ...game,
             participants: target.value
         })
     }
 
-    const handleGameStateChange = ({ target}) => {
+    const handleGameStateChange = ({ target }) => {
         setGame({
             ...game,
             state: target.value
         })
     }
 
+    // Log in the user and navigate to the main page
+    const onFormSubmit = async ({ title }) => {
+        console.log(title);
+    }
+
 
     return (
         <>
             <p>Unsaved changes: {hasUnsavedChanges ? "true" : "false"}</p>
-            <form>
+            <form onSubmit={ handleSubmit(onFormSubmit) }>
             <fieldset>
                     <label className={ lableStyle } htmlFor="title">Game title:</label>
-                    <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } onChange={ handleOnInputChange } />
+                    <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } onChange={ handleOnInputChange } />
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="description">Game description:</label>
