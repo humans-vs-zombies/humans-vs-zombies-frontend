@@ -7,7 +7,7 @@ const GameForm = () => {
     const originalGameDateFrom = "2022-04-01T12:00"
     const originalGameDateTo = "2022-04-07T12:00"
     const originalGameParticipants = "50"
-    const originalGameState = "Registration"
+    const originalGameState = "3"
 
     // Local states
     const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState(false);
@@ -112,11 +112,11 @@ const GameForm = () => {
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="state">Game state:</label>
-                    <select className={ selectStyle } defaultValue="3" onChange={ handleGameStateChange }>
-                        <option value="1">Configuration</option>
-                        <option value="Registration">Registration</option>
-                        <option value="3">In progress</option>
-                        <option value="4">Complete</option>
+                    <select className={ selectStyle } defaultValue={ originalGameState } onChange={ handleGameStateChange }>
+                        <option value="1" disabled={ originalGameState > 1 }>Configuration</option>
+                        <option value="2" disabled={ originalGameState > 2 }>Registration</option>
+                        <option value="3" disabled={ originalGameState > 3 }>In progress</option>
+                        <option value="4" disabled={ originalGameState > 4 }>Complete</option>
                     </select>
                 </fieldset>
 
