@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom'
 
 import UserService from '../../services/UserService'
 import { useKeycloak } from '@react-keycloak/web'
+import { GameAPI } from '../../api/GameAPI'
 
 const Header = () => {
     useKeycloak();
+    GameAPI.getGames();
 
     const { userType } = useSelector(state => state.sessionReducer)
 
