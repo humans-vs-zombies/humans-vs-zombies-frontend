@@ -26,6 +26,7 @@ const GameForm = () => {
     const radioBtnContainerStyle = "inline-block"
     const radioBtnStyle = "hidden peer"
     const radioBtnLableStyle = "inline-grid text-white font-bold cursor-pointer appearance-none rounded h-9 w-16 ml-2 text-center content-center border bg-blue-600 peer-checked:bg-blue-800 focus:outline-none"
+    const selectStyle = "form-select appearance-none w-64 px-3 py-2 ml-4 shadow text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 
     useEffect(() => {
         if (originalGameTitle === game.title &&
@@ -59,8 +60,7 @@ const GameForm = () => {
 
     return (
         <>
-        <p>fdhsaj</p>
-            <p>jfsdak: {hasUnsavedChanges ? "true" : "false"}</p>
+            <p>Unsaved changes: {hasUnsavedChanges ? "true" : "false"}</p>
             <form>
             <fieldset>
                     <label className={ lableStyle } htmlFor="title">Game title:</label>
@@ -99,6 +99,15 @@ const GameForm = () => {
                         <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={"500" === game.participants ? "checked" : ""} />
                         <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
                     </div>
+                </fieldset>
+                <fieldset>
+                    <label className={ lableStyle } htmlFor="state">Game state:</label>
+                    <select className={ selectStyle } defaultValue="2">
+                        <option value="1">Configuration</option>
+                        <option value="2">Registration</option>
+                        <option value="3">In progress</option>
+                        <option value="4">Complete</option>
+                    </select>
                 </fieldset>
 
                 <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
