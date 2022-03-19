@@ -17,9 +17,10 @@ const getEmailVerified = () => _kc.tokenParsed?.email_verified;
 const getName = () => _kc.tokenParsed?.name;
 const getGivenName = () => _kc.tokenParsed?.given_name;
 const getFamilyName = () => _kc.tokenParsed?.family_name;
-
+const getContext = () => _kc.getContext();
 const hasRole = (roles) => roles.some((role) => _kc.hasResourceRole(role));
-//const getToken = () => _kc.token;
+const getToken = () => _kc.token;
+
 const UserService = {
     _kc,
     login,
@@ -31,7 +32,9 @@ const UserService = {
     getName,
     getGivenName,
     getFamilyName,
+    getContext,
     hasRole,
+    getToken
 };
 
 export default UserService;

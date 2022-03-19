@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom'
 
 import UserService from '../../services/UserService'
 import { useKeycloak } from '@react-keycloak/web'
+import { GameAPI } from '../../api/GameAPI'
 
 const Header = () => {
     useKeycloak();
+    GameAPI.getGames();
 
     const { userType } = useSelector(state => state.sessionReducer)
 
@@ -20,6 +22,9 @@ const Header = () => {
                         </li>
                         <li>
                             <NavLink className="app-link" to="/game">Game</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="app-link" to="/testauthorizedendpoint">Go to authorized route (requires admin)</NavLink>
                         </li>
                     </ul>
                 </nav>
