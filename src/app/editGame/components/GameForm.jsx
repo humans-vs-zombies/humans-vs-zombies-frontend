@@ -7,6 +7,7 @@ const GameForm = () => {
     const originalGameDateFrom = "2022-04-01T12:00"
     const originalGameDateTo = "2022-04-07T12:00"
     const originalGameParticipants = "50"
+    const originalGameState = "Registration"
 
     // Local states
     const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState(false);
@@ -17,6 +18,7 @@ const GameForm = () => {
         dateFrom: originalGameDateFrom,
         dateTo: originalGameDateTo,
         participants: originalGameParticipants,
+        state: originalGameState,
     })
 
     // Style className constants
@@ -33,7 +35,8 @@ const GameForm = () => {
             originalGameDescription === game.description &&
             originalGameDateFrom === game.dateFrom &&
             originalGameDateTo === game.dateTo &&
-            originalGameParticipants === game.participants) {
+            originalGameParticipants === game.participants &&
+            originalGameState === game.state) {
             setHasUnsavedChanges(false)
             setSumbitBtnBgTW("bg-gray-500")
         }
