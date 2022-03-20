@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import UserService from "../../../services/UserService"
 import { gamesGetAttemptAction, gamesGetErrorAction, gamesGetSuccessAction } from "../../../store/actions/gameActions"
 import AvailableGame from "./AvailableGame"
 import ThGamesTable from "./hoc/ThGamesTable"
@@ -7,7 +8,8 @@ import ThGamesTable from "./hoc/ThGamesTable"
 const AvailableGameList = () => {
 
     const dispatch = useDispatch()
-    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
+    const loggedIn = UserService.getLoggedIn()
+    const hasAdminRole = UserService.hasRole(["admin"])
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError } = useSelector(state => state.gameReducer)
 
     const [ localState, setLocalState ] = useState
@@ -93,7 +95,7 @@ const AvailableGameList = () => {
                             <ThGamesTable>Date</ThGamesTable>
                             <ThGamesTable>Participants</ThGamesTable>
                             <ThGamesTable>State</ThGamesTable>
-                            { loggedIn && userType === "admin" && !gamesGetError && (localState.games.length > 0) &&
+                            { loggedIn && hasAdminRole && !gamesGetError && (localState.games.length > 0) &&
                         <>
                             <ThGamesTable></ThGamesTable>
                             <ThGamesTable></ThGamesTable>
