@@ -1,11 +1,13 @@
-import { useSelector } from "react-redux";
+import UserService from "../../../../services/UserService";
+
 
 const TdDeleteGamesTable = ({ children, gameId }) => {
 
-    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
+    const loggedIn = UserService.getLoggedIn()
+    const hasAdminRole = UserService.hasRole(["admin"])
 
     const handleDeleteGameClick = event => {
-        if (loggedIn && userType === "admin") {
+        if (loggedIn && hasAdminRole) {
             console.log("Delete game with id: " + gameId);
         }
     }
