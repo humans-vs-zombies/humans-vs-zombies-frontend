@@ -28,7 +28,7 @@ const GameForm = () => {
 
     // Style className constants
     const lableStyle = "block text-lg text-gray-700 font-bold mb-2 mt-6"
-    const inputStyle = "shadow appearance-none border rounded w-4/5 ml-4 py-2 px-3 text-gray-700 leading-tight"
+    const inputStyle = "shadow appearance-none border rounded w-4/5 max-w-xs ml-4 py-2 px-3 text-gray-700 leading-tight"
     const datetimeStyle = "shadow border text-gray-700 rounded ml-4 w-64 pl-10 py-2 px-3"
     const radioBtnContainerStyle = "inline-block"
     const radioBtnStyle = "hidden peer"
@@ -100,13 +100,13 @@ const GameForm = () => {
         <>
             <p>Unsaved changes: {hasUnsavedChanges ? "true" : "false"}</p>
             <form onSubmit={ handleSubmit(onFormSubmit) }>
-            <fieldset>
+                <fieldset>
                     <label className={ lableStyle } htmlFor="title">Game title:</label>
                     <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="description">Game description:</label>
-                    <input className={ inputStyle } type="text" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
+                    <textarea className={ inputStyle } type="textarea" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="dateFrom">Game date:</label>
