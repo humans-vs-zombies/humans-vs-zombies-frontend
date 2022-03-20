@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import UserService from "../../../services/UserService";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
 import TdDeleteGamesTable from "./hoc/TdDeleteGamesTable";
 import TdEditGamesTable from "./hoc/TdEditGamesTable";
@@ -8,7 +9,8 @@ import TdMessageGamesTable from "./hoc/TdMessageGamesTable";
 const AvailableGame = ({ index, game }) => {
 
     const dispatch = useDispatch()
-    const { loggedIn, userType } = useSelector(state => state.sessionReducer)
+    const loggedIn = UserService.getLoggedIn()
+    const hasAdminRole = UserService.hasRole(["admin"])
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage } = useSelector(state => state.gameReducer)
 
     // Tailwind class-variables
@@ -62,7 +64,7 @@ const AvailableGame = ({ index, game }) => {
                     <TdGamesTable>{ game.date }</TdGamesTable>
                     <TdGamesTable>{ game.participants }</TdGamesTable>
                     <TdGamesTable>{ game.state }</TdGamesTable>
-                    { loggedIn && userType === "admin" &&
+                    { loggedIn && hasAdminRole &&
                 <>
                     <TdEditGamesTable>Edit</TdEditGamesTable>
                     <TdDeleteGamesTable gameId={ game.id }>Delete</TdDeleteGamesTable>
