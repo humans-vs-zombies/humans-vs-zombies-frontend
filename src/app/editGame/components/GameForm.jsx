@@ -97,24 +97,27 @@ const GameForm = () => {
     // Render function
     // Check if the input follows the requirements, if not -> show corresponding error-message
     const errorMessage = (() => {
+        let message = "Input error"
         if (errors.title) {
             if (errors.title.type === "required") {
-                return <span>Title is required</span>
+                message = "Title is required"
             }
         }
         else if (errors.dateFrom) {
             if (errors.dateFrom.type === "required") {
-                return <span>Start date is required</span>
+                message = "Start date is required"
             }
         }
         else if (errors.dateTo) {
             if (errors.dateTo.type === "required") {
-                return <span>End date is required</span>
+                message = "End date is required"
             }
         }
         else {
             return null
         }
+
+        return <span className=" border border-red-700 rounded p-2.5 ml-8 w-64">{ message }</span>
     })()
 
 
