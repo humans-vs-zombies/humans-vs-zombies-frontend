@@ -81,7 +81,6 @@ const GameForm = () => {
     // Form input requirements
     const titleConfig = {
         required: true,
-        minLength: 2,
         onChange: handleOnInputChange,
     }
 
@@ -94,6 +93,29 @@ const GameForm = () => {
         required: true,
         onChange: handleOnInputChange,
     }
+
+    // Render function
+    // Check if the input follows the requirements, if not -> show corresponding error-message
+    const errorMessage = (() => {
+        if (errors.title) {
+            if (errors.title.type === "required") {
+                return <span>Title is required</span>
+            }
+        }
+        else if (errors.dateFrom) {
+            if (errors.dateFrom.type === "required") {
+                return <span>Start date is required</span>
+            }
+        }
+        else if (errors.dateTo) {
+            if (errors.dateTo.type === "required") {
+                return <span>End date is required</span>
+            }
+        }
+        else {
+            return null
+        }
+    })()
 
 
     return (
@@ -148,6 +170,7 @@ const GameForm = () => {
                 </fieldset>
 
                 <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
+                { errorMessage }
             </form>
         </>
     )
