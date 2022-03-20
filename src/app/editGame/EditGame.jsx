@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
+import GameForm from "./components/GameForm"
 
 
 const EditGame = () => {
@@ -11,6 +12,9 @@ const EditGame = () => {
         <>
             { (!loggedIn || userType !== "admin") && <Navigate to="/" /> }
             <h1>Edit game Page</h1>
+            <main>
+                <GameForm />
+            </main>
         </>
     )
 }
