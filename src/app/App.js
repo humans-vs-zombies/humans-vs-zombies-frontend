@@ -22,8 +22,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={< Home />} />
-          <Route element={<AuthorizedRoute roles={["admin"]} />}>
+          <Route element={<AuthorizedRoute roles={["user"]} />}>
             <Route path="/game" exact element={< Game />} />
+          </Route>
+          <Route element={<AuthorizedRoute roles={["admin"]} />}>
             <Route path="/game/edit" exact element={ < EditGame /> } />
             <Route path='/testauthorizedendpoint' element={<h1>Hey there!</h1>}/>
           </Route>
