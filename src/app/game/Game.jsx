@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 import { GameHeader } from "./GameHeader";
 import { GameMap } from "./GameMap";
 import { BiteCodeInput } from "./BiteCodeInput";
