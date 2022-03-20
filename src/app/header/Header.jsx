@@ -29,10 +29,10 @@ const Header = () => {
                     </ul>
                 </nav>
                 {!UserService.getLoggedIn() && (
-                    <button type="button" onClick={() => UserService.login()}>Login</button> 
+                    <button className="text-red-700" type="button" onClick={() => UserService.login()}>Login</button> 
                 )}
                 {!!UserService.getLoggedIn() && (
-                    <button type="button" onClick={() => UserService.logout()}>Logout</button> 
+                    <button className="text-red-700" type="button" onClick={() => UserService.logout()}>Logout</button> 
                 )}
 
                 {!!UserService.getLoggedIn() && (
