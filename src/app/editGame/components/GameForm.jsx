@@ -7,8 +7,8 @@ const GameForm = () => {
     const {register, handleSubmit, formState: { errors }} = useForm()
 
     // Values before they are edited
-    const originalGameTitle = "testtitle"
-    const originalGameDescription = "Jk"
+    const originalGameTitle = "test title"
+    const originalGameDescription = "test description"
     const originalGameDateFrom = "2022-04-01T12:00"
     const originalGameDateTo = "2022-04-07T12:00"
     const originalGameParticipants = "50"
@@ -73,9 +73,9 @@ const GameForm = () => {
         })
     }
 
-    // Log in the user and navigate to the main page
-    const onFormSubmit = async ({ title }) => {
-        console.log(title);
+    // Save game changes
+    const onFormSubmit = async () => {
+        console.log(game.title);
     }
 
     // Form input requirements
@@ -98,7 +98,6 @@ const GameForm = () => {
 
     return (
         <>
-            <p>Unsaved changes: {hasUnsavedChanges ? "true" : "false"}</p>
             <form onSubmit={ handleSubmit(onFormSubmit) }>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="title">Game title:</label>
