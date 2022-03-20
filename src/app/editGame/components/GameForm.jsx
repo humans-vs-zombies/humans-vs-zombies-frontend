@@ -2,13 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 
-// Form input requirements
-const titleConfig = {
-    required: true,
-    minLength: 2,
-}
-
-
 const GameForm = () => {
 
     const {register, handleSubmit, formState: { errors }} = useForm()
@@ -85,6 +78,23 @@ const GameForm = () => {
         console.log(title);
     }
 
+    // Form input requirements
+    const titleConfig = {
+        required: true,
+        minLength: 2,
+        onChange: handleOnInputChange,
+    }
+
+    const descriptionConfig = {
+        required: false,
+        onChange: handleOnInputChange,
+    }
+
+    const datetimeConfig = {
+        required: true,
+        onChange: handleOnInputChange,
+    }
+
 
     return (
         <>
@@ -92,18 +102,18 @@ const GameForm = () => {
             <form onSubmit={ handleSubmit(onFormSubmit) }>
             <fieldset>
                     <label className={ lableStyle } htmlFor="title">Game title:</label>
-                    <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } onChange={ handleOnInputChange } />
+                    <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="description">Game description:</label>
-                    <input className={ inputStyle } type="text" id="description" name="description" value={ game.description } onChange={ handleOnInputChange } />
+                    <input className={ inputStyle } type="text" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="dateFrom">Game date:</label>
-                    <input className={ datetimeStyle } type="datetime-local" id="dateFrom" name="dateFrom" value={ game.dateFrom } onChange={ handleOnInputChange } />
+                    <input className={ datetimeStyle } type="datetime-local" id="dateFrom" name="dateFrom" value={ game.dateFrom } { ...register("dateFrom", datetimeConfig) } />
                     
                     <label className="block ml-4 my-1 text-lg" htmlFor="dateTo">to</label>
-                    <input className={ datetimeStyle } type="datetime-local" id="dateTo" name="dateTo" value={ game.dateTo } onChange={ handleOnInputChange } />
+                    <input className={ datetimeStyle } type="datetime-local" id="dateTo" name="dateTo" value={ game.dateTo } { ...register("dateTo", datetimeConfig) } />
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="participants">Game participants:</label>
