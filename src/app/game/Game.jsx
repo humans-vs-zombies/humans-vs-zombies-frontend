@@ -10,7 +10,6 @@ import { sessionCurrentSquadSetAction } from "../../store/actions/sessionActions
 
 const Game = () => {
   const dispatch = useDispatch()
-  const { loggedIn } = useSelector((state) => state.sessionReducer);
   //TODO: fetch squad state using redux
   const { currentSquad } = useSelector(state => state.sessionReducer)
   const isZombie = true;
@@ -22,7 +21,6 @@ const Game = () => {
 
   return (
     <>
-      {!loggedIn && <Navigate to="/" />}
       <div className="h-full flex flex-col bg-orange-400">
         <GameHeader inSquad={currentSquad} />
 
