@@ -23,8 +23,9 @@ function App() {
         <Routes>
           <Route path="/" element={< Home />} />
           <Route path="/game" exact element={< Game />} />
-          <Route path="/game/edit" exact element={ < EditGame /> } />
+          
           <Route element={<AuthorizedRoute roles={["admin"]} />}>
+            <Route path="/game/edit" exact element={ < EditGame /> } />
             <Route path='/testauthorizedendpoint' element={<h1>Hey there!</h1>}/>
           </Route>
           <Route path="/notauthorized" exact element={ < NotAuthorized /> } />
