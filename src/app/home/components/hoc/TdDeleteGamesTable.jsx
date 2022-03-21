@@ -1,10 +1,10 @@
-import UserService from "../../../../services/UserService";
+import KeycloakService from "../../../../services/KeycloakService";
 
 
 const TdDeleteGamesTable = ({ children, gameId }) => {
 
-    const loggedIn = UserService.getLoggedIn()
-    const hasAdminRole = UserService.hasRole(["admin"])
+    const loggedIn = KeycloakService.getLoggedIn()
+    const hasAdminRole = KeycloakService.hasRole(["admin"])
 
     const handleDeleteGameClick = event => {
         if (loggedIn && hasAdminRole) {

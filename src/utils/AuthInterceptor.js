@@ -1,5 +1,5 @@
-/*import axios from 'axios';
-import UserService from '../services/UserService';
+import axios from 'axios';
+import KeycloakService from '../services/KeycloakService';
 
 const AuthInterceptor = () => {
   const defaultOptions = {
@@ -15,12 +15,10 @@ const AuthInterceptor = () => {
 
   // Set the AUTH token for any request
   instance.interceptors.request.use(function (config) {
-    //const token = localStorage.getItem('token');
-    const token = UserService.getToken();
-    config.headers.Authorization =  token ? `Bearer ${token}` : '';
-    config.headers['Access-Control-Allow-Origin'] = "*";
-    config.headers['Access-Control-Allow-Methods'] =  "GET, POST, PUT, DELETE";
-    config.headers['Access-Control-Allow-Headers'] =  "Authorization";
+    const token = KeycloakService.getToken();
+
+    if(KeycloakService.getLoggedIn())
+      config.headers.Authorization =  token ? `Bearer ${token}` : '';
 
     return config;
   });
@@ -28,7 +26,7 @@ const AuthInterceptor = () => {
   return instance;
 };
 
-export default AuthInterceptor();*/
+export default AuthInterceptor();
 
 /*import axios from "axios";
 import UserService from "./UserService";
