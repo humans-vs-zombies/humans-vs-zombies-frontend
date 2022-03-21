@@ -1,4 +1,4 @@
-import { handleFirstResponse } from "../utils/apiUtils"
+//import { handleFirstResponse } from "../utils/apiUtils"
 import AuthInterceptor from "../utils/AuthInterceptor";
 
 // Switch between localhost and remote host
