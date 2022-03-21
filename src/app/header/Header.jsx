@@ -5,7 +5,7 @@ import KeycloakService from '../../services/KeycloakService'
 import { GameAPI } from '../../api/GameAPI'
 
 const Header = () => {
-    GameAPI.getGames();
+    GameAPI.postGame();
 
     const { userType } = useSelector(state => state.sessionReducer)
 
