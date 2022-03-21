@@ -2,7 +2,7 @@
 import AuthInterceptor from "../utils/AuthInterceptor";
 
 // Switch between localhost and remote host
-const API_URL = "http://localhost:8080"; // "https://humans-vs-zombies-backend.herokuapp.com"
+const API_URL = "https://humans-vs-zombies-backend.herokuapp.com";//"http://localhost:8080"; // "https://humans-vs-zombies-backend.herokuapp.com"
 
 export const GameAPI = {
     getGames() {
