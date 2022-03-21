@@ -17,10 +17,14 @@ export const GameAPI = {
 
     postGame() {
         const testGame = {
-            "name": "Test game name",
+            "name": "Test game",
             "state": "CONFIGURATION",
-            "description": "Test game description"
-        }
+            "participants": 25,
+            "dateFrom": "2022-03-21T18:02:02.271Z",
+            "dateTo": "2022-04-21T18:02:02.271Z",
+            "players": [],
+            "description": "Test description"
+          }
 
         AuthInterceptor.post(API_URL + "/api/v1/game", testGame)
         .then((res) => {
