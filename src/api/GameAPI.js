@@ -13,5 +13,21 @@ export const GameAPI = {
         .catch((error) => {
             console.error(error);
         });
+    },
+
+    postGame() {
+        const testGame = {
+            "name": "Test game name",
+            "state": "CONFIGURATION",
+            "description": "Test game description"
+        }
+
+        AuthInterceptor.post(API_URL + "/api/v1/game", testGame)
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((error) => {
+            console.error(error);
+        })
     }
 }
