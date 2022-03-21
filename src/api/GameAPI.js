@@ -1,10 +1,17 @@
-import { handleFirstResponse } from "../utils/apiUtils"
+//import { handleFirstResponse } from "../utils/apiUtils"
+import AuthInterceptor from "../utils/AuthInterceptor";
 
+// Switch between localhost and remote host
+const API_URL = "http://localhost:8080"; // "https://humans-vs-zombies-backend.herokuapp.com"
 
 export const GameAPI = {
     getGames() {
-        //return fetch("http://localhost:8080/api/v1/game")
-        return fetch("https://humans-vs-zombies-backend.herokuapp.com/api/v1/game")
-        .then(handleFirstResponse)
+        AuthInterceptor.get(API_URL + "/api/v1/game")
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
 }

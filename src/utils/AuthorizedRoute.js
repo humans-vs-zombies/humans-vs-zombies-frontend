@@ -1,7 +1,7 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 import { Navigate, Outlet } from 'react-router-dom';
-import UserService from '../services/UserService';
+import KeycloakService from '../services/KeycloakService';
 
 //const KeycloakContext = React.createContext({});
 
@@ -17,8 +17,8 @@ import UserService from '../services/UserService';
   };*/
 
 export default function AuthorizedRoute({ roles }) {
-    const autenticated = UserService.getLoggedIn();
-    const authorized = UserService.hasRole(roles)
+    const autenticated = KeycloakService.getLoggedIn();
+    const authorized = KeycloakService.hasRole(roles)
 
     // Autenticated and authorized
     if(autenticated && authorized) {

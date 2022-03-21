@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
-import UserService from "../../../../services/UserService";
+import KeycloakService from "../../../../services/KeycloakService";
 
 
 const TdGamesTable = ({ children }) => {
 
-    const loggedIn = UserService.getLoggedIn()
+    const loggedIn = KeycloakService.getLoggedIn()
     const navigate = useNavigate();
 
     const handleGameClick = event => {

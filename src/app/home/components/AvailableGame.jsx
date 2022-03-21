@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import UserService from "../../../services/UserService";
+import KeycloakService from "../../../services/KeycloakService";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
 import TdDeleteGamesTable from "./hoc/TdDeleteGamesTable";
 import TdEditGamesTable from "./hoc/TdEditGamesTable";
@@ -9,8 +9,8 @@ import TdMessageGamesTable from "./hoc/TdMessageGamesTable";
 const AvailableGame = ({ index, game }) => {
 
     const dispatch = useDispatch()
-    const loggedIn = UserService.getLoggedIn()
-    const hasAdminRole = UserService.hasRole(["admin"])
+    const loggedIn = KeycloakService.getLoggedIn()
+    const hasAdminRole = KeycloakService.hasRole(["admin"])
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage } = useSelector(state => state.gameReducer)
 
     // Tailwind class-variables

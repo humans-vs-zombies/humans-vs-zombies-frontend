@@ -1,12 +1,10 @@
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import UserService from '../../services/UserService'
-import { useKeycloak } from '@react-keycloak/web'
+import KeycloakService from '../../services/KeycloakService'
 import { GameAPI } from '../../api/GameAPI'
 
 const Header = () => {
-    useKeycloak();
     GameAPI.getGames();
 
     const { userType } = useSelector(state => state.sessionReducer)
@@ -28,32 +26,32 @@ const Header = () => {
                         </li>
                     </ul>
                 </nav>
-                {!UserService.getLoggedIn() && (
-                    <button className="text-red-700" type="button" onClick={() => UserService.login()}>Login</button> 
+                {!KeycloakService.getLoggedIn() && (
+                    <button className="text-red-700" type="button" onClick={() => KeycloakService.login()}>Login</button> 
                 )}
-                {!!UserService.getLoggedIn() && (
-                    <button className="text-red-700" type="button" onClick={() => UserService.logout()}>Logout</button> 
+                {!!KeycloakService.getLoggedIn() && (
+                    <button className="text-red-700" type="button" onClick={() => KeycloakService.logout()}>Logout</button> 
                 )}
 
-                {!!UserService.getLoggedIn() && (
+                {!!KeycloakService.getLoggedIn() && (
                     <p>
-                            isLoggedIn: {UserService.getLoggedIn() ? "true" : "false"}
+                            isLoggedIn: {KeycloakService.getLoggedIn() ? "true" : "false"}
                             <br />
-                            getPreferredUsername: {UserService.getPreferredUsername()}
+                            getPreferredUsername: {KeycloakService.getPreferredUsername()}
                             <br />
-                            getEmail: {UserService.getEmail()}
+                            getEmail: {KeycloakService.getEmail()}
                             <br />
-                            getEmailVerified: {UserService.getEmailVerified() ? "true" : "false"}
+                            getEmailVerified: {KeycloakService.getEmailVerified() ? "true" : "false"}
                             <br />
-                            getName: {UserService.getName()}
+                            getName: {KeycloakService.getName()}
                             <br />
-                            getGivenName: {UserService.getGivenName()}
+                            getGivenName: {KeycloakService.getGivenName()}
                             <br />
-                            getFamilyName: {UserService.getFamilyName()}
+                            getFamilyName: {KeycloakService.getFamilyName()}
                             <br />
-                            hasRole("user"): {UserService.hasRole(["user"]) ? "true" : "false"}
+                            hasRole("user"): {KeycloakService.hasRole(["user"]) ? "true" : "false"}
                             <br />
-                            hasRole("admin"): {UserService.hasRole(["admin"]) ? "true" : "false"}
+                            hasRole("admin"): {KeycloakService.hasRole(["admin"]) ? "true" : "false"}
                     </p>
                 )}
 

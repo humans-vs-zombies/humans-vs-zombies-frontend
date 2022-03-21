@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import UserService from "../../../services/UserService"
+import KeycloakService from "../../../services/KeycloakService"
 import { gamesGetAttemptAction, gamesGetErrorAction, gamesGetSuccessAction } from "../../../store/actions/gameActions"
 import AvailableGame from "./AvailableGame"
 import ThGamesTable from "./hoc/ThGamesTable"
@@ -8,8 +8,8 @@ import ThGamesTable from "./hoc/ThGamesTable"
 const AvailableGameList = () => {
 
     const dispatch = useDispatch()
-    const loggedIn = UserService.getLoggedIn()
-    const hasAdminRole = UserService.hasRole(["admin"])
+    const loggedIn = KeycloakService.getLoggedIn()
+    const hasAdminRole = KeycloakService.hasRole(["admin"])
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError } = useSelector(state => state.gameReducer)
 
     const [ localState, setLocalState ] = useState

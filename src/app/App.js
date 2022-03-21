@@ -5,18 +5,11 @@ import Game from './game/Game';
 import NotFound from './notFound/NotFound';
 import Header from './header/Header';
 import EditGame from './editGame/EditGame';
-import UserService from '../services/UserService';
-import { ReactKeycloakProvider } from '@react-keycloak/web';
 import NotAuthorized from './notAuthorized/NotAuthorized';
 import AuthorizedRoute from '../utils/AuthorizedRoute'
 
 function App() {
   return (
-    <ReactKeycloakProvider authClient={UserService._kc}
-      initOptions={{
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html'
-      }}>
     <BrowserRouter>
       <div className="App">
         <Header />
@@ -34,7 +27,6 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
-    </ReactKeycloakProvider>
   );
 }
 
