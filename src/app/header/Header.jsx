@@ -6,6 +6,7 @@ import { GameAPI } from '../../api/GameAPI'
 
 const Header = () => {
     GameAPI.postGame();
+    GameAPI.getGames();
 
     const { userType } = useSelector(state => state.sessionReducer)
 
