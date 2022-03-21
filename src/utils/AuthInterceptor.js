@@ -27,32 +27,3 @@ const AuthInterceptor = () => {
 };
 
 export default AuthInterceptor();
-
-/*import axios from "axios";
-import UserService from "./UserService";
-
-const _axios = axios.create();
-
-const configure = () => {*/
-    /* 
-        Intercepts and changes every request to API.
-        Adds Authorization header with authentication token,
-        and refreshes token.
-    */
-    /*_axios.interceptors.request.use((config) => {
-        const cb = () => {
-            config.headers.Authorization = "Bearer " + UserService.getToken();
-            return Promise.resolve(config);
-        };
-        return UserService.updateToken(cb);
-    })
-};
-
-const getAxiosClient = () => _axios;
-
-const HttpService = {
-    configure,
-    getAxiosClient
-}
-
-export default HttpService;*/
