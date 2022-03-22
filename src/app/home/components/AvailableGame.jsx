@@ -52,19 +52,17 @@ const AvailableGame = ({ index, game }) => {
     }
 
     const formattedGameState = () => {
-        let gameState = "-"
         switch (game.state) {
             case "CONFIGURATION":
-                gameState = "Configuration";
+                return "Configuration";
             case "REGISTRATION":
-                gameState = "Registration";
+                return "Registration";
             case "IN PROGRESS":
-                gameState = "In progress";
+                return "In progress";
             case "COMPLETE":
-                gameState = "Complete";               
+                return "Complete";
+            default: return "-";
         }
-
-        return gameState;
     }
 
     const formattedPertisipants = () => {
