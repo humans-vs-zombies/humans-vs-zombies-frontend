@@ -1,5 +1,5 @@
 import { GameAPI } from "../../api/GameAPI";
-import { ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS } from "../actions/gameActions";
+import { ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, gamesGetErrorAction, gamesGetSuccessAction } from "../actions/gameActions";
 
 export const gameMiddleware = ({ dispatch }) => next => action => {
 
@@ -12,9 +12,11 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
             GameAPI.getGames()
             .then(res => {
                 console.log(res.data);
+                dispatch(gamesGetSuccessAction(res.data))
             })
             .catch(error => {
                 console.error(error.message);
+                dispatch(gamesGetErrorAction(error.message))
             });
             break
 

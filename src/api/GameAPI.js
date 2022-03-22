@@ -6,7 +6,7 @@ const API_URL = "https://humans-vs-zombies-backend.herokuapp.com";//"http://loca
 
 export const GameAPI = {
     getGames() {
-        return AuthInterceptor.get(API_URL + "/api/v1/gameh")
+        return AuthInterceptor.get(API_URL + "/api/v1/game")
     },
 
     postGame() {

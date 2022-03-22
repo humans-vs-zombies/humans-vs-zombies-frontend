@@ -21,7 +21,7 @@ const AvailableGameList = () => {
         dispatch(gamesGetAttemptAction())
         
 
-        setTimeout(() => {
+        /* setTimeout(() => {
             // Emulate (un/)successful request
             let error = false;
             let emptyListReturned = false;
@@ -60,7 +60,7 @@ const AvailableGameList = () => {
 
                 dispatch(gamesGetSuccessAction())
             }
-        }, 800);
+        }, 800); */
     }, [dispatch])
 
 
