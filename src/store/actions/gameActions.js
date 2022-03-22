@@ -20,15 +20,16 @@ export const gamesGetErrorAction = error => ({
     payload: error
 })
 
-export const gamesDeleteAttemptAction = () => ({
-    type: ACTION_GAMES_GET_ATTEMPTING,
+export const gamesDeleteAttemptAction = id => ({
+    type: ACTION_GAMES_DELETE_ATTEMPTING,
+    payload: id,
 })
 
 export const gamesDeleteSuccessAction = () => ({
-    type: ACTION_GAMES_GET_SUCCESS,
+    type: ACTION_GAMES_DELETE_SUCCESS,
 })
 
 export const gamesDeleteErrorAction = error => ({
-    type: ACTION_GAMES_GET_ERROR,
+    type: ACTION_GAMES_DELETE_ERROR,
     payload: error
 })
