@@ -10,7 +10,7 @@ const AvailableGameList = () => {
     const dispatch = useDispatch()
     const loggedIn = KeycloakService.getLoggedIn()
     const hasAdminRole = KeycloakService.hasRole(["admin"])
-    const { gamesGetAttempting, gamesGetSuccess, gamesGetError } = useSelector(state => state.gameReducer)
+    const { gamesGetAttempting, gamesGetSuccess, gamesGetError, games } = useSelector(state => state.gameReducer)
 
     const [ localState, setLocalState ] = useState
     ({
@@ -69,12 +69,12 @@ const AvailableGameList = () => {
             <>
                 { (
                     gamesGetAttempting ||
-                    (gamesGetSuccess && (localState.games.length === 0)) ||
+                    (gamesGetSuccess && (games.length === 0)) ||
                     gamesGetError
                 ) &&
                     <AvailableGame index={ 0 }/>
                 }
-                { gamesGetSuccess && (localState.games.length > 0) && localState.games.map((game, index) => 
+                { gamesGetSuccess && (games.length > 0) && games.map((game, index) => 
                     <AvailableGame
                         key={ index }
                         game={ game }
@@ -95,7 +95,7 @@ const AvailableGameList = () => {
                             <ThGamesTable>Date</ThGamesTable>
                             <ThGamesTable>Participants</ThGamesTable>
                             <ThGamesTable>State</ThGamesTable>
-                            { loggedIn && hasAdminRole && !gamesGetError && (localState.games.length > 0) &&
+                            { loggedIn && hasAdminRole && !gamesGetError && (games.length > 0) &&
                         <>
                             <ThGamesTable></ThGamesTable>
                             <ThGamesTable></ThGamesTable>

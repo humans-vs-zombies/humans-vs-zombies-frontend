@@ -12,7 +12,7 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
             GameAPI.getGames()
             .then(res => {
                 console.log(res.data);
-                dispatch(gamesGetSuccessAction(res.data))
+                dispatch(gamesGetSuccessAction(res.data.payload))
             })
             .catch(error => {
                 console.error(error.message);
