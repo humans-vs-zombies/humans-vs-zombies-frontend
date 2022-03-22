@@ -4,7 +4,8 @@ const initialState = {
     gamesGetAttempting: false,
     gamesGetSuccess: false,
     gamesGetError: false,
-    gamesGetErrorMessage: ""
+    gamesGetErrorMessage: "",
+    games: []
 }
 
 
@@ -18,6 +19,7 @@ export const gameReducer = (state = initialState, action) => {
                 gamesGetSuccess: false,
                 gamesGetError: false,
                 gamesGetErrorMessage: "",
+                games: [],
             }
 
         case ACTION_GAMES_GET_SUCCESS:
@@ -25,6 +27,7 @@ export const gameReducer = (state = initialState, action) => {
                 ...state,
                 gamesGetAttempting: false,
                 gamesGetSuccess: true,
+                games: action.payload,
             }
 
         case ACTION_GAMES_GET_ERROR:
