@@ -11,12 +11,10 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
             // Try to get games
             GameAPI.getGames()
             .then(res => {
-                console.log(res.data);
                 dispatch(gamesGetSuccessAction(res.data.payload))
             })
-            .catch(error => {
-                console.error(error.message);
-                dispatch(gamesGetErrorAction(error.message))
+            .catch((error) => {
+                dispatch(gamesGetErrorAction("Unable to fetch games (" + error.message + ")"))
             });
             break
 

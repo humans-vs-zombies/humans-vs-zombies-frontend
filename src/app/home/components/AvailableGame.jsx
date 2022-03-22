@@ -44,15 +44,26 @@ const AvailableGame = ({ index, game }) => {
         }
     }
 
-    // Format date
+    // Format datea and game state
     let dateFrom = ""
+    let gameState = ""
     if (game !== undefined) {
         const date = new Date(game.dateFrom);
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-
         dateFrom = date.toLocaleDateString('en-EN', options)
+
+        switch (game.state) {
+            case "CONFIGURATION":
+                gameState = "Configuration";
+            case "REGISTRATION":
+                gameState = "Registration";
+            case "IN PROGRESS":
+                gameState = "In progress";
+            case "COMPLETE":
+                gameState = "Complete";
+                        
+        }
     }
-    
 
 
     return (
@@ -73,7 +84,7 @@ const AvailableGame = ({ index, game }) => {
                     <TdGamesTable>{ game.name }</TdGamesTable>
                     <TdGamesTable>{ dateFrom }</TdGamesTable>
                     <TdGamesTable>{ game.participants }</TdGamesTable>
-                    <TdGamesTable>{ game.state }</TdGamesTable>
+                    <TdGamesTable>{ gameState }</TdGamesTable>
                     { loggedIn && hasAdminRole &&
                 <>
                     <TdEditGamesTable>Edit</TdEditGamesTable>
