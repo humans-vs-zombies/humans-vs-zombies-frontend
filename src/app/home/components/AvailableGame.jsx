@@ -44,14 +44,15 @@ const AvailableGame = ({ index, game }) => {
         }
     }
 
-    // Format datea and game state
-    let dateFrom = ""
-    let gameState = ""
-    if (game !== undefined) {
+    // Format table output
+    const formattedDateFrom = () => {
         const date = new Date(game.dateFrom);
         const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-        dateFrom = date.toLocaleDateString('en-EN', options)
+        return date.toLocaleDateString('en-EN', options)
+    }
 
+    const formattedGameState = () => {
+        let gameState = "-"
         switch (game.state) {
             case "CONFIGURATION":
                 gameState = "Configuration";
@@ -60,9 +61,14 @@ const AvailableGame = ({ index, game }) => {
             case "IN PROGRESS":
                 gameState = "In progress";
             case "COMPLETE":
-                gameState = "Complete";
-                        
+                gameState = "Complete";               
         }
+
+        return gameState;
+    }
+
+    const formattedPertisipants = () => {
+        return game.players.length + "/" + game.participants;
     }
 
 
@@ -82,9 +88,9 @@ const AvailableGame = ({ index, game }) => {
                 { gamesGetSuccess && game !== undefined &&
                 <>
                     <TdGamesTable>{ game.name }</TdGamesTable>
-                    <TdGamesTable>{ dateFrom }</TdGamesTable>
-                    <TdGamesTable>{ game.participants }</TdGamesTable>
-                    <TdGamesTable>{ gameState }</TdGamesTable>
+                    <TdGamesTable>{ formattedDateFrom() }</TdGamesTable>
+                    <TdGamesTable>{ formattedPertisipants() }</TdGamesTable>
+                    <TdGamesTable>{ formattedGameState() }</TdGamesTable>
                     { loggedIn && hasAdminRole &&
                 <>
                     <TdEditGamesTable>Edit</TdEditGamesTable>
