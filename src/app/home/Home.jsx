@@ -9,9 +9,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const handleBtnOnClickNewGame = event => {
-        if (loggedIn) {
-            navigate("/game/create")   
-        }
+        navigate("/game/create")
     }
 
     return (
