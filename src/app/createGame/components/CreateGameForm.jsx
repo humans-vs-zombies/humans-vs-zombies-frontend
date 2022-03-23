@@ -44,7 +44,6 @@ const CreateGameForm = () => {
 
     // Create game
     const onFormSubmit = async () => {
-        console.log(game.title);
         dispatch(gameCreateAttemptAction(game))
     }
 

@@ -19,14 +19,13 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
 
         case ACTION_GAME_CREATE_ATTEMPTING:
             // Attept to create a game
-            console.log("mwt" + action.payload.title);
             let game = action.payload;
             GameAPI.postGame(game.title, game.participants, game.dateFrom, game.dateTo, game.description)
             .then((res) => {
                 dispatch(gameCreateSuccessAction())
             })
             .catch((error) => {
-                dispatch(gameCreateErrorAction())
+                dispatch(gameCreateErrorAction(error.message))
             })
             break
         
