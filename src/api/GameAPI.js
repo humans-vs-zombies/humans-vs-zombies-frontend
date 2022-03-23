@@ -26,5 +26,9 @@ export const GameAPI = {
         .catch((error) => {
             console.error(error);
         })
+    },
+
+    deleteGame(id) {
+        return AuthInterceptor.delete(API_URL + "/api/v1/game/" + id)
     }
 }

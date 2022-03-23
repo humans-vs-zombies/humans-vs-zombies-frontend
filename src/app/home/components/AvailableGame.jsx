@@ -47,7 +47,7 @@ const AvailableGame = ({ index, game }) => {
     // Format table output
     const formattedDateFrom = () => {
         const date = new Date(game.dateFrom);
-        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'short' };
         return date.toLocaleDateString('en-EN', options)
     }
 

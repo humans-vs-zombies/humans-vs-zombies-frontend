@@ -1,14 +1,19 @@
+import { useDispatch } from "react-redux";
 import KeycloakService from "../../../../services/KeycloakService";
+import { gamesDeleteAttemptAction } from "../../../../store/actions/gameActions";
 
 
 const TdDeleteGamesTable = ({ children, gameId }) => {
 
+    const dispatch = useDispatch()
     const loggedIn = KeycloakService.getLoggedIn()
     const hasAdminRole = KeycloakService.hasRole(["admin"])
 
     const handleDeleteGameClick = event => {
         if (loggedIn && hasAdminRole) {
-            console.log("Delete game with id: " + gameId);
+            if (window.confirm("Are you sure you wish to remove this game?")) {
+                dispatch(gamesDeleteAttemptAction(gameId))   
+            }
         }
     }
 

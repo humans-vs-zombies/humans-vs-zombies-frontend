@@ -1,6 +1,9 @@
 export const ACTION_GAMES_GET_ATTEMPTING = "[getGames] ATTEMPT"
 export const ACTION_GAMES_GET_SUCCESS = "[getGames] SUCCESS"
 export const ACTION_GAMES_GET_ERROR = "[getGames] ERROR"
+export const ACTION_GAMES_DELETE_ATTEMPTING = "[deleteGames] ATTEMPT"
+export const ACTION_GAMES_DELETE_SUCCESS = "[deleteGames] SUCCESS"
+export const ACTION_GAMES_DELETE_ERROR = "[deleteGames] ERROR"
 
 export const gamesGetAttemptAction = (limit, offset) => ({
     type: ACTION_GAMES_GET_ATTEMPTING,
@@ -14,5 +17,20 @@ export const gamesGetSuccessAction = games => ({
 
 export const gamesGetErrorAction = error => ({
     type: ACTION_GAMES_GET_ERROR,
+    payload: error
+})
+
+export const gamesDeleteAttemptAction = id => ({
+    type: ACTION_GAMES_DELETE_ATTEMPTING,
+    payload: id,
+})
+
+export const gamesDeleteSuccessAction = id => ({
+    type: ACTION_GAMES_DELETE_SUCCESS,
+    payload: id,
+})
+
+export const gamesDeleteErrorAction = error => ({
+    type: ACTION_GAMES_DELETE_ERROR,
     payload: error
 })
