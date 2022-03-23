@@ -25,8 +25,9 @@ export const gamesDeleteAttemptAction = id => ({
     payload: id,
 })
 
-export const gamesDeleteSuccessAction = () => ({
+export const gamesDeleteSuccessAction = id => ({
     type: ACTION_GAMES_DELETE_SUCCESS,
+    payload: id,
 })
 
 export const gamesDeleteErrorAction = error => ({

@@ -57,6 +57,7 @@ export const gameReducer = (state = initialState, action) => {
                 ...state,
                 gameDeleteAttempting: false,
                 gameDeleteSuccess: true,
+                games: state.games.filter(game => game.id !== action.payload),
             }
 
         case ACTION_GAMES_DELETE_ERROR:

@@ -21,7 +21,7 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
             // Attempt to delete a game
             GameAPI.deleteGame(action.payload)
             .then(res => {
-                dispatch(gamesDeleteSuccessAction())
+                dispatch(gamesDeleteSuccessAction(action.payload))
             })
             .catch((error) => {
                 dispatch(gamesDeleteErrorAction())
