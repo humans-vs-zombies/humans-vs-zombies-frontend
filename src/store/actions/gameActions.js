@@ -28,9 +28,9 @@ export const gamesGetErrorAction = error => ({
 })
 
 // Create
-export const gameCreateAttemptAction = (title, description, dateFrom, dateTo, participants) => ({
+export const gameCreateAttemptAction = game => ({
     type: ACTION_GAME_CREATE_ATTEMPTING,
-    payload: title, description, dateFrom, dateTo, participants
+    payload: game
 })
 
 export const gameCreateSuccessAction = () => ({
