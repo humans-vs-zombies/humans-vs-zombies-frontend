@@ -11,8 +11,9 @@ const TdDeleteGamesTable = ({ children, gameId }) => {
 
     const handleDeleteGameClick = event => {
         if (loggedIn && hasAdminRole) {
-            console.log("Delete game with id: " + gameId);
-            dispatch(gamesDeleteAttemptAction(gameId))
+            if (window.confirm("Are you sure you wish to remove this game?")) {
+                dispatch(gamesDeleteAttemptAction(gameId))   
+            }
         }
     }
 
