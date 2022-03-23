@@ -2,11 +2,8 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import KeycloakService from '../../services/KeycloakService'
-import { GameAPI } from '../../api/GameAPI'
 
 const Header = () => {
-    GameAPI.getGames();
-
     const { userType } = useSelector(state => state.sessionReducer)
 
     return (
