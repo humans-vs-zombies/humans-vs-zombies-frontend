@@ -25,10 +25,7 @@ const CreateGameForm = () => {
         if (gameCreateSuccess) {
             navigate("/")
         }
-        else if (gameCreateError) {
-            console.log("AHH arror");
-        }
-    }, [gameCreateSuccess, gameCreateError])
+    }, [gameCreateSuccess])
 
     // Style className constants
     const lableStyle = "block text-lg text-gray-700 font-bold mb-2 mt-6"
@@ -93,6 +90,9 @@ const CreateGameForm = () => {
             if (errors.dateTo.type === "required") {
                 message = "End date is required"
             }
+        }
+        else if (gameCreateError) {
+            message = "Unable to create game"
         }
         else {
             return null
