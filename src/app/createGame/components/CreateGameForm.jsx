@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { gameCreateAttemptAction } from "../../../store/actions/gameActions";
 
 
 const CreateGameForm = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const {register, handleSubmit, formState: { errors }} = useForm()
+    const { gameCreateSuccess, gameCreateError } = useSelector(state => state.gameReducer)
 
     // Local states
     const [ game, setGame ] =  useState({
@@ -17,6 +20,15 @@ const CreateGameForm = () => {
         dateTo: "",
         participants: "25",
     })
+
+    useEffect(() => {
+        if (gameCreateSuccess) {
+            navigate("/")
+        }
+        else if (gameCreateError) {
+            console.log("AHH arror");
+        }
+    }, [gameCreateSuccess, gameCreateError])
 
     // Style className constants
     const lableStyle = "block text-lg text-gray-700 font-bold mb-2 mt-6"

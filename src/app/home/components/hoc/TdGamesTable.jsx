@@ -9,7 +9,7 @@ const TdGamesTable = ({ children }) => {
 
     const handleGameClick = event => {
         if (loggedIn) {
-            navigate("/game")   
+            navigate("/game")
         }
     }
 
