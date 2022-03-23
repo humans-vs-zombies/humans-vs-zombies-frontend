@@ -25,7 +25,7 @@ const CreateGameForm = () => {
         if (gameCreateSuccess) {
             navigate("/")
         }
-    }, [gameCreateSuccess])
+    }, [gameCreateSuccess, navigate])
 
     // Style className constants
     const lableStyle = "block text-lg text-gray-700 font-bold mb-2 mt-6"
