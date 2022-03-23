@@ -1,4 +1,4 @@
-import { ACTION_GAMES_DELETE_ATTEMPTING, ACTION_GAMES_DELETE_ERROR, ACTION_GAMES_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS } from "../actions/gameActions"
+import { ACTION_GAMES_DELETE_ATTEMPTING, ACTION_GAMES_DELETE_ERROR, ACTION_GAMES_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT } from "../actions/gameActions"
 
 const initialState = {
     gamesGetAttempting: false,
@@ -22,6 +22,12 @@ const initialState = {
 export const gameReducer = (state = initialState, action) => {
     
     switch (action.type) {
+        // Init
+        case ACTION_GAME_INIT:
+            return {
+                ...initialState
+            }
+
         // Get
         case ACTION_GAMES_GET_ATTEMPTING:
             return {
