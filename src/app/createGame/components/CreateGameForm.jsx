@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { gameCreateAttemptAction } from "../../../store/actions/gameActions";
 
 
 const CreateGameForm = () => {
 
+    const dispatch = useDispatch()
     const {register, handleSubmit, formState: { errors }} = useForm()
 
     // Local states
@@ -42,6 +45,7 @@ const CreateGameForm = () => {
     // Create game
     const onFormSubmit = async () => {
         console.log(game.title);
+        dispatch(gameCreateAttemptAction(game))
     }
 
     // Form input requirements

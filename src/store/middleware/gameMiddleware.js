@@ -1,5 +1,5 @@
 import { GameAPI } from "../../api/GameAPI";
-import { ACTION_GAMES_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, gamesDeleteErrorAction, gamesDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction } from "../actions/gameActions";
+import { ACTION_GAMES_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gamesDeleteErrorAction, gamesDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction } from "../actions/gameActions";
 
 export const gameMiddleware = ({ dispatch, params }) => next => action => {
 
@@ -15,6 +15,19 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
             .catch((error) => {
                 dispatch(gamesGetErrorAction("Unable to fetch games (" + error.message + ")"))
             });
+            break
+
+        case ACTION_GAME_CREATE_ATTEMPTING:
+            // Attept to create a game
+            console.log("mwt" + action.payload.title);
+            let game = action.payload;
+            GameAPI.postGame(game.title, game.participants, game.dateFrom, game.dateTo, game.description)
+            .then((res) => {
+                dispatch(gameCreateSuccessAction())
+            })
+            .catch((error) => {
+                dispatch(gameCreateErrorAction())
+            })
             break
         
         case ACTION_GAMES_DELETE_ATTEMPTING:
