@@ -1,5 +1,5 @@
 import { GameAPI } from "../../api/GameAPI";
-import { ACTION_GAMES_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, gamesDeleteErrorAction, gamesDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction } from "../actions/gameActions";
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction } from "../actions/gameActions";
 
 export const gameMiddleware = ({ dispatch, params }) => next => action => {
 
@@ -16,15 +16,28 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
                 dispatch(gamesGetErrorAction("Unable to fetch games (" + error.message + ")"))
             });
             break
+
+        case ACTION_GAME_CREATE_ATTEMPTING:
+            // Attept to create a game
+            let game = action.payload;
+            GameAPI.postGame(game.title, game.participants, game.dateFrom, game.dateTo, game.description)
+            .then((res) => {
+                dispatch(gameCreateSuccessAction())
+                dispatch(gameInitAction())
+            })
+            .catch((error) => {
+                dispatch(gameCreateErrorAction(error.message))
+            })
+            break
         
-        case ACTION_GAMES_DELETE_ATTEMPTING:
+        case ACTION_GAME_DELETE_ATTEMPTING:
             // Attempt to delete a game
             GameAPI.deleteGame(action.payload)
             .then(res => {
-                dispatch(gamesDeleteSuccessAction(action.payload))
+                dispatch(gameDeleteSuccessAction(action.payload))
             })
             .catch((error) => {
-                dispatch(gamesDeleteErrorAction())
+                dispatch(gameDeleteErrorAction())
             });
             break
 

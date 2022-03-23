@@ -1,10 +1,23 @@
+export const ACTION_GAME_INIT = "[game] INIT"
+
 export const ACTION_GAMES_GET_ATTEMPTING = "[getGames] ATTEMPT"
 export const ACTION_GAMES_GET_SUCCESS = "[getGames] SUCCESS"
 export const ACTION_GAMES_GET_ERROR = "[getGames] ERROR"
-export const ACTION_GAMES_DELETE_ATTEMPTING = "[deleteGames] ATTEMPT"
-export const ACTION_GAMES_DELETE_SUCCESS = "[deleteGames] SUCCESS"
-export const ACTION_GAMES_DELETE_ERROR = "[deleteGames] ERROR"
 
+export const ACTION_GAME_CREATE_ATTEMPTING = "[createGame] ATTEMPT"
+export const ACTION_GAME_CREATE_SUCCESS = "[createGame] SUCCESS"
+export const ACTION_GAME_CREATE_ERROR = "[createGame] ERROR"
+
+export const ACTION_GAME_DELETE_ATTEMPTING = "[deleteGame] ATTEMPT"
+export const ACTION_GAME_DELETE_SUCCESS = "[deleteGame] SUCCESS"
+export const ACTION_GAME_DELETE_ERROR = "[deleteGame] ERROR"
+
+// Initial data
+export const gameInitAction = () => ({
+    type: ACTION_GAME_INIT,
+})
+
+// Get
 export const gamesGetAttemptAction = (limit, offset) => ({
     type: ACTION_GAMES_GET_ATTEMPTING,
     payload: limit, offset
@@ -20,17 +33,33 @@ export const gamesGetErrorAction = error => ({
     payload: error
 })
 
-export const gamesDeleteAttemptAction = id => ({
-    type: ACTION_GAMES_DELETE_ATTEMPTING,
+// Create
+export const gameCreateAttemptAction = game => ({
+    type: ACTION_GAME_CREATE_ATTEMPTING,
+    payload: game
+})
+
+export const gameCreateSuccessAction = () => ({
+    type: ACTION_GAME_CREATE_SUCCESS,
+})
+
+export const gameCreateErrorAction = error => ({
+    type: ACTION_GAME_CREATE_ERROR,
+    payload: error
+})
+
+// Delete
+export const gameDeleteAttemptAction = id => ({
+    type: ACTION_GAME_DELETE_ATTEMPTING,
     payload: id,
 })
 
-export const gamesDeleteSuccessAction = id => ({
-    type: ACTION_GAMES_DELETE_SUCCESS,
+export const gameDeleteSuccessAction = id => ({
+    type: ACTION_GAME_DELETE_SUCCESS,
     payload: id,
 })
 
-export const gamesDeleteErrorAction = error => ({
-    type: ACTION_GAMES_DELETE_ERROR,
+export const gameDeleteErrorAction = error => ({
+    type: ACTION_GAME_DELETE_ERROR,
     payload: error
 })

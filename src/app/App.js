@@ -7,6 +7,7 @@ import Header from './header/Header';
 import EditGame from './editGame/EditGame';
 import NotAuthorized from './notAuthorized/NotAuthorized';
 import AuthorizedRoute from '../utils/AuthorizedRoute'
+import CreateGame from './createGame/CreateGame';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/game" exact element={< Game />} />
           </Route>
           <Route element={<AuthorizedRoute roles={["admin"]} />}>
+            <Route path="/game/create" exact element={ < CreateGame /> } />
             <Route path="/game/edit" exact element={ < EditGame /> } />
             <Route path='/testauthorizedendpoint' element={<h1>Hey there!</h1>}/>
           </Route>
