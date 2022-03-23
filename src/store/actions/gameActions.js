@@ -8,9 +8,9 @@ export const ACTION_GAME_CREATE_ATTEMPTING = "[createGame] ATTEMPT"
 export const ACTION_GAME_CREATE_SUCCESS = "[createGame] SUCCESS"
 export const ACTION_GAME_CREATE_ERROR = "[createGame] ERROR"
 
-export const ACTION_GAMES_DELETE_ATTEMPTING = "[deleteGames] ATTEMPT"
-export const ACTION_GAMES_DELETE_SUCCESS = "[deleteGames] SUCCESS"
-export const ACTION_GAMES_DELETE_ERROR = "[deleteGames] ERROR"
+export const ACTION_GAME_DELETE_ATTEMPTING = "[deleteGame] ATTEMPT"
+export const ACTION_GAME_DELETE_SUCCESS = "[deleteGame] SUCCESS"
+export const ACTION_GAME_DELETE_ERROR = "[deleteGame] ERROR"
 
 // Initial data
 export const gameInitAction = () => ({
@@ -49,17 +49,17 @@ export const gameCreateErrorAction = error => ({
 })
 
 // Delete
-export const gamesDeleteAttemptAction = id => ({
-    type: ACTION_GAMES_DELETE_ATTEMPTING,
+export const gameDeleteAttemptAction = id => ({
+    type: ACTION_GAME_DELETE_ATTEMPTING,
     payload: id,
 })
 
-export const gamesDeleteSuccessAction = id => ({
-    type: ACTION_GAMES_DELETE_SUCCESS,
+export const gameDeleteSuccessAction = id => ({
+    type: ACTION_GAME_DELETE_SUCCESS,
     payload: id,
 })
 
-export const gamesDeleteErrorAction = error => ({
-    type: ACTION_GAMES_DELETE_ERROR,
+export const gameDeleteErrorAction = error => ({
+    type: ACTION_GAME_DELETE_ERROR,
     payload: error
 })

@@ -1,4 +1,4 @@
-import { ACTION_GAMES_DELETE_ATTEMPTING, ACTION_GAMES_DELETE_ERROR, ACTION_GAMES_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT } from "../actions/gameActions"
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAME_DELETE_ERROR, ACTION_GAME_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT } from "../actions/gameActions"
 
 const initialState = {
     gamesGetAttempting: false,
@@ -81,7 +81,7 @@ export const gameReducer = (state = initialState, action) => {
             }
 
         // Delete
-        case ACTION_GAMES_DELETE_ATTEMPTING:
+        case ACTION_GAME_DELETE_ATTEMPTING:
             return {
                 ...state,
                 gameDeleteAttempting: true,
@@ -90,7 +90,7 @@ export const gameReducer = (state = initialState, action) => {
                 gameDeleteErrorMessage: "",
             }
 
-        case ACTION_GAMES_DELETE_SUCCESS:
+        case ACTION_GAME_DELETE_SUCCESS:
             return {
                 ...state,
                 gameDeleteAttempting: false,
@@ -98,7 +98,7 @@ export const gameReducer = (state = initialState, action) => {
                 games: state.games.filter(game => game.id !== action.payload),
             }
 
-        case ACTION_GAMES_DELETE_ERROR:
+        case ACTION_GAME_DELETE_ERROR:
             return {
                 ...state,
                 gameDeleteAttempting: false,
