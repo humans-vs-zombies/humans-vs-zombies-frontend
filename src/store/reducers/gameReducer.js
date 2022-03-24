@@ -11,6 +11,14 @@ const initialState = {
     gameGetSpecificSuccess: false,
     gameGetSpecificError: false,
     gameGetSpecificErrorMessage: "",
+    currentGame: {
+        title: "",
+        description: "",
+        dateFrom: "",
+        dateTo: "",
+        participants: "",
+        state: "",
+    },
 
     gameCreateAttempting: false,
     gameCreateSuccess: false,
@@ -68,13 +76,23 @@ export const gameReducer = (state = initialState, action) => {
                 gameGetSpecificSuccess: false,
                 gameGetSpecificError: false,
                 gameGetSpecificErrorMessage: "",
+                currentGame: initialState,
             }
         
         case ACTION_GAME_GET_SPECIFIC_SUCCESS:
+            let fetchedGame = action.payload;
             return {
                 ...state,
                 gameGetSpecificAttempting: false,
                 gameGetSpecificSuccess: true,
+                currentGame: {
+                    title: fetchedGame.name,
+                    description: fetchedGame.description,
+                    dateFrom: fetchedGame.dateFrom,
+                    dateTo: fetchedGame.dateTo,
+                    participants: fetchedGame.participants,
+                    state: fetchedGame.state,
+                },
             }
         
         case ACTION_GAME_GET_SPECIFIC_ERROR:

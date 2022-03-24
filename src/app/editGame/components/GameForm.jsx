@@ -1,29 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { GameAPI } from "../../../api/GameAPI";
+import { gameGetSpecificAttemptAction, gameGetSpecificSuccessAction, gameGetSpesificErrorAction } from "../../../store/actions/gameActions";
 
 
 const GameForm = () => {
 
     const {register, handleSubmit, formState: { errors }} = useForm()
+    const dispatch = useDispatch()
+    const { gameGetSpecificAttempting, gameGetSpecificSuccess, gameGetSpecificError, gameGetSpecificErrorMessage, currentGame } = useSelector(state => state.gameReducer)
+    const { currentGameId } = useSelector(state => state.sessionReducer)
 
-    // Values before they are edited
-    const originalGameTitle = "test title"
-    const originalGameDescription = "test description"
-    const originalGameDateFrom = "2022-04-01T12:00"
-    const originalGameDateTo = "2022-04-07T12:00"
-    const originalGameParticipants = "50"
-    const originalGameState = "3"
+    useEffect(() => {
+        dispatch(gameGetSpecificAttemptAction(currentGameId))
+
+        GameAPI.getGame(currentGameId)
+            .then(res => {
+                let fetchedGame = res.data.payload;
+                dispatch(gameGetSpecificSuccessAction(fetchedGame))
+                setGame({
+                    title: fetchedGame.name,
+                    description: fetchedGame.description,
+                    dateFrom: fetchedGame.dateFrom.slice(0, -10),
+                    dateTo: fetchedGame.dateTo.slice(0, -10),
+                    participants: fetchedGame.participants,
+                    state: fetchedGame.state,
+                })
+            })
+            .catch((error) => {
+                dispatch(gameGetSpesificErrorAction("Unable to fetch the game (" + error.message + ")"))
+            });
+    }, [dispatch])
 
     // Local states
     const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState(false);
     const [ sumbitBtnBgStyle, setSumbitBtnBgTW ] = useState("bg-gray-500")
     const [ game, setGame ] =  useState({
-        title: originalGameTitle,
-        description: originalGameDescription,
-        dateFrom: originalGameDateFrom,
-        dateTo: originalGameDateTo,
-        participants: originalGameParticipants,
-        state: originalGameState,
+        title: " ",
+        description: "",
+        dateFrom: "2000-01-01T12:00",
+        dateTo: "2000-01-01T12:00",
+        participants: "",
+        state: "",
     })
 
     // Style className constants
@@ -36,12 +55,12 @@ const GameForm = () => {
     const selectStyle = "form-select appearance-none w-64 px-3 py-2 ml-4 shadow text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 
     useEffect(() => {
-        if (originalGameTitle === game.title &&
-            originalGameDescription === game.description &&
-            originalGameDateFrom === game.dateFrom &&
-            originalGameDateTo === game.dateTo &&
-            originalGameParticipants === game.participants &&
-            originalGameState === game.state) {
+        if (currentGame.title === game.title &&
+            currentGame.description === game.description &&
+            currentGame.dateFrom === game.dateFrom &&
+            currentGame.dateTo === game.dateTo &&
+            currentGame.participants === game.participants &&
+            currentGame.state === game.state) {
             setHasUnsavedChanges(false)
             setSumbitBtnBgTW("bg-gray-500")
         }
@@ -164,11 +183,11 @@ const GameForm = () => {
                 </fieldset>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="state">Game state:</label>
-                    <select className={ selectStyle } defaultValue={ originalGameState } onChange={ handleGameStateChange }>
-                        <option value="1" disabled={ originalGameState > 1 }>Configuration</option>
-                        <option value="2" disabled={ originalGameState > 2 }>Registration</option>
-                        <option value="3" disabled={ originalGameState > 3 }>In progress</option>
-                        <option value="4" disabled={ originalGameState > 4 }>Complete</option>
+                    <select className={ selectStyle } defaultValue={ currentGame.state } onChange={ handleGameStateChange }>
+                        <option value="1" disabled={ currentGame.state > 1 }>Configuration</option>
+                        <option value="2" disabled={ currentGame.state > 2 }>Registration</option>
+                        <option value="3" disabled={ currentGame.state > 3 }>In progress</option>
+                        <option value="4" disabled={ currentGame.state > 4 }>Complete</option>
                     </select>
                 </fieldset>
 
