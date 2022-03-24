@@ -1,4 +1,4 @@
-import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAME_DELETE_ERROR, ACTION_GAME_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, ACTION_GAME_GET_SPECIFIC_SUCCESS, ACTION_GAME_GET_SPECIFIC_ERROR } from "../actions/gameActions"
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAME_DELETE_ERROR, ACTION_GAME_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, ACTION_GAME_GET_SPECIFIC_SUCCESS, ACTION_GAME_GET_SPECIFIC_ERROR, ACTION_GAME_UPDATE_ATTEMPTING, ACTION_GAME_UPDATE_SUCCESS, ACTION_GAME_UPDATE_ERROR } from "../actions/gameActions"
 
 const initialState = {
     gamesGetAttempting: false,
@@ -24,6 +24,11 @@ const initialState = {
     gameCreateSuccess: false,
     gameCreateError: false,
     gameCreateErrorMessage: "",
+
+    gameUpdateAttempting: false,
+    gameUpdateSuccess: false,
+    gameUpdateError: false,
+    gameUpdateErrorMessage: "",
 
     gameDeleteAttempting: false,
     gameDeleteSuccess: false,
@@ -126,6 +131,31 @@ export const gameReducer = (state = initialState, action) => {
                 gameCreateAttempting: false,
                 gameCreateError: true,
                 gameCreateErrorMessage: action.payload,
+            }
+
+        // Update
+        case ACTION_GAME_UPDATE_ATTEMPTING:
+            return {
+                ...state,
+                gameUpdateAttempting: true,
+                gameUpdateSuccess: false,
+                gameUpdateError: false,
+                gameUpdateErrorMessage: "",
+            }
+
+        case ACTION_GAME_UPDATE_SUCCESS:
+            return {
+                ...state,
+                gameUpdateAttempting: false,
+                gameUpdateSuccess: true,
+            }
+
+        case ACTION_GAME_UPDATE_ERROR:
+            return {
+                ...state,
+                gameUpdateAttempting: false,
+                gameUpdateError: true,
+                gameUpdateErrorMessage: action.payload,
             }
 
         // Delete
