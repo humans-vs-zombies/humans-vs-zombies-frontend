@@ -96,7 +96,8 @@ const GameForm = () => {
 
     // Save game changes
     const onFormSubmit = async () => {
-        console.log(game.title);
+        console.log("Updating game...");
+        
     }
 
     // Form input requirements
