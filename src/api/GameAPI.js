@@ -13,7 +13,7 @@ export const GameAPI = {
     },
 
     postGame(name, participants, dateFrom, dateTo, description) {
-        const testGame = {
+        const newGame = {
             "name": name,
             "state": "CONFIGURATION",
             "participants": participants,
@@ -23,7 +23,21 @@ export const GameAPI = {
             "description": description
           }
 
-        return AuthInterceptor.post(API_URL + "/api/v1/game", testGame)
+        return AuthInterceptor.post(API_URL + "/api/v1/game", newGame)
+    },
+
+    putGame(name, participants, dateFrom, dateTo, description) {
+        const updatedGame = {
+            "name": name,
+            "state": "err",
+            "participants": participants,
+            "dateFrom": dateFrom,
+            "dateTo": dateTo,
+            "players": [],
+            "description": description
+          }
+
+        return AuthInterceptor.put(API_URL + "/api/v1/game", updatedGame)
     },
 
     deleteGame(id) {
