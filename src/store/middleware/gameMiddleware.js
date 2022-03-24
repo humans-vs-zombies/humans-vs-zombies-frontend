@@ -1,7 +1,7 @@
 import { GameAPI } from "../../api/GameAPI";
-import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction } from "../actions/gameActions";
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, ACTION_GAME_UPDATE_ATTEMPTING, gameUpdateSuccessAction, gameUpdateErrorAction } from "../actions/gameActions";
 
-export const gameMiddleware = ({ dispatch, params }) => next => action => {
+export const gameMiddleware = ({ dispatch }) => next => action => {
 
     next(action)
 
@@ -29,7 +29,7 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
             break
 
         case ACTION_GAME_CREATE_ATTEMPTING:
-            // Attept to create a game
+            // Attempt to create a game
             let game = action.payload;
             GameAPI.postGame(game.title, game.participants, game.dateFrom, game.dateTo, game.description)
             .then((res) => {
@@ -38,6 +38,19 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
             })
             .catch((error) => {
                 dispatch(gameCreateErrorAction(error.message))
+            })
+            break
+        
+        case ACTION_GAME_UPDATE_ATTEMPTING:
+            // Attempt to update game
+            game = action.payload;
+            GameAPI.putGame(game.title, game.participants, game.dateFrom, game.dateTo, game.description)
+            .then((res) => {
+                dispatch(gameUpdateSuccessAction())
+                dispatch(gameInitAction())
+            })
+            .catch((error) => {
+                dispatch(gameUpdateErrorAction(error.message))
             })
             break
         
