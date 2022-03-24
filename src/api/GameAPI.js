@@ -8,6 +8,10 @@ export const GameAPI = {
         return AuthInterceptor.get(API_URL + "/api/v1/game")
     },
 
+    getGame(id) {
+        return AuthInterceptor.get(API_URL + "/api/v1/game/" + id)
+    },
+
     postGame(name, participants, dateFrom, dateTo, description) {
         const testGame = {
             "name": name,
