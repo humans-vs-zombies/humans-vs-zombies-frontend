@@ -19,7 +19,7 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
 
         case ACTION_GAME_GET_SPECIFIC_ATTEMPTING:
             // Attempt to get spesific game
-            GameAPI.getGame()
+            GameAPI.getGame(action.payload)
             .then(res => {
                 dispatch(gameGetSpecificSuccessAction(res.data.payload))
             })
