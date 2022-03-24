@@ -1,5 +1,5 @@
 import { GameAPI } from "../../api/GameAPI";
-import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction } from "../actions/gameActions";
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction } from "../actions/gameActions";
 
 export const gameMiddleware = ({ dispatch, params }) => next => action => {
 
@@ -14,6 +14,17 @@ export const gameMiddleware = ({ dispatch, params }) => next => action => {
             })
             .catch((error) => {
                 dispatch(gamesGetErrorAction("Unable to fetch games (" + error.message + ")"))
+            });
+            break
+
+        case ACTION_GAME_GET_SPECIFIC_ATTEMPTING:
+            // Attempt to get spesific game
+            GameAPI.getGame()
+            .then(res => {
+                dispatch(gameGetSpecificSuccessAction(res.data.payload))
+            })
+            .catch((error) => {
+                dispatch(gameGetSpesificErrorAction("Unable to fetch the game (" + error.message + ")"))
             });
             break
 
