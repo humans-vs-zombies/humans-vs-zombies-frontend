@@ -4,9 +4,9 @@ export const ACTION_GAMES_GET_ATTEMPTING = "[getGames] ATTEMPT"
 export const ACTION_GAMES_GET_SUCCESS = "[getGames] SUCCESS"
 export const ACTION_GAMES_GET_ERROR = "[getGames] ERROR"
 
-export const ACTION_GAME_GET_ATTEMPTING = "[getGame] ATTEMPT"
-export const ACTION_GAME_GET_SUCCESS = "[getGame] SUCCESS"
-export const ACTION_GAME_GET_ERROR = "[getGame] ERROR"
+export const ACTION_GAME_GET_SPECIFIC_ATTEMPTING = "[getSpecificGame] ATTEMPT"
+export const ACTION_GAME_GET_SPECIFIC_SUCCESS = "[getSpecificGame] SUCCESS"
+export const ACTION_GAME_GET_SPECIFIC_ERROR = "[getSpecificGame] ERROR"
 
 export const ACTION_GAME_CREATE_ATTEMPTING = "[createGame] ATTEMPT"
 export const ACTION_GAME_CREATE_SUCCESS = "[createGame] SUCCESS"
@@ -38,18 +38,18 @@ export const gamesGetErrorAction = error => ({
 })
 
 // Get specific game
-export const gameGetAttemptAction = id => ({
-    type: ACTION_GAME_GET_ATTEMPTING,
+export const gameGetSpecificAttemptAction = id => ({
+    type: ACTION_GAME_GET_SPECIFIC_ATTEMPTING,
     payload: id
 })
 
-export const gameGetSuccessAction = game => ({
-    type: ACTION_GAME_GET_SUCCESS,
+export const gameGetSpecificSuccessAction = game => ({
+    type: ACTION_GAME_GET_SPECIFIC_SUCCESS,
     payload: game
 })
 
-export const gameGetErrorAction = error => ({
-    type: ACTION_GAME_GET_ERROR,
+export const gameGetSpesificErrorAction = error => ({
+    type: ACTION_GAME_GET_SPECIFIC_ERROR,
     payload: error
 })
 
