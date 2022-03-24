@@ -142,58 +142,66 @@ const GameForm = () => {
 
     return (
         <>
-            <form onSubmit={ handleSubmit(onFormSubmit) }>
-                <fieldset>
-                    <label className={ lableStyle } htmlFor="title">Game title:</label>
-                    <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />
-                </fieldset>
-                <fieldset>
-                    <label className={ lableStyle } htmlFor="description">Game description:</label>
-                    <textarea className={ inputStyle } type="textarea" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
-                </fieldset>
-                <fieldset>
-                    <label className={ lableStyle } htmlFor="dateFrom">Game date:</label>
-                    <input className={ datetimeStyle } type="datetime-local" id="dateFrom" name="dateFrom" value={ game.dateFrom } { ...register("dateFrom", datetimeConfig) } />
-                    
-                    <label className="block ml-4 my-1 text-lg" htmlFor="dateTo">to</label>
-                    <input className={ datetimeStyle } type="datetime-local" id="dateTo" name="dateTo" value={ game.dateTo } { ...register("dateTo", datetimeConfig) } />
-                </fieldset>
-                <fieldset>
-                    <label className={ lableStyle } htmlFor="participants">Game participants:</label>
-                    
-                    <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="25" onChange={ handleParticipantsChange } defaultChecked={"25" === game.participants ? "checked" : ""} />
-                        <label className={ radioBtnLableStyle } htmlFor="participants25">25</label>
-                    </div>
+            { gameGetSpecificAttempting && 
+                <p>Loading...</p>
+            }
+            { gameGetSpecificSuccess &&
+                <form onSubmit={ handleSubmit(onFormSubmit) }>
+                    <fieldset>
+                        <label className={ lableStyle } htmlFor="title">Game title:</label>
+                        <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />
+                    </fieldset>
+                    <fieldset>
+                        <label className={ lableStyle } htmlFor="description">Game description:</label>
+                        <textarea className={ inputStyle } type="textarea" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
+                    </fieldset>
+                    <fieldset>
+                        <label className={ lableStyle } htmlFor="dateFrom">Game date:</label>
+                        <input className={ datetimeStyle } type="datetime-local" id="dateFrom" name="dateFrom" value={ game.dateFrom } { ...register("dateFrom", datetimeConfig) } />
+                        
+                        <label className="block ml-4 my-1 text-lg" htmlFor="dateTo">to</label>
+                        <input className={ datetimeStyle } type="datetime-local" id="dateTo" name="dateTo" value={ game.dateTo } { ...register("dateTo", datetimeConfig) } />
+                    </fieldset>
+                    <fieldset>
+                        <label className={ lableStyle } htmlFor="participants">Game participants:</label>
+                        
+                        <div className={ radioBtnContainerStyle }>
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="25" onChange={ handleParticipantsChange } defaultChecked={"25" === game.participants ? "checked" : ""} />
+                            <label className={ radioBtnLableStyle } htmlFor="participants25">25</label>
+                        </div>
 
-                    <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants50" value="50" onChange={ handleParticipantsChange } defaultChecked={"50" === game.participants ? "checked" : ""} />
-                        <label className={ radioBtnLableStyle } htmlFor="participants50">50</label>
-                    </div>
+                        <div className={ radioBtnContainerStyle }>
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants50" value="50" onChange={ handleParticipantsChange } defaultChecked={"50" === game.participants ? "checked" : ""} />
+                            <label className={ radioBtnLableStyle } htmlFor="participants50">50</label>
+                        </div>
 
-                    <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants100" value="100" onChange={ handleParticipantsChange } defaultChecked={"100" === game.participants ? "checked" : ""} />
-                        <label className={ radioBtnLableStyle } htmlFor="participants100">100</label>
-                    </div>
+                        <div className={ radioBtnContainerStyle }>
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants100" value="100" onChange={ handleParticipantsChange } defaultChecked={"100" === game.participants ? "checked" : ""} />
+                            <label className={ radioBtnLableStyle } htmlFor="participants100">100</label>
+                        </div>
 
-                    <div className={ radioBtnContainerStyle }>
-                        <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={"500" === game.participants ? "checked" : ""} />
-                        <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <label className={ lableStyle } htmlFor="state">Game state:</label>
-                    <select className={ selectStyle } defaultValue={ currentGame.state } onChange={ handleGameStateChange }>
-                        <option value="1" disabled={ currentGame.state > 1 }>Configuration</option>
-                        <option value="2" disabled={ currentGame.state > 2 }>Registration</option>
-                        <option value="3" disabled={ currentGame.state > 3 }>In progress</option>
-                        <option value="4" disabled={ currentGame.state > 4 }>Complete</option>
-                    </select>
-                </fieldset>
+                        <div className={ radioBtnContainerStyle }>
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={"500" === game.participants ? "checked" : ""} />
+                            <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <label className={ lableStyle } htmlFor="state">Game state:</label>
+                        <select className={ selectStyle } defaultValue={ currentGame.state } onChange={ handleGameStateChange }>
+                            <option value="1" disabled={ currentGame.state > 1 }>Configuration</option>
+                            <option value="2" disabled={ currentGame.state > 2 }>Registration</option>
+                            <option value="3" disabled={ currentGame.state > 3 }>In progress</option>
+                            <option value="4" disabled={ currentGame.state > 4 }>Complete</option>
+                        </select>
+                    </fieldset>
 
-                <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
-                { errorMessage }
-            </form>
+                    <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
+                    { errorMessage }
+                </form>
+            }
+            { gameGetSpecificError &&
+                <p>{ gameGetSpecificErrorMessage }</p>
+            }
         </>
     )
 }
