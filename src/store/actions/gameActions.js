@@ -4,6 +4,10 @@ export const ACTION_GAMES_GET_ATTEMPTING = "[getGames] ATTEMPT"
 export const ACTION_GAMES_GET_SUCCESS = "[getGames] SUCCESS"
 export const ACTION_GAMES_GET_ERROR = "[getGames] ERROR"
 
+export const ACTION_GAME_GET_ATTEMPTING = "[getGame] ATTEMPT"
+export const ACTION_GAME_GET_SUCCESS = "[getGame] SUCCESS"
+export const ACTION_GAME_GET_ERROR = "[getGame] ERROR"
+
 export const ACTION_GAME_CREATE_ATTEMPTING = "[createGame] ATTEMPT"
 export const ACTION_GAME_CREATE_SUCCESS = "[createGame] SUCCESS"
 export const ACTION_GAME_CREATE_ERROR = "[createGame] ERROR"
@@ -17,7 +21,7 @@ export const gameInitAction = () => ({
     type: ACTION_GAME_INIT,
 })
 
-// Get
+// Get games
 export const gamesGetAttemptAction = (limit, offset) => ({
     type: ACTION_GAMES_GET_ATTEMPTING,
     payload: limit, offset
@@ -30,6 +34,22 @@ export const gamesGetSuccessAction = games => ({
 
 export const gamesGetErrorAction = error => ({
     type: ACTION_GAMES_GET_ERROR,
+    payload: error
+})
+
+// Get specific game
+export const gameGetAttemptAction = id => ({
+    type: ACTION_GAME_GET_ATTEMPTING,
+    payload: id
+})
+
+export const gameGetSuccessAction = game => ({
+    type: ACTION_GAME_GET_SUCCESS,
+    payload: game
+})
+
+export const gameGetErrorAction = error => ({
+    type: ACTION_GAME_GET_ERROR,
     payload: error
 })
 
