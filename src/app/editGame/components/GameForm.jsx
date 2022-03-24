@@ -12,26 +12,7 @@ const GameForm = () => {
     const { gameGetSpecificAttempting, gameGetSpecificSuccess, gameGetSpecificError, gameGetSpecificErrorMessage, currentGame } = useSelector(state => state.gameReducer)
     const { currentGameId } = useSelector(state => state.sessionReducer)
 
-    useEffect(() => {
-        dispatch(gameGetSpecificAttemptAction(currentGameId))
-
-        GameAPI.getGame(currentGameId)
-            .then(res => {
-                let fetchedGame = res.data.payload;
-                dispatch(gameGetSpecificSuccessAction(fetchedGame))
-                setGame({
-                    title: fetchedGame.name,
-                    description: fetchedGame.description,
-                    dateFrom: fetchedGame.dateFrom.slice(0, -10),
-                    dateTo: fetchedGame.dateTo.slice(0, -10),
-                    participants: fetchedGame.participants,
-                    state: fetchedGame.state,
-                })
-            })
-            .catch((error) => {
-                dispatch(gameGetSpesificErrorAction("Unable to fetch the game (" + error.message + ")"))
-            });
-    }, [dispatch])
+    
 
     // Local states
     const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState(false);
@@ -42,8 +23,29 @@ const GameForm = () => {
         dateFrom: "2000-01-01T12:00",
         dateTo: "2000-01-01T12:00",
         participants: "",
-        state: "",
+        nextState: "no",
     })
+
+    useEffect(() => {
+        dispatch(gameGetSpecificAttemptAction(currentGameId))
+
+        GameAPI.getGame(currentGameId)
+            .then(res => {
+                let fetchedGame = res.data.payload;
+                dispatch(gameGetSpecificSuccessAction(fetchedGame))
+                setGame({
+                    ...game,
+                    title: fetchedGame.name,
+                    description: fetchedGame.description,
+                    dateFrom: fetchedGame.dateFrom.slice(0, -13),
+                    dateTo: fetchedGame.dateTo.slice(0, -13),
+                    participants: fetchedGame.participants,
+                })
+            })
+            .catch((error) => {
+                dispatch(gameGetSpesificErrorAction("Unable to fetch the game (" + error.message + ")"))
+            });
+    }, [dispatch])
 
     // Style className constants
     const lableStyle = "block text-lg text-gray-700 font-bold mb-2 mt-6"
@@ -57,10 +59,10 @@ const GameForm = () => {
     useEffect(() => {
         if (currentGame.title === game.title &&
             currentGame.description === game.description &&
-            currentGame.dateFrom === game.dateFrom &&
-            currentGame.dateTo === game.dateTo &&
-            currentGame.participants === game.participants &&
-            currentGame.state === game.state) {
+            currentGame.dateFrom.slice(0, -13) === game.dateFrom &&
+            currentGame.dateTo.slice(0, -13) === game.dateTo &&
+            currentGame.participants == game.participants &&
+            game.nextState === "no") {
             setHasUnsavedChanges(false)
             setSumbitBtnBgTW("bg-gray-500")
         }
@@ -85,10 +87,10 @@ const GameForm = () => {
         })
     }
 
-    const handleGameStateChange = ({ target }) => {
+    const handleNextStateChange = ({ target }) => {
         setGame({
             ...game,
-            state: target.value
+            nextState: target.value
         })
     }
 
@@ -148,22 +150,22 @@ const GameForm = () => {
             { gameGetSpecificSuccess &&
                 <form onSubmit={ handleSubmit(onFormSubmit) }>
                     <fieldset>
-                        <label className={ lableStyle } htmlFor="title">Game title:</label>
+                        <label className={ lableStyle } htmlFor="title">Title:</label>
                         <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />
                     </fieldset>
                     <fieldset>
-                        <label className={ lableStyle } htmlFor="description">Game description:</label>
+                        <label className={ lableStyle } htmlFor="description">Description:</label>
                         <textarea className={ inputStyle } type="textarea" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
                     </fieldset>
                     <fieldset>
-                        <label className={ lableStyle } htmlFor="dateFrom">Game date:</label>
+                        <label className={ lableStyle } htmlFor="dateFrom">Date:</label>
                         <input className={ datetimeStyle } type="datetime-local" id="dateFrom" name="dateFrom" value={ game.dateFrom } { ...register("dateFrom", datetimeConfig) } />
                         
                         <label className="block ml-4 my-1 text-lg" htmlFor="dateTo">to</label>
                         <input className={ datetimeStyle } type="datetime-local" id="dateTo" name="dateTo" value={ game.dateTo } { ...register("dateTo", datetimeConfig) } />
                     </fieldset>
                     <fieldset>
-                        <label className={ lableStyle } htmlFor="participants">Game participants:</label>
+                        <label className={ lableStyle } htmlFor="participants">Max participants:</label>
                         
                         <div className={ radioBtnContainerStyle }>
                             <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="25" onChange={ handleParticipantsChange } defaultChecked={"25" === game.participants ? "checked" : ""} />
@@ -181,18 +183,22 @@ const GameForm = () => {
                         </div>
 
                         <div className={ radioBtnContainerStyle }>
-                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={"500" === game.participants ? "checked" : ""} />
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={"500" === "500" ? "checked" : ""} />
                             <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
                         </div>
                     </fieldset>
                     <fieldset>
-                        <label className={ lableStyle } htmlFor="state">Game state:</label>
-                        <select className={ selectStyle } defaultValue={ currentGame.state } onChange={ handleGameStateChange }>
-                            <option value="1" disabled={ currentGame.state > 1 }>Configuration</option>
-                            <option value="2" disabled={ currentGame.state > 2 }>Registration</option>
-                            <option value="3" disabled={ currentGame.state > 3 }>In progress</option>
-                            <option value="4" disabled={ currentGame.state > 4 }>Complete</option>
-                        </select>
+                        <label className={ lableStyle } htmlFor="nextState">Go to next state?</label>
+                        
+                        <div className={ radioBtnContainerStyle }>
+                            <input className={ radioBtnStyle } type="radio" name="nextStateRadioOptions" id="dontGoToNextState" value="no" onChange={ handleNextStateChange } defaultChecked />
+                            <label className={ radioBtnLableStyle } htmlFor="dontGoToNextState">No</label>
+                        </div>
+
+                        <div className={ radioBtnContainerStyle }>
+                            <input className={ radioBtnStyle } type="radio" name="nextStateRadioOptions" id="goToNextState" value="yes" onChange={ handleNextStateChange } />
+                            <label className={ radioBtnLableStyle } htmlFor="goToNextState">Yes</label>
+                        </div>
                     </fieldset>
 
                     <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
