@@ -1,4 +1,4 @@
-import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAME_DELETE_ERROR, ACTION_GAME_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT } from "../actions/gameActions"
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAME_DELETE_ERROR, ACTION_GAME_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, ACTION_GAME_GET_SPECIFIC_SUCCESS, ACTION_GAME_GET_SPECIFIC_ERROR } from "../actions/gameActions"
 
 const initialState = {
     gamesGetAttempting: false,
@@ -6,6 +6,11 @@ const initialState = {
     gamesGetError: false,
     gamesGetErrorMessage: "",
     games: [],
+
+    gameGetSpecificAttempting: false,
+    gameGetSpecificSuccess: false,
+    gameGetSpecificError: false,
+    gameGetSpecificErrorMessage: "",
 
     gameCreateAttempting: false,
     gameCreateSuccess: false,
@@ -28,7 +33,7 @@ export const gameReducer = (state = initialState, action) => {
                 ...initialState
             }
 
-        // Get
+        // Get games
         case ACTION_GAMES_GET_ATTEMPTING:
             return {
                 ...state,
@@ -53,6 +58,31 @@ export const gameReducer = (state = initialState, action) => {
                 gamesGetAttempting: false,
                 gamesGetError: true,
                 gamesGetErrorMessage: action.payload,
+            }
+
+        // Get specific game
+        case ACTION_GAME_GET_SPECIFIC_ATTEMPTING:
+            return {
+                ...state,
+                gameGetSpecificAttempting: true,
+                gameGetSpecificSuccess: false,
+                gameGetSpecificError: false,
+                gameGetSpecificErrorMessage: "",
+            }
+        
+        case ACTION_GAME_GET_SPECIFIC_SUCCESS:
+            return {
+                ...state,
+                gameGetSpecificAttempting: false,
+                gameGetSpecificSuccess: true,
+            }
+        
+        case ACTION_GAME_GET_SPECIFIC_ERROR:
+            return {
+                ...state,
+                gameGetSpecificAttempting: false,
+                gameGetSpecificError: true,
+                gameGetSpecificErrorMessage: action.payload,
             }
 
         // Create
