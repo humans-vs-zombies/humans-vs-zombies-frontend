@@ -128,6 +128,9 @@ const GameForm = () => {
     // Save game changes
     const onFormSubmit = async () => {
         dispatch(gameUpdateAttemptAction(currentGameId, game))
+        if (game.goToNextState == "yes") {
+            console.log("nexto statos");
+        }
     }
 
     // Form input requirements

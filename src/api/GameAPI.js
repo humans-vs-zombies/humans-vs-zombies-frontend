@@ -38,6 +38,10 @@ export const GameAPI = {
         return AuthInterceptor.put(API_URL + "/api/v1/game/" + id, updatedGame)
     },
 
+    postNextGameState(id) {
+        return AuthInterceptor.post(API_URL + "/api/v1/game/" + id + "/next-state")
+    },
+
     deleteGame(id) {
         return AuthInterceptor.delete(API_URL + "/api/v1/game/" + id)
     }
