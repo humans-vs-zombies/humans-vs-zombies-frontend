@@ -1,4 +1,4 @@
-import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAME_DELETE_ERROR, ACTION_GAME_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT } from "../actions/gameActions"
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAME_DELETE_ERROR, ACTION_GAME_DELETE_SUCCESS, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAMES_GET_ERROR, ACTION_GAMES_GET_SUCCESS, ACTION_GAME_CREATE_ATTEMPTING, ACTION_GAME_CREATE_ERROR, ACTION_GAME_CREATE_SUCCESS, ACTION_GAME_INIT, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, ACTION_GAME_GET_SPECIFIC_SUCCESS, ACTION_GAME_GET_SPECIFIC_ERROR, ACTION_GAME_UPDATE_ATTEMPTING, ACTION_GAME_UPDATE_SUCCESS, ACTION_GAME_UPDATE_ERROR, ACTION_GAME_NEXT_STATE_UPDATE_ERROR, ACTION_GAME_NEXT_STATE_UPDATE_SUCCESS, ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING } from "../actions/gameActions"
 
 const initialState = {
     gamesGetAttempting: false,
@@ -7,10 +7,33 @@ const initialState = {
     gamesGetErrorMessage: "",
     games: [],
 
+    gameGetSpecificAttempting: false,
+    gameGetSpecificSuccess: false,
+    gameGetSpecificError: false,
+    gameGetSpecificErrorMessage: "",
+    currentGame: {
+        title: "",
+        description: "",
+        dateFrom: "",
+        dateTo: "",
+        participants: "",
+        state: "",
+    },
+
     gameCreateAttempting: false,
     gameCreateSuccess: false,
     gameCreateError: false,
     gameCreateErrorMessage: "",
+
+    gameUpdateAttempting: false,
+    gameUpdateSuccess: false,
+    gameUpdateError: false,
+    gameUpdateErrorMessage: "",
+
+    gameNextStateUpdateAttempting: false,
+    gameNextStateUpdateSuccess: false,
+    gameNextStateUpdateError: false,
+    gameNextStateUpdateErrorMessage: "",
 
     gameDeleteAttempting: false,
     gameDeleteSuccess: false,
@@ -28,7 +51,7 @@ export const gameReducer = (state = initialState, action) => {
                 ...initialState
             }
 
-        // Get
+        // Get games
         case ACTION_GAMES_GET_ATTEMPTING:
             return {
                 ...state,
@@ -55,6 +78,41 @@ export const gameReducer = (state = initialState, action) => {
                 gamesGetErrorMessage: action.payload,
             }
 
+        // Get specific game
+        case ACTION_GAME_GET_SPECIFIC_ATTEMPTING:
+            return {
+                ...state,
+                gameGetSpecificAttempting: true,
+                gameGetSpecificSuccess: false,
+                gameGetSpecificError: false,
+                gameGetSpecificErrorMessage: "",
+                currentGame: initialState,
+            }
+        
+        case ACTION_GAME_GET_SPECIFIC_SUCCESS:
+            let fetchedGame = action.payload;
+            return {
+                ...state,
+                gameGetSpecificAttempting: false,
+                gameGetSpecificSuccess: true,
+                currentGame: {
+                    title: fetchedGame.name,
+                    description: fetchedGame.description,
+                    dateFrom: fetchedGame.dateFrom,
+                    dateTo: fetchedGame.dateTo,
+                    participants: fetchedGame.participants,
+                    state: fetchedGame.state,
+                },
+            }
+        
+        case ACTION_GAME_GET_SPECIFIC_ERROR:
+            return {
+                ...state,
+                gameGetSpecificAttempting: false,
+                gameGetSpecificError: true,
+                gameGetSpecificErrorMessage: action.payload,
+            }
+
         // Create
         case ACTION_GAME_CREATE_ATTEMPTING:
             return {
@@ -78,6 +136,56 @@ export const gameReducer = (state = initialState, action) => {
                 gameCreateAttempting: false,
                 gameCreateError: true,
                 gameCreateErrorMessage: action.payload,
+            }
+
+        // Update
+        case ACTION_GAME_UPDATE_ATTEMPTING:
+            return {
+                ...state,
+                gameUpdateAttempting: true,
+                gameUpdateSuccess: false,
+                gameUpdateError: false,
+                gameUpdateErrorMessage: "",
+            }
+
+        case ACTION_GAME_UPDATE_SUCCESS:
+            return {
+                ...state,
+                gameUpdateAttempting: false,
+                gameUpdateSuccess: true,
+            }
+
+        case ACTION_GAME_UPDATE_ERROR:
+            return {
+                ...state,
+                gameUpdateAttempting: false,
+                gameUpdateError: true,
+                gameUpdateErrorMessage: action.payload,
+            }
+
+        // Update next game state
+        case ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING:
+            return {
+                ...state,
+                gameNextStateUpdateAttempting: true,
+                gameNextStateUpdateSuccess: false,
+                gameNextStateUpdateError: false,
+                gameNextStateUpdateErrorMessage: "",
+            }
+
+        case ACTION_GAME_NEXT_STATE_UPDATE_SUCCESS:
+            return {
+                ...state,
+                gameNextStateUpdateAttempting: false,
+                gameNextStateUpdateSuccess: true,
+            }
+
+        case ACTION_GAME_NEXT_STATE_UPDATE_ERROR:
+            return {
+                ...state,
+                gameNextStateUpdateAttempting: false,
+                gameNextStateUpdateError: true,
+                gameNextStateUpdateErrorMessage: action.payload,
             }
 
         // Delete

@@ -5,7 +5,7 @@ const initialState = {
     user: "",
     loggedIn: false,
     userType: "",
-    currentGame: "",
+    currentGameId: "",
     currentSquad: ""
 }
 
@@ -42,7 +42,7 @@ export const sessionReducer = (state = initialState, action) => {
         case ACTION_SESSION_CURRENT_GAME_SET:
             return {
                 ...state,
-                currentGame: action.payload
+                currentGameId: action.payload
             }
 
         case ACTION_SESSION_CURRENT_SQUAD_SET:

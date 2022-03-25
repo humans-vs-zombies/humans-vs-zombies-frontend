@@ -1,4 +1,4 @@
-import { ACTION_SESSION_CURRENT_GAME_SET, ACTION_SESSION_INIT, ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET, sessionLoginAdminSetAction, sessionLoginUserSetAction, sessionCurrentGameSetAction } from "../actions/sessionActions"
+import { ACTION_SESSION_CURRENT_GAME_SET, ACTION_SESSION_INIT, ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET, sessionCurrentGameSetAction } from "../actions/sessionActions"
 
 
 export const sessionMiddleware = ({ dispatch }) => next => action => {
@@ -10,7 +10,7 @@ export const sessionMiddleware = ({ dispatch }) => next => action => {
 
     switch (action.type) {
         case ACTION_SESSION_INIT:
-            // If there is a user in localstorage, then set state for loggedin user
+            /* // If there is a user in localstorage, then set state for loggedin user
             const storedUserSession = localStorage.getItem(userSessionKey)
             if (storedUserSession) {
                 const userSession = JSON.parse(storedUserSession)
@@ -20,12 +20,12 @@ export const sessionMiddleware = ({ dispatch }) => next => action => {
                 else if (userSession.userType === "admin") {
                     dispatch(sessionLoginAdminSetAction(userSession))
                 }
-                // If there is a current game in localstorage, then set state for current game
-                const storedCurrentGameSession = localStorage.getItem(currentGameSessionKey)
-                if (storedCurrentGameSession) {
-                    const currentGameSession = JSON.parse(storedCurrentGameSession)
-                    dispatch(sessionCurrentGameSetAction(currentGameSession))
-                }
+            } */
+            // If there is a current game in localstorage, then set state for current game
+            const storedCurrentGameSession = localStorage.getItem(currentGameSessionKey)
+            if (storedCurrentGameSession) {
+                const currentGameSession = JSON.parse(storedCurrentGameSession)
+                dispatch(sessionCurrentGameSetAction(currentGameSession))
             }
             break
 
