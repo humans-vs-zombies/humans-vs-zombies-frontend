@@ -40,6 +40,7 @@ const GameForm = () => {
     const [ currentState, setCurrentState ] = useState("1");
     const [ nextState, setNextState ] = useState("2");
 
+    // Set original game data in input fields
     useEffect(() => {
         dispatch(gameGetSpecificAttemptAction(currentGameId))
 
@@ -100,8 +101,8 @@ const GameForm = () => {
     const radioBtnContainerStyle = "inline-block"
     const radioBtnStyle = "hidden peer"
     const radioBtnLableStyle = "inline-grid text-white font-bold cursor-pointer appearance-none rounded h-9 w-16 ml-2 text-center content-center border bg-blue-600 peer-checked:bg-blue-800 focus:outline-none"
-    const selectStyle = "form-select appearance-none w-64 px-3 py-2 ml-4 shadow text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 
+    // Activate submit/save button if any input field have changed
     useEffect(() => {
         if (currentGame.title === game.title &&
             currentGame.description === game.description &&
@@ -118,6 +119,7 @@ const GameForm = () => {
         }
     }, [ game ])
 
+    // Navigate to home after succsessfull update
     useEffect(() => {
         if ((
             gameUpdateSuccess && game.goToNextState === "no" && !gameNextStateUpdateError) ||
