@@ -57,7 +57,7 @@ const AvailableGame = ({ index, game }) => {
                 return "Configuration";
             case "REGISTRATION":
                 return "Registration";
-            case "IN PROGRESS":
+            case "IN_PROGRESS":
                 return "In progress";
             case "COMPLETE":
                 return "Complete";

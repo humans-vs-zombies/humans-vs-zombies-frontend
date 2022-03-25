@@ -1,5 +1,5 @@
 import { GameAPI } from "../../api/GameAPI";
-import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, ACTION_GAME_UPDATE_ATTEMPTING, gameUpdateSuccessAction, gameUpdateErrorAction, gameNextStateUpdateSuccessAction, gameNextStateUpdateErrorAction, ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING } from "../actions/gameActions";
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, ACTION_GAME_UPDATE_ATTEMPTING, gameUpdateSuccessAction, gameUpdateErrorAction, gameNextStateUpdateSuccessAction, gameNextStateUpdateErrorAction, ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING, gameNextStateUpdateAttemptAction } from "../actions/gameActions";
 
 export const gameMiddleware = ({ dispatch }) => next => action => {
 
@@ -46,9 +46,12 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
         case ACTION_GAME_UPDATE_ATTEMPTING:
             // Attempt to update game
             game = action.game;
-            GameAPI.putGame(action.id, game.title, game.participants, game.dateFrom, game.dateTo, game.description)
+            GameAPI.putGame(action.id, game.title, game.participants, game.dateFrom, game.dateTo, game.description, game.state)
             .then((res) => {
                 dispatch(gameUpdateSuccessAction())
+                if (action.goToNextState == "yes") {
+                    dispatch(gameNextStateUpdateAttemptAction(action.id))
+                }
             })
             .catch((error) => {
                 dispatch(gameUpdateErrorAction(error.message))

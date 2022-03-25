@@ -26,13 +26,15 @@ export const GameAPI = {
         return AuthInterceptor.post(API_URL + "/api/v1/game", newGame)
     },
 
-    putGame(id, name, participants, dateFrom, dateTo, description) {
+    putGame(id, name, participants, dateFrom, dateTo, description, state) {
+        console.log(state);
         const updatedGame = {
             "name": name,
             "participants": participants,
             "dateFrom": dateFrom,
             "dateTo": dateTo,
-            "description": description
+            "description": description,
+            "state": state
           }
 
         return AuthInterceptor.put(API_URL + "/api/v1/game/" + id, updatedGame)

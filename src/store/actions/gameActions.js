@@ -77,10 +77,11 @@ export const gameCreateErrorAction = error => ({
 })
 
 // Update
-export const gameUpdateAttemptAction = (id, game) => ({
+export const gameUpdateAttemptAction = (id, game, goToNextState) => ({
     type: ACTION_GAME_UPDATE_ATTEMPTING,
     id: id,
     game: game,
+    goToNextState: goToNextState,
 })
 
 export const gameUpdateSuccessAction = () => ({

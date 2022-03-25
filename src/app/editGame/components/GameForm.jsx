@@ -21,6 +21,7 @@ const GameForm = () => {
         dateFrom: "2000-01-01T12:00",
         dateTo: "2000-01-01T12:00",
         participants: "",
+        state: "",
         goToNextState: "no",
     })
     const [ currentState, setCurrentState ] = useState("1");
@@ -40,6 +41,7 @@ const GameForm = () => {
                     dateFrom: fetchedGame.dateFrom.slice(0, -13),
                     dateTo: fetchedGame.dateTo.slice(0, -13),
                     participants: fetchedGame.participants,
+                    state: fetchedGame.state,
                 })
                 setCurrentState(getFormattedState(fetchedGame.state));
                 setNextState(getFormattedState(getNextGameState(fetchedGame.state)));
@@ -56,7 +58,7 @@ const GameForm = () => {
                 return "Configuration";
             case "REGISTRATION":
                 return "Registration";
-            case "IN PROGRESS":
+            case "IN_PROGRESS":
                 return "In progress";
             case "COMPLETE":
                 return "Complete";
@@ -69,8 +71,8 @@ const GameForm = () => {
             case "CONFIGURATION":
                 return "REGISTRATION";
             case "REGISTRATION":
-                return "IN PROGRESS";
-            case "IN PROGRESS":
+                return "IN_PROGRESS";
+            case "IN_PROGRESS":
                 return "COMPLETE";
             case "COMPLETE":
                 return "COMPLETE";
@@ -127,11 +129,7 @@ const GameForm = () => {
 
     // Save game changes
     const onFormSubmit = async () => {
-        dispatch(gameUpdateAttemptAction(currentGameId, game))
-        if (game.goToNextState == "yes") {
-            console.log("nexto statos");
-            dispatch(gameNextStateUpdateAttemptAction(currentGameId))
-        }
+        dispatch(gameUpdateAttemptAction(currentGameId, game, game.goToNextState))
     }
 
     // Form input requirements
@@ -224,7 +222,7 @@ const GameForm = () => {
                     </fieldset>
                     { currentGame.state !== "COMPLETE" &&
                     <fieldset>
-                        <label className={ lableStyle } htmlFor="nextState">Go to next state?<br/> (from { currentState } to { nextState })</label>
+                        <label className={ lableStyle } htmlFor="nextState">Go to next state?<br/> (from "{ currentState }" to "{ nextState }")</label>
                         
                         <div className={ radioBtnContainerStyle }>
                             <input className={ radioBtnStyle } type="radio" name="nextStateRadioOptions" id="dontGoToNextState" value="no" onChange={ handleNextStateChange } defaultChecked />
