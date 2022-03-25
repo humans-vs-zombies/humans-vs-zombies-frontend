@@ -80,7 +80,7 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
                 dispatch(gameDeleteSuccessAction(action.payload))
             })
             .catch((error) => {
-                dispatch(gameDeleteErrorAction())
+                dispatch(gameDeleteErrorAction("Unable to delete the game (" + error.message + ")"))
             });
             break
 
