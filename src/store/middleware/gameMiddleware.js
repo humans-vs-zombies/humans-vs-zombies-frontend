@@ -5,6 +5,8 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
 
     next(action)
 
+    let game;
+
     switch (action.type) {
         case ACTION_GAMES_GET_ATTEMPTING:
             // Attempt to get games
@@ -30,7 +32,7 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
 
         case ACTION_GAME_CREATE_ATTEMPTING:
             // Attempt to create a game
-            let game = action.payload;
+            game = action.payload;
             GameAPI.postGame(game.title, game.participants, game.dateFrom, game.dateTo, game.description)
             .then((res) => {
                 dispatch(gameCreateSuccessAction())
@@ -43,11 +45,13 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
         
         case ACTION_GAME_UPDATE_ATTEMPTING:
             // Attempt to update game
-            game = action.payload;
-            GameAPI.putGame(game.title, game.participants, game.dateFrom, game.dateTo, game.description)
+            game = action.game;
+            console.log(game);
+            console.log(action.id);
+            GameAPI.putGame(action.id, game.title, game.participants, game.dateFrom, game.dateTo, game.description)
             .then((res) => {
                 dispatch(gameUpdateSuccessAction())
-                dispatch(gameInitAction())
+
             })
             .catch((error) => {
                 dispatch(gameUpdateErrorAction(error.message))

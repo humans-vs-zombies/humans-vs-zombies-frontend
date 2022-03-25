@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { GameAPI } from "../../../api/GameAPI";
-import { gameGetSpecificAttemptAction, gameGetSpecificSuccessAction, gameGetSpesificErrorAction } from "../../../store/actions/gameActions";
+import { gameGetSpecificAttemptAction, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, gameUpdateAttemptAction } from "../../../store/actions/gameActions";
 
 
 const GameForm = () => {
@@ -97,7 +97,7 @@ const GameForm = () => {
     // Save game changes
     const onFormSubmit = async () => {
         console.log("Updating game...");
-        
+        dispatch(gameUpdateAttemptAction(currentGameId, game))
     }
 
     // Form input requirements
