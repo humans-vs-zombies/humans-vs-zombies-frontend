@@ -11,7 +11,18 @@ const GameForm = () => {
     const {register, handleSubmit, formState: { errors }} = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate();
-    const { gameGetSpecificAttempting, gameGetSpecificSuccess, gameGetSpecificError, gameGetSpecificErrorMessage, currentGame, gameUpdateSuccess, gameNextStateUpdateSuccess } = useSelector(state => state.gameReducer)
+    const {
+        gameGetSpecificAttempting,
+        gameGetSpecificSuccess, 
+        gameGetSpecificError, 
+        gameGetSpecificErrorMessage, 
+        currentGame, 
+        gameUpdateAttempting, 
+        gameUpdateSuccess, 
+        gameUpdateError, 
+        gameNextStateUpdateAttempting, 
+        gameNextStateUpdateSuccess, 
+        gameNextStateUpdateError } = useSelector(state => state.gameReducer)
     const { currentGameId } = useSelector(state => state.sessionReducer)
 
     // Local states
@@ -109,7 +120,7 @@ const GameForm = () => {
 
     useEffect(() => {
         if ((
-            gameUpdateSuccess && game.goToNextState === "no") ||
+            gameUpdateSuccess && game.goToNextState === "no" && !gameNextStateUpdateError) ||
             gameNextStateUpdateSuccess && game.goToNextState === "yes") {
             navigate("/")
         }
@@ -176,6 +187,12 @@ const GameForm = () => {
             if (errors.dateTo.type === "required") {
                 message = "End date is required"
             }
+        }
+        else if (gameUpdateError) {
+            message = "Unable to update game"
+        }
+        else if (gameNextStateUpdateError) {
+            message = "Couldn't go to next state"
         }
         else {
             return null

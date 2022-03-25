@@ -51,14 +51,13 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
                 dispatch(gameUpdateSuccessAction())
                 if (action.goToNextState == "yes") {
                     dispatch(gameNextStateUpdateAttemptAction(action.id))
-                    dispatch(gameInitAction())
                 }
                 else {
                     dispatch(gameInitAction())
                 }
             })
             .catch((error) => {
-                dispatch(gameUpdateErrorAction(error.message))
+                dispatch(gameUpdateErrorAction("Unable to update the game (" + error.message + ")"))
             })
             break
 
@@ -67,9 +66,10 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
             GameAPI.postNextGameState(action.payload)
             .then((res) => {
                 dispatch(gameNextStateUpdateSuccessAction())
+                dispatch(gameInitAction())
             })
             .catch((error) => {
-                dispatch(gameNextStateUpdateErrorAction(error.message))
+                dispatch(gameNextStateUpdateErrorAction("Unable to go to next game state (" + error.message + ")"))
             })
             break
         
