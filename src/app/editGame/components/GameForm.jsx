@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { GameAPI } from "../../../api/GameAPI";
-import { gameGetSpecificAttemptAction, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, gameUpdateAttemptAction } from "../../../store/actions/gameActions";
+import { gameGetSpecificAttemptAction, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, gameNextStateUpdateAttemptAction, gameUpdateAttemptAction } from "../../../store/actions/gameActions";
 
 
 const GameForm = () => {
@@ -130,6 +130,7 @@ const GameForm = () => {
         dispatch(gameUpdateAttemptAction(currentGameId, game))
         if (game.goToNextState == "yes") {
             console.log("nexto statos");
+            dispatch(gameNextStateUpdateAttemptAction(currentGameId))
         }
     }
 

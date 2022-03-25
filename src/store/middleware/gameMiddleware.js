@@ -57,13 +57,11 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
 
         case ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING:
             // Attempt to update next game state
-            GameAPI.putGame(action.payload)
+            GameAPI.postNextGameState(action.payload)
             .then((res) => {
-                console.log("success");
                 dispatch(gameNextStateUpdateSuccessAction())
             })
             .catch((error) => {
-                console.log(error.message);
                 dispatch(gameNextStateUpdateErrorAction(error.message))
             })
             break
