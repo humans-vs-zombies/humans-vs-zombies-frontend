@@ -12,8 +12,6 @@ const GameForm = () => {
     const { gameGetSpecificAttempting, gameGetSpecificSuccess, gameGetSpecificError, gameGetSpecificErrorMessage, currentGame } = useSelector(state => state.gameReducer)
     const { currentGameId } = useSelector(state => state.sessionReducer)
 
-    
-
     // Local states
     const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState(false);
     const [ sumbitBtnBgStyle, setSumbitBtnBgTW ] = useState("bg-gray-500")
@@ -23,8 +21,10 @@ const GameForm = () => {
         dateFrom: "2000-01-01T12:00",
         dateTo: "2000-01-01T12:00",
         participants: "",
-        nextState: "no",
+        goToNextState: "no",
     })
+    const [ currentState, setCurrentState ] = useState("1");
+    const [ nextState, setNextState ] = useState("2");
 
     useEffect(() => {
         dispatch(gameGetSpecificAttemptAction(currentGameId))
@@ -41,11 +41,42 @@ const GameForm = () => {
                     dateTo: fetchedGame.dateTo.slice(0, -13),
                     participants: fetchedGame.participants,
                 })
+                setCurrentState(getFormattedState(fetchedGame.state));
+                setNextState(getFormattedState(getNextGameState(fetchedGame.state)));
             })
             .catch((error) => {
                 dispatch(gameGetSpesificErrorAction("Unable to fetch the game (" + error.message + ")"))
             });
     }, [dispatch])
+
+    // Format states
+    const getFormattedState = gameState => {
+        switch (gameState) {
+            case "CONFIGURATION":
+                return "Configuration";
+            case "REGISTRATION":
+                return "Registration";
+            case "IN PROGRESS":
+                return "In progress";
+            case "COMPLETE":
+                return "Complete";
+            default: return "-";
+        }
+    }
+
+    const getNextGameState = gameState => {
+        switch (gameState) {
+            case "CONFIGURATION":
+                return "REGISTRATION";
+            case "REGISTRATION":
+                return "IN PROGRESS";
+            case "IN PROGRESS":
+                return "COMPLETE";
+            case "COMPLETE":
+                return "COMPLETE";
+            default: return "-";
+        }
+    }
 
     // Style className constants
     const lableStyle = "block text-lg text-gray-700 font-bold mb-2 mt-6"
@@ -62,7 +93,7 @@ const GameForm = () => {
             currentGame.dateFrom.slice(0, -13) === game.dateFrom &&
             currentGame.dateTo.slice(0, -13) === game.dateTo &&
             currentGame.participants == game.participants &&
-            game.nextState === "no") {
+            game.goToNextState === "no") {
             setHasUnsavedChanges(false)
             setSumbitBtnBgTW("bg-gray-500")
         }
@@ -90,13 +121,12 @@ const GameForm = () => {
     const handleNextStateChange = ({ target }) => {
         setGame({
             ...game,
-            nextState: target.value
+            goToNextState: target.value
         })
     }
 
     // Save game changes
     const onFormSubmit = async () => {
-        console.log("Updating game...");
         dispatch(gameUpdateAttemptAction(currentGameId, game))
     }
 
@@ -188,8 +218,9 @@ const GameForm = () => {
                             <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
                         </div>
                     </fieldset>
+                    { currentGame.state !== "COMPLETE" &&
                     <fieldset>
-                        <label className={ lableStyle } htmlFor="nextState">Go to next state?</label>
+                        <label className={ lableStyle } htmlFor="nextState">Go to next state?<br/> (from { currentState } to { nextState })</label>
                         
                         <div className={ radioBtnContainerStyle }>
                             <input className={ radioBtnStyle } type="radio" name="nextStateRadioOptions" id="dontGoToNextState" value="no" onChange={ handleNextStateChange } defaultChecked />
@@ -201,6 +232,7 @@ const GameForm = () => {
                             <label className={ radioBtnLableStyle } htmlFor="goToNextState">Yes</label>
                         </div>
                     </fieldset>
+                    }
 
                     <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
                     { errorMessage }

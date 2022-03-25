@@ -46,12 +46,9 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
         case ACTION_GAME_UPDATE_ATTEMPTING:
             // Attempt to update game
             game = action.game;
-            console.log(game);
-            console.log(action.id);
             GameAPI.putGame(action.id, game.title, game.participants, game.dateFrom, game.dateTo, game.description)
             .then((res) => {
                 dispatch(gameUpdateSuccessAction())
-
             })
             .catch((error) => {
                 dispatch(gameUpdateErrorAction(error.message))
