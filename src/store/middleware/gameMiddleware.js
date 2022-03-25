@@ -49,7 +49,7 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
             GameAPI.putGame(action.id, game.title, game.participants, game.dateFrom, game.dateTo, game.description, game.state)
             .then((res) => {
                 dispatch(gameUpdateSuccessAction())
-                if (action.goToNextState == "yes") {
+                if (action.goToNextState === "yes") {
                     dispatch(gameNextStateUpdateAttemptAction(action.id))
                 }
                 else {
