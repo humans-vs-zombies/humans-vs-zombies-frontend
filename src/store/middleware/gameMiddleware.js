@@ -1,5 +1,5 @@
 import { GameAPI } from "../../api/GameAPI";
-import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, ACTION_GAME_UPDATE_ATTEMPTING, gameUpdateSuccessAction, gameUpdateErrorAction } from "../actions/gameActions";
+import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, ACTION_GAME_UPDATE_ATTEMPTING, gameUpdateSuccessAction, gameUpdateErrorAction, gameNextStateUpdateSuccessAction, gameNextStateUpdateErrorAction, ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING } from "../actions/gameActions";
 
 export const gameMiddleware = ({ dispatch }) => next => action => {
 
@@ -52,6 +52,19 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
             })
             .catch((error) => {
                 dispatch(gameUpdateErrorAction(error.message))
+            })
+            break
+
+        case ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING:
+            // Attempt to update next game state
+            GameAPI.putGame(action.payload)
+            .then((res) => {
+                console.log("success");
+                dispatch(gameNextStateUpdateSuccessAction())
+            })
+            .catch((error) => {
+                console.log(error.message);
+                dispatch(gameNextStateUpdateErrorAction(error.message))
             })
             break
         
