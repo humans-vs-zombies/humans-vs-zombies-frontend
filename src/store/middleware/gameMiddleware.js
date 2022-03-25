@@ -51,6 +51,10 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
                 dispatch(gameUpdateSuccessAction())
                 if (action.goToNextState == "yes") {
                     dispatch(gameNextStateUpdateAttemptAction(action.id))
+                    dispatch(gameInitAction())
+                }
+                else {
+                    dispatch(gameInitAction())
                 }
             })
             .catch((error) => {

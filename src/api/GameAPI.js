@@ -27,7 +27,6 @@ export const GameAPI = {
     },
 
     putGame(id, name, participants, dateFrom, dateTo, description, state) {
-        console.log(state);
         const updatedGame = {
             "name": name,
             "participants": participants,

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { GameAPI } from "../../../api/GameAPI";
-import { gameGetSpecificAttemptAction, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, gameNextStateUpdateAttemptAction, gameUpdateAttemptAction } from "../../../store/actions/gameActions";
+import { gameGetSpecificAttemptAction, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, gameUpdateAttemptAction } from "../../../store/actions/gameActions";
 
 
 const GameForm = () => {
 
     const {register, handleSubmit, formState: { errors }} = useForm()
     const dispatch = useDispatch()
-    const { gameGetSpecificAttempting, gameGetSpecificSuccess, gameGetSpecificError, gameGetSpecificErrorMessage, currentGame } = useSelector(state => state.gameReducer)
+    const navigate = useNavigate();
+    const { gameGetSpecificAttempting, gameGetSpecificSuccess, gameGetSpecificError, gameGetSpecificErrorMessage, currentGame, gameUpdateSuccess, gameNextStateUpdateSuccess } = useSelector(state => state.gameReducer)
     const { currentGameId } = useSelector(state => state.sessionReducer)
 
     // Local states
@@ -104,6 +106,14 @@ const GameForm = () => {
             setSumbitBtnBgTW("bg-blue-500 hover:bg-blue-700")
         }
     }, [ game ])
+
+    useEffect(() => {
+        if ((
+            gameUpdateSuccess && game.goToNextState === "no") ||
+            gameNextStateUpdateSuccess && game.goToNextState === "yes") {
+            navigate("/")
+        }
+    }, [gameUpdateSuccess, gameNextStateUpdateSuccess, navigate])
 
     // Event handlers
     const handleOnInputChange = ({ target }) => {
