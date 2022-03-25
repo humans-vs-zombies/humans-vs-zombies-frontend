@@ -169,22 +169,22 @@ const GameForm = () => {
                         <label className={ lableStyle } htmlFor="participants">Max participants:</label>
                         
                         <div className={ radioBtnContainerStyle }>
-                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="25" onChange={ handleParticipantsChange } defaultChecked={"25" === game.participants ? "checked" : ""} />
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants25" value="25" onChange={ handleParticipantsChange } defaultChecked={25 == currentGame.participants ? "checked" : ""} />
                             <label className={ radioBtnLableStyle } htmlFor="participants25">25</label>
                         </div>
 
                         <div className={ radioBtnContainerStyle }>
-                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants50" value="50" onChange={ handleParticipantsChange } defaultChecked={"50" === game.participants ? "checked" : ""} />
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants50" value="50" onChange={ handleParticipantsChange } defaultChecked={50 == currentGame.participants ? "checked" : ""} />
                             <label className={ radioBtnLableStyle } htmlFor="participants50">50</label>
                         </div>
 
                         <div className={ radioBtnContainerStyle }>
-                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants100" value="100" onChange={ handleParticipantsChange } defaultChecked={"100" === game.participants ? "checked" : ""} />
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants100" value="100" onChange={ handleParticipantsChange } defaultChecked={100 == currentGame.participants ? "checked" : ""} />
                             <label className={ radioBtnLableStyle } htmlFor="participants100">100</label>
                         </div>
 
                         <div className={ radioBtnContainerStyle }>
-                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={"500" === "500" ? "checked" : ""} />
+                            <input className={ radioBtnStyle } type="radio" name="participantsRadioOptions" id="participants500" value="500" onChange={ handleParticipantsChange } defaultChecked={500 == currentGame.participants ? "checked" : ""} />
                             <label className={ radioBtnLableStyle } htmlFor="participants500">500</label>
                         </div>
                     </fieldset>
