@@ -1,4 +1,4 @@
-import { ACTION_SESSION_CURRENT_GAME_SET, ACTION_SESSION_INIT, ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET, sessionLoginAdminSetAction, sessionLoginUserSetAction, sessionCurrentGameSetAction } from "../actions/sessionActions"
+import { ACTION_SESSION_CURRENT_GAME_SET, ACTION_SESSION_INIT, ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET, sessionCurrentGameSetAction } from "../actions/sessionActions"
 
 
 export const sessionMiddleware = ({ dispatch }) => next => action => {

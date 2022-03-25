@@ -29,7 +29,7 @@ const GameForm = () => {
     const [ hasUnsavedChanges, setHasUnsavedChanges ] = useState(false);
     const [ sumbitBtnBgStyle, setSumbitBtnBgTW ] = useState("bg-gray-500")
     const [ game, setGame ] =  useState({
-        title: " ",
+        title: "-",
         description: "",
         dateFrom: "2000-01-01T12:00",
         dateTo: "2000-01-01T12:00",
@@ -49,13 +49,13 @@ const GameForm = () => {
                 let fetchedGame = res.data.payload;
                 dispatch(gameGetSpecificSuccessAction(fetchedGame))
                 setGame({
-                    ...game,
                     title: fetchedGame.name,
                     description: fetchedGame.description,
                     dateFrom: fetchedGame.dateFrom.slice(0, -13),
                     dateTo: fetchedGame.dateTo.slice(0, -13),
                     participants: fetchedGame.participants,
                     state: fetchedGame.state,
+                    goToNextState: "no",
                 })
                 setCurrentState(getFormattedState(fetchedGame.state));
                 setNextState(getFormattedState(getNextGameState(fetchedGame.state)));
@@ -63,7 +63,7 @@ const GameForm = () => {
             .catch((error) => {
                 dispatch(gameGetSpesificErrorAction("Unable to fetch the game (" + error.message + ")"))
             });
-    }, [])
+    }, [currentGameId, dispatch])
 
     // Format states
     const getFormattedState = gameState => {
