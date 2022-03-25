@@ -16,6 +16,10 @@ export const ACTION_GAME_UPDATE_ATTEMPTING = "[updateGame] ATTEMPT"
 export const ACTION_GAME_UPDATE_SUCCESS = "[updateGame] SUCCESS"
 export const ACTION_GAME_UPDATE_ERROR = "[updateGame] ERROR"
 
+export const ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING = "[updateNextGameState] ATTEMPT"
+export const ACTION_GAME_NEXT_STATE_UPDATE_SUCCESS = "[updateNextGameState] SUCCESS"
+export const ACTION_GAME_NEXT_STATE_UPDATE_ERROR = "[updateNextGameState] ERROR"
+
 export const ACTION_GAME_DELETE_ATTEMPTING = "[deleteGame] ATTEMPT"
 export const ACTION_GAME_DELETE_SUCCESS = "[deleteGame] SUCCESS"
 export const ACTION_GAME_DELETE_ERROR = "[deleteGame] ERROR"
@@ -85,6 +89,21 @@ export const gameUpdateSuccessAction = () => ({
 
 export const gameUpdateErrorAction = error => ({
     type: ACTION_GAME_UPDATE_ERROR,
+    payload: error
+})
+
+// Update next state
+export const gameNextStateUpdateAttemptAction = id => ({
+    type: ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING,
+    payload: id,
+})
+
+export const gameNextStateUpdateSuccessAction = () => ({
+    type: ACTION_GAME_NEXT_STATE_UPDATE_SUCCESS,
+})
+
+export const gameNextStateUpdateErrorAction = error => ({
+    type: ACTION_GAME_NEXT_STATE_UPDATE_ERROR,
     payload: error
 })
 
