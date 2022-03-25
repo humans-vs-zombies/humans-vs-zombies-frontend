@@ -207,6 +207,12 @@ const GameForm = () => {
             { gameGetSpecificAttempting && 
                 <p>Loading...</p>
             }
+            { gameUpdateAttempting && 
+                <p>Updating game...</p>
+            }
+            { gameNextStateUpdateAttempting && 
+                <p>Updating next state...</p>
+            }
             { gameGetSpecificSuccess &&
                 <form onSubmit={ handleSubmit(onFormSubmit) }>
                     <fieldset>
