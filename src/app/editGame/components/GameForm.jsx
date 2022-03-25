@@ -108,7 +108,7 @@ const GameForm = () => {
             currentGame.description === game.description &&
             currentGame.dateFrom.slice(0, -13) === game.dateFrom &&
             currentGame.dateTo.slice(0, -13) === game.dateTo &&
-            currentGame.participants == game.participants &&
+            parseInt(currentGame.participants) === parseInt(game.participants) &&
             game.goToNextState === "no") {
             setHasUnsavedChanges(false)
             setSumbitBtnBgTW("bg-gray-500")
