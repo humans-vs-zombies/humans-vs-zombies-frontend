@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom"
 import KeycloakService from "../../../../services/KeycloakService";
 
 
-const TdGamesTable = ({ children }) => {
+const TdGamesTable = ({ children, gameState }) => {
 
     const loggedIn = KeycloakService.getLoggedIn()
     const navigate = useNavigate();
 
     const handleGameClick = event => {
-        if (loggedIn) {
+        if (loggedIn && (gameState === "REGISTRATION" || gameState === "IN_PROGRESS")) {
             navigate("/game")
         }
     }

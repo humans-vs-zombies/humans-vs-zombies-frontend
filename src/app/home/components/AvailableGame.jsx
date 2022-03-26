@@ -15,7 +15,10 @@ const AvailableGame = ({ index, game }) => {
 
     // Tailwind class-variables
     let rowBg = index % 2 === 0 ? "bg-white" : "bg-gray-100"
-    let rowHover = loggedIn ? "hover:bg-gray-200 cursor-pointer" : ""
+    let rowHover = ""
+    if (game !== undefined) {
+        rowHover = loggedIn && (game.state === "REGISTRATION" || game.state === "IN_PROGRESS") ? "hover:bg-gray-200 cursor-pointer" : ""
+    }
 
     const TrGamesTable = ({ children }) => {
         return (
@@ -85,10 +88,10 @@ const AvailableGame = ({ index, game }) => {
                 }
                 { gamesGetSuccess && game !== undefined &&
                 <>
-                    <TdGamesTable>{ game.name }</TdGamesTable>
-                    <TdGamesTable>{ formattedDateFrom() }</TdGamesTable>
-                    <TdGamesTable>{ formattedPertisipants() }</TdGamesTable>
-                    <TdGamesTable>{ formattedGameState() }</TdGamesTable>
+                    <TdGamesTable gameState={ game.state }>{ game.name }</TdGamesTable>
+                    <TdGamesTable gameState={ game.state }>{ formattedDateFrom() }</TdGamesTable>
+                    <TdGamesTable gameState={ game.state }>{ formattedPertisipants() }</TdGamesTable>
+                    <TdGamesTable gameState={ game.state }>{ formattedGameState() }</TdGamesTable>
                     { loggedIn && hasAdminRole &&
                 <>
                     <TdEditGamesTable>Edit</TdEditGamesTable>
