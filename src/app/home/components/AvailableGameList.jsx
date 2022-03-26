@@ -58,10 +58,12 @@ const AvailableGameList = () => {
                         <label className={ radioBtnLableStyle } htmlFor="all">All</label>
                     </div>
 
+                    { hasAdminRole &&
                     <div className={ radioBtnContainerStyle }>
                         <input className={ radioBtnStyle } type="radio" name="filterRadioOptions" id="configuration" value="CONFIGURATION" onChange={ handleOnBtnClickFilterGames } />
                         <label className={ radioBtnLableStyle } htmlFor="configuration">Configuration</label>
                     </div>
+                    }
 
                     <div className={ radioBtnContainerStyle }>
                         <input className={ radioBtnStyle } type="radio" name="filterRadioOptions" id="registration" value="REGISTRATION" onChange={ handleOnBtnClickFilterGames } />
