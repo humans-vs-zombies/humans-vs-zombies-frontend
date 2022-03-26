@@ -12,6 +12,10 @@ export const GameAPI = {
         return AuthInterceptor.get(API_URL + "/api/v1/game?state=" + state)
     },
 
+    getGamesFilteredByConfiguration() {
+        return AuthInterceptor.get(API_URL + "/api/v1/game/configuration")
+    },
+
     getGame(id) {
         return AuthInterceptor.get(API_URL + "/api/v1/game/" + id)
     },
