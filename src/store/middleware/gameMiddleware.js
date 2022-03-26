@@ -14,7 +14,7 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
 
             switch(action.state) {
                 case "CONFIGURATION":
-                    apiRequest = GameAPI.getGames()
+                    apiRequest = GameAPI.getGamesFilteredByConfiguration()
                     break
                 case "REGISTRATION":
                     apiRequest = GameAPI.getGamesFilteredByState(action.state)
