@@ -30,9 +30,9 @@ export const gameInitAction = () => ({
 })
 
 // Get games
-export const gamesGetAttemptAction = (filter) => ({
+export const gamesGetAttemptAction = (state) => ({
     type: ACTION_GAMES_GET_ATTEMPTING,
-    filter: filter,
+    state: state,
 })
 
 export const gamesGetSuccessAction = games => ({
