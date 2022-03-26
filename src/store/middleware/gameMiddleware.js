@@ -1,10 +1,12 @@
 import { GameAPI } from "../../api/GameAPI";
+import KeycloakService from "../../services/KeycloakService";
 import { ACTION_GAME_DELETE_ATTEMPTING, ACTION_GAMES_GET_ATTEMPTING, ACTION_GAME_CREATE_ATTEMPTING, gameCreateErrorAction, gameCreateSuccessAction, gameInitAction, gameDeleteErrorAction, gameDeleteSuccessAction, gamesGetErrorAction, gamesGetSuccessAction, ACTION_GAME_GET_SPECIFIC_ATTEMPTING, gameGetSpecificSuccessAction, gameGetSpesificErrorAction, ACTION_GAME_UPDATE_ATTEMPTING, gameUpdateSuccessAction, gameUpdateErrorAction, gameNextStateUpdateSuccessAction, gameNextStateUpdateErrorAction, ACTION_GAME_NEXT_STATE_UPDATE_ATTEMPTING, gameNextStateUpdateAttemptAction } from "../actions/gameActions";
 
 export const gameMiddleware = ({ dispatch }) => next => action => {
 
     next(action)
 
+    const hasAdminRole = KeycloakService.hasRole(["admin"])
     let game;
 
     switch (action.type) {
@@ -26,7 +28,12 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
                     apiRequest = GameAPI.getGamesFilteredByState(action.state)
                     break
                 default:
-                    apiRequest = GameAPI.getGames()
+                    if (hasAdminRole) {
+                        apiRequest = GameAPI.getGamesForAdmin()
+                    }
+                    else {
+                        apiRequest = GameAPI.getGames()
+                    }
                     break                                        
             }
 
