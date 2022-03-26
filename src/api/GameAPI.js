@@ -8,6 +8,10 @@ export const GameAPI = {
         return AuthInterceptor.get(API_URL + "/api/v1/game")
     },
 
+    getGamesForAdmin() {
+        return AuthInterceptor.get(API_URL + "/api/v1/game/for-admin")
+    },
+
     getGamesFilteredByState(state) {
         return AuthInterceptor.get(API_URL + "/api/v1/game?state=" + state)
     },
