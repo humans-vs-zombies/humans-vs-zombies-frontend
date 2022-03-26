@@ -22,7 +22,6 @@ const AvailableGameList = () => {
     }, [dispatch])
 
     const handleOnBtnClickFilterGames = ({ target }) => {
-        console.log("Get filtered games: " + target.value);
         dispatch(gamesGetAttemptAction(target.value))
     }
 
