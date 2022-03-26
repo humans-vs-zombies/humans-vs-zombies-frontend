@@ -30,9 +30,9 @@ export const gameInitAction = () => ({
 })
 
 // Get games
-export const gamesGetAttemptAction = (limit, offset) => ({
+export const gamesGetAttemptAction = (state) => ({
     type: ACTION_GAMES_GET_ATTEMPTING,
-    payload: limit, offset
+    state: state,
 })
 
 export const gamesGetSuccessAction = games => ({

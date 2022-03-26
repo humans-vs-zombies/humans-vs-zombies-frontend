@@ -10,7 +10,27 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
     switch (action.type) {
         case ACTION_GAMES_GET_ATTEMPTING:
             // Attempt to get games
-            GameAPI.getGames()
+            let apiRequest
+
+            switch(action.state) {
+                case "CONFIGURATION":
+                    apiRequest = GameAPI.getGamesFilteredByConfiguration()
+                    break
+                case "REGISTRATION":
+                    apiRequest = GameAPI.getGamesFilteredByState(action.state)
+                    break
+                case "IN_PROGRESS":
+                    apiRequest = GameAPI.getGamesFilteredByState(action.state)
+                    break
+                case "COMPLETE":
+                    apiRequest = GameAPI.getGamesFilteredByState(action.state)
+                    break
+                default:
+                    apiRequest = GameAPI.getGames()
+                    break                                        
+            }
+
+            apiRequest
             .then(res => {
                 dispatch(gamesGetSuccessAction(res.data.payload))
             })
