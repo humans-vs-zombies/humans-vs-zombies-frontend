@@ -19,7 +19,7 @@ const AvailableGameList = () => {
 
     const handleOnBtnClickFilterGames = ({ target }) => {
         console.log("Get filtered games: " + target.value);
-        //dispatch(gamesGetAttemptAction())
+        dispatch(gamesGetAttemptAction(target.value))
     }
 
     const TbodyGamesTable = () => {
