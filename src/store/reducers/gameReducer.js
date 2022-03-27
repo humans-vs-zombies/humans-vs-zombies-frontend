@@ -59,7 +59,6 @@ export const gameReducer = (state = initialState, action) => {
                 gamesGetSuccess: false,
                 gamesGetError: false,
                 gamesGetErrorMessage: "",
-                games: [],
             }
 
         case ACTION_GAMES_GET_SUCCESS:
@@ -67,7 +66,7 @@ export const gameReducer = (state = initialState, action) => {
                 ...state,
                 gamesGetAttempting: false,
                 gamesGetSuccess: true,
-                games: action.payload,
+                games: [...state.games, ...action.payload]
             }
 
         case ACTION_GAMES_GET_ERROR:
