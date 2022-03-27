@@ -25,6 +25,14 @@ const AvailableGameList = () => {
         dispatch(gamesGetAttemptAction(target.value))
     }
 
+    // Event handler
+    const handleScroll = event => {
+        const bottom = event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight;
+        if (bottom) {
+            console.log("At bottom, refresh more games!");
+        }
+      }
+
     const TbodyGamesTable = () => {
         return (
             <>
@@ -94,7 +102,7 @@ const AvailableGameList = () => {
                                 }
                             </tr>
                         </thead>
-                        <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-64 w-full">
+                        <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-64 w-full" onScroll={ handleScroll }>
                         <TbodyGamesTable />
                         </tbody>
                     </table>
