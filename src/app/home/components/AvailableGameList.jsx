@@ -1,7 +1,7 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import KeycloakService from "../../../services/KeycloakService"
-import { gamesGetAttemptAction } from "../../../store/actions/gameActions"
+import { gameInitAction, gamesGetAttemptAction } from "../../../store/actions/gameActions"
 import AvailableGame from "./AvailableGame"
 import TdMessageGamesTable from "./hoc/TdMessageGamesTable"
 import ThGamesTable from "./hoc/ThGamesTable"
@@ -12,6 +12,7 @@ const AvailableGameList = () => {
     const loggedIn = KeycloakService.getLoggedIn()
     const hasAdminRole = KeycloakService.hasRole(["admin"])
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage, games } = useSelector(state => state.gameReducer)
+    const [ offset, setOffset ] = useState(0)
 
     // Style className constants
     const radioBtnContainerStyle = "inline-block"
@@ -20,19 +21,28 @@ const AvailableGameList = () => {
     let rowGridCols = loggedIn ? "grid-cols-[auto,_270px,_120px,_120px,_80px,_80px]" : "grid-cols-[auto,_270px,_120px,_120px]"
     
     useEffect(() => {
-        dispatch(gamesGetAttemptAction(7, 0))
-    }, [dispatch])
+        if (offset === 0) {
+            dispatch(gameInitAction())
+            dispatch(gamesGetAttemptAction(7, offset))
+        }
+        else {
+            setTimeout(() => {
+                dispatch(gamesGetAttemptAction(7, offset))
+            }, 500);
+        }
+    }, [dispatch, offset])
 
     // Event handler
     const handleOnBtnClickFilterGames = ({ target }) => {
-        dispatch(gamesGetAttemptAction(target.value))
+        dispatch(gameInitAction())
+        dispatch(gamesGetAttemptAction(7, offset, target.value))
     }
 
     const handleScroll = event => {
         const bottom = event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight;
         if (bottom) {
-            console.log("At bottom, refresh more games!");
-            dispatch(gamesGetAttemptAction(7, 1))
+            console.log("At bottom, refresh more games!")
+            setOffset(offset +1)
         }
     }
 
