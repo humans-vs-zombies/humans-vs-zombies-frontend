@@ -10,7 +10,7 @@ const TdEditGamesTable = ({ children }) => {
 
 
     return (
-        <td className="py-3 px-6 text-s text-left text-blue-700 hover:underline" onClick={ handleEditGameClick }>{ children }</td>
+        <td className="py-3 text-s text-center text-blue-700 hover:underline" onClick={ handleEditGameClick }>{ children }</td>
     )
 }
 
