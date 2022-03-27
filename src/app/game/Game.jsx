@@ -30,8 +30,9 @@ const Game = () => {
                 <h1 className="font-semibold">Squads</h1>
                 <SquadList
                   squads={Array.from({ length: 10 }, (_, i) => "Squad " + i).map(
-                    (name) => {
+                    (name, index) => {
                       return {
+                        id: index,
                         name,
                         players: Array.from({ length: 10 }, (_, i) => {
                           return {
