@@ -1,4 +1,4 @@
-import { ACTION_SESSION_CURRENT_GAME_SET, ACTION_SESSION_INIT, ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET, sessionCurrentGameSetAction } from "../actions/sessionActions"
+import { ACTION_SESSION_CURRENT_GAME_SET, ACTION_SESSION_INIT, ACTION_SESSION_LOGIN_ADMIN_SET, ACTION_SESSION_LOGIN_USER_SET, ACTION_SESSION_LOGOUT_SET, ACTION_SESSION_CURRENT_SQUAD_SET, sessionCurrentGameSetAction } from "../actions/sessionActions"
 
 
 export const sessionMiddleware = ({ dispatch }) => next => action => {
@@ -47,8 +47,8 @@ export const sessionMiddleware = ({ dispatch }) => next => action => {
             localStorage.setItem(currentGameSessionKey, JSON.stringify(action.payload))
             break
 
-        case ACTION_SESSION_CURRENT_GAME_SET:
-            localStorage.setItem(currentGameSessionKey, JSON.stringify(action.payload))
+        case ACTION_SESSION_CURRENT_SQUAD_SET:
+            localStorage.setItem(currentSquadSessionKey, JSON.stringify(action.payload))
             break
             
         default:
