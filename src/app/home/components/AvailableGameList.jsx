@@ -79,23 +79,25 @@ const AvailableGameList = () => {
                         <label className={ radioBtnLableStyle } htmlFor="complete">Complete</label>
                     </div>
                 </fieldset>
-                <table className="border-collapse border-4 mt-3 min-w-full">
-                    <thead className="bg-gray-100">
-                        <tr className="border-2">
-                            <ThGamesTable>Title</ThGamesTable>
-                            <ThGamesTable>Date</ThGamesTable>
-                            <ThGamesTable>Participants</ThGamesTable>
-                            <ThGamesTable>State</ThGamesTable>
-                            { loggedIn && hasAdminRole && !gamesGetError && (games.length > 0) &&
-                        <>
-                            <ThGamesTable></ThGamesTable>
-                            <ThGamesTable></ThGamesTable>
-                        </>
-                            }
-                        </tr>
-                    </thead>
-                    <TbodyGamesTable />
-                </table>
+                    <table className="border-collapse border-4 mt-3 min-w-full">
+                        <thead className="bg-gray-100 grid w-full">
+                            <tr className="border-2 grid grid-cols-[auto,_270px,_120px,_120px,_80px,_80px] gap-4 px-4">
+                                <ThGamesTable>Title</ThGamesTable>
+                                <ThGamesTable>Date</ThGamesTable>
+                                <ThGamesTable>Participants</ThGamesTable>
+                                <ThGamesTable>State</ThGamesTable>
+                                { loggedIn && hasAdminRole && !gamesGetError && (games.length > 0) &&
+                            <>
+                                <ThGamesTable></ThGamesTable>
+                                <ThGamesTable></ThGamesTable>
+                            </>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-64 w-full">
+                        <TbodyGamesTable />
+                        </tbody>
+                    </table>
             </main>
         </>
     )

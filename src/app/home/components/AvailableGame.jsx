@@ -28,12 +28,12 @@ const AvailableGame = ({ index, game }) => {
                     (gamesGetSuccess && game === undefined) ||
                     gamesGetError
                     ) && 
-                    <tr className={`border ${rowBg}`}>
+                    <tr className={`border grid grid-cols-1 px-4 ${rowBg}`}>
                         { children }
                     </tr>
                 }
                 { gamesGetSuccess && game !== undefined &&
-                    <tr className={`border ${rowBg} ${rowHover}`} onClick={ handleRowClick }>
+                    <tr className={`border grid grid-cols-[auto,_270px,_120px,_120px,_80px,_80px] gap-4 px-4 ${rowBg} ${rowHover}`} onClick={ handleRowClick }>
                         { children }
                     </tr>
                 }
@@ -75,7 +75,7 @@ const AvailableGame = ({ index, game }) => {
 
     return (
         <>
-            <tbody>
+            
                 <TrGamesTable>
                 { gamesGetAttempting &&
                     <TdMessageGamesTable>Loading...</TdMessageGamesTable>
@@ -101,7 +101,7 @@ const AvailableGame = ({ index, game }) => {
                 </>
                 }
                 </TrGamesTable>
-            </tbody>
+
         </>
     )
 }
