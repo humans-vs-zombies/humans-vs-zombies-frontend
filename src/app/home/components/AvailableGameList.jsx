@@ -28,15 +28,16 @@ const AvailableGameList = () => {
         }
         else {
             setTimeout(() => {
-                dispatch(gamesGetAttemptAction(7, offset))
+                dispatch(gamesGetAttemptAction(7, offset, stateToFilterBy))
             }, 500);
         }
     }, [dispatch, offset, stateToFilterBy])
 
     // Event handler
     const handleOnBtnClickFilterGames = ({ target }) => {
-        setStateToFilterBy(target.value)
+        dispatch(gameInitAction())
         setOffset(0)
+        setStateToFilterBy(target.value)
     }
 
     const handleScroll = event => {
