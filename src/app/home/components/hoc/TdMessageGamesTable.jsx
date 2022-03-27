@@ -1,6 +1,6 @@
 const TdMessageGamesTable = ({ children }) => {
     return (
-        <td className="py-3 px-6 text-s text-center" colSpan="6">{ children }</td>
+        <td className="py-3 text-s col-span-6 text-center" colSpan="6">{ children }</td>
     )
 }
 

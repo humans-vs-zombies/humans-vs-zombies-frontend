@@ -4,20 +4,20 @@ import AuthInterceptor from "../utils/AuthInterceptor";
 const API_URL = "https://humans-vs-zombies-backend.herokuapp.com";//"http://localhost:8080"; // "https://humans-vs-zombies-backend.herokuapp.com"
 
 export const GameAPI = {
-    getGames() {
-        return AuthInterceptor.get(API_URL + "/api/v1/game")
+    getGames(limit, offset) {
+        return AuthInterceptor.get(API_URL + "/api/v1/game?limit=" + limit + "&offset=" + offset)
     },
 
-    getGamesForAdmin() {
-        return AuthInterceptor.get(API_URL + "/api/v1/game/for-admin")
+    getGamesForAdmin(limit, offset) {
+        return AuthInterceptor.get(API_URL + "/api/v1/game/for-admin?limit=" + limit + "&offset=" + offset)
     },
 
-    getGamesFilteredByState(state) {
-        return AuthInterceptor.get(API_URL + "/api/v1/game?state=" + state)
+    getGamesFilteredByState(limit, offset, state) {
+        return AuthInterceptor.get(API_URL + "/api/v1/game?limit=" + limit + "&offset=" + offset + "&state=" + state)
     },
 
-    getGamesFilteredByConfiguration() {
-        return AuthInterceptor.get(API_URL + "/api/v1/game/configuration")
+    getGamesFilteredByConfiguration(limit, offset) {
+        return AuthInterceptor.get(API_URL + "/api/v1/game/configuration?limit=" + limit + "&offset=" + offset)
     },
 
     getGame(id) {

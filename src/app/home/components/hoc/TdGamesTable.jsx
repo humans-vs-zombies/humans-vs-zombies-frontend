@@ -15,7 +15,7 @@ const TdGamesTable = ({ children, gameState }) => {
 
     
     return (
-        <td className="py-3 px-6 text-s text-left" onClick={ handleGameClick }>{ children }</td>
+        <td className="py-3 text-s text-left" onClick={ handleGameClick }>{ children }</td>
     )
 }
 
