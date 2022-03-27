@@ -3,7 +3,7 @@ import React from 'react'
 export const BiteCodeInput = () => {
   return (
     <input
-    class="w-full h-full"
+    className="w-full h-full"
     placeholder="Bite code"
     type="number"
     onKeyUp={(event) => {

@@ -6,13 +6,20 @@ import { SquadList } from "./SquadList";
 import { BiteCodeDisplay } from "./BiteCodeDisplay";
 import { GameChat } from "./GameChat";
 import { sessionCurrentSquadSetAction } from "../../store/actions/sessionActions";
+import { useEffect } from "react";
+import { squadsGetAttemptAction } from "../../store/actions/squadActions";
 
 const Game = () => {
   const dispatch = useDispatch()
   //TODO: fetch squad state using redux
-  const { currentSquad } = useSelector(state => state.sessionReducer)
-  const isZombie = true;
+  const { currentGameId } = useSelector(state => state.sessionReducer)
+  const { squads, currentSquad } = useSelector(state => state.squadReducer)
+  const isZombie = false;
   const biteCode = "1234";
+
+  useEffect(() => {
+    dispatch(squadsGetAttemptAction(currentGameId))
+  })
 
   const handleBtnLeaveSquadClick = () => {
     dispatch(sessionCurrentSquadSetAction(undefined))
@@ -28,20 +35,7 @@ const Game = () => {
             {!currentSquad &&
               <>
                 <h1 className="font-semibold">Squads</h1>
-                <SquadList
-                  squads={Array.from({ length: 10 }, (_, i) => "Squad " + i).map(
-                    (name) => {
-                      return {
-                        name,
-                        players: Array.from({ length: 10 }, (_, i) => {
-                          return {
-                            name: "Player " + i,
-                            isAlive: Math.random() * 100 > 50,
-                          };
-                        }),
-                      };
-                    }
-                  )}
+                <SquadList squads={squads}
                 />
               </>}
               { currentSquad && <>
