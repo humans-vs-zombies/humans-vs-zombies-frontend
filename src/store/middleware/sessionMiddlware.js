@@ -7,6 +7,7 @@ export const sessionMiddleware = ({ dispatch }) => next => action => {
 
     const userSessionKey = "user-ls"
     const currentGameSessionKey = "currentGame-ls"
+    const currentSquadSessionKey = "currentSquad-ls"
 
     switch (action.type) {
         case ACTION_SESSION_INIT:
@@ -40,6 +41,10 @@ export const sessionMiddleware = ({ dispatch }) => next => action => {
         case ACTION_SESSION_LOGOUT_SET:
             localStorage.removeItem(currentGameSessionKey)
             localStorage.removeItem(userSessionKey)
+            break
+
+        case ACTION_SESSION_CURRENT_GAME_SET:
+            localStorage.setItem(currentGameSessionKey, JSON.stringify(action.payload))
             break
 
         case ACTION_SESSION_CURRENT_GAME_SET:
