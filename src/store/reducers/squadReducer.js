@@ -1,12 +1,27 @@
 import { ACTION_SQUAD_INIT, ACTION_SQUAD_GET_ATTEMPTING, ACTION_SQUAD_GET_SUCCESS, ACTION_SQUAD_GET_ERROR } from "../actions/squadActions"
 
 const initialState = {
+    
+    currentSquad: "",
 
     squadsGetAttempting: false,
     squadsGetSuccess: false,
     squadsGetError: false,
     squadsGetErrorMessage: "",
-    squads: [],
+    squads: Array.from({ length: 10 }, (_, i) => "Squad " + i).map(
+        (name, index) => {
+          return {
+            id: index,
+            name,
+            players: Array.from({ length: 10 }, (_, i) => {
+              return {
+                name: "Player " + i,
+                isAlive: Math.random() * 100 > 50,
+              };
+            }),
+          };
+        }
+      ),
 
 }
 
