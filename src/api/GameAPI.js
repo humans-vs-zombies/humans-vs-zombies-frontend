@@ -8,15 +8,15 @@ export const GameAPI = {
         return AuthInterceptor.get(API_URL + "/api/v1/game?limit=" + limit + "&offset=" + offset)
     },
 
-    getGamesForAdmin() {
+    getGamesForAdmin(limit, offset) {
         return AuthInterceptor.get(API_URL + "/api/v1/game/for-admin")
     },
 
-    getGamesFilteredByState(state) {
+    getGamesFilteredByState(limit, offset, state) {
         return AuthInterceptor.get(API_URL + "/api/v1/game?state=" + state)
     },
 
-    getGamesFilteredByConfiguration() {
+    getGamesFilteredByConfiguration(limit, offset) {
         return AuthInterceptor.get(API_URL + "/api/v1/game/configuration")
     },
 

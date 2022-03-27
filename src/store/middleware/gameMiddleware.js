@@ -13,26 +13,29 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
         case ACTION_GAMES_GET_ATTEMPTING:
             // Attempt to get games
             let apiRequest
+            let limit = action.limit
+            let offset = action.offset
+            let state = action.state
 
             switch(action.state) {
                 case "CONFIGURATION":
-                    apiRequest = GameAPI.getGamesFilteredByConfiguration()
+                    apiRequest = GameAPI.getGamesFilteredByConfiguration(limit, offset)
                     break
                 case "REGISTRATION":
-                    apiRequest = GameAPI.getGamesFilteredByState(action.state)
+                    apiRequest = GameAPI.getGamesFilteredByState(limit, offset, state)
                     break
                 case "IN_PROGRESS":
-                    apiRequest = GameAPI.getGamesFilteredByState(action.state)
+                    apiRequest = GameAPI.getGamesFilteredByState(limit, offset, state)
                     break
                 case "COMPLETE":
-                    apiRequest = GameAPI.getGamesFilteredByState(action.state)
+                    apiRequest = GameAPI.getGamesFilteredByState(limit, offset, state)
                     break
                 default:
                     if (hasAdminRole) {
-                        apiRequest = GameAPI.getGamesForAdmin()
+                        apiRequest = GameAPI.getGamesForAdmin(limit, offset)
                     }
                     else {
-                        apiRequest = GameAPI.getGames(action.limit, action.offset)
+                        apiRequest = GameAPI.getGames(limit, offset)
                     }
                     break                                        
             }

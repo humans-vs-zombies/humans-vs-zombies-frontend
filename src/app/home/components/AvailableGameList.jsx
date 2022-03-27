@@ -13,6 +13,7 @@ const AvailableGameList = () => {
     const hasAdminRole = KeycloakService.hasRole(["admin"])
     const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage, games } = useSelector(state => state.gameReducer)
     const [ offset, setOffset ] = useState(0)
+    const [ stateToFilterBy, setStateToFilterBy ] = useState("")
 
     // Style className constants
     const radioBtnContainerStyle = "inline-block"
@@ -23,25 +24,24 @@ const AvailableGameList = () => {
     useEffect(() => {
         if (offset === 0) {
             dispatch(gameInitAction())
-            dispatch(gamesGetAttemptAction(7, offset))
+            dispatch(gamesGetAttemptAction(7, offset, stateToFilterBy))
         }
         else {
             setTimeout(() => {
                 dispatch(gamesGetAttemptAction(7, offset))
             }, 500);
         }
-    }, [dispatch, offset])
+    }, [dispatch, offset, stateToFilterBy])
 
     // Event handler
     const handleOnBtnClickFilterGames = ({ target }) => {
-        dispatch(gameInitAction())
-        dispatch(gamesGetAttemptAction(7, offset, target.value))
+        setStateToFilterBy(target.value)
+        setOffset(0)
     }
 
     const handleScroll = event => {
         const bottom = event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight;
         if (bottom) {
-            console.log("At bottom, refresh more games!")
             setOffset(offset +1)
         }
     }
