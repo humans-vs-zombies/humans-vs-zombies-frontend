@@ -8,8 +8,8 @@ const Header = () => {
 
     return (
         <>
-            <header className="app-header">
-                <h1>Human vs. Zombies</h1>
+            <header className="app-header border-b-4 border-blue-800 grid grid-cols-3">
+                <h1 className='col-start-2'>Human vs. Zombies</h1>
                 <nav>
                     <ul>
                         <li>
@@ -22,19 +22,15 @@ const Header = () => {
                 </nav>
 
                 { KeycloakService.getLoggedIn() && 
-                <p>Welcome {KeycloakService.getGivenName()}</p>
+                <h2 className='col-start-1 row-start-1'>Welcome {KeycloakService.getGivenName()}</h2>
                 }
                 
                 {!KeycloakService.getLoggedIn() && (
-                    <button className="text-red-700" type="button" onClick={() => KeycloakService.login()}>Login</button> 
+                    <button className="text-red-700 col-start-3 row-start-1" type="button" onClick={() => KeycloakService.login()}>Login</button> 
                 )}
                 {KeycloakService.getLoggedIn() && (
-                    <button className="text-red-700" type="button" onClick={() => KeycloakService.logout()}>Logout</button> 
+                    <button className="text-red-700 col-start-3 row-start-1" type="button" onClick={() => KeycloakService.logout()}>Logout</button> 
                 )}
-
-                <div className='rounded-xl shadow-xl p-5 bg-gradient-to-br from-indigo-500'>
-                    TailwindCSS test (Header above ^)
-                </div>
             </header>
         </>
     )
