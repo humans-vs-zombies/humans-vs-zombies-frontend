@@ -1,5 +1,4 @@
 import { SquadAPI } from "../../api/SquadAPI";
-import KeycloakService from "../../services/KeycloakService";
 import { ACTION_SQUAD_GET_ATTEMPTING, squadsGetErrorAction, squadsGetSuccessAction } from "../actions/squadActions";
 
 export const squadMiddleware = ({ dispatch }) => next => action => {
@@ -15,6 +14,9 @@ export const squadMiddleware = ({ dispatch }) => next => action => {
             .catch((error) => {
                 dispatch(squadsGetErrorAction("Unable to fetch squad (" + error.message + ")"))
             });
+            break
+
+        default:
             break
 
     }
