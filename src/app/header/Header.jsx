@@ -1,70 +1,22 @@
-import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import KeycloakService from '../../services/KeycloakService'
 
 const Header = () => {
-    const { userType } = useSelector(state => state.sessionReducer)
-
     return (
         <>
-            <header className="app-header">
-                <h1>Human vs. Zombies {(userType !== "") && `(${userType})`}</h1>
-                <nav>
-                    <ul>
-                        <li>
-                            <NavLink className="app-link" to="/">Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="app-link" to="/game">Game</NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="app-link" to="/testauthorizedendpoint">Go to authorized route (requires admin)</NavLink>
-                        </li>
-                    </ul>
-                </nav>
-                {!KeycloakService.getLoggedIn() && (
-                    <button className="text-red-700" type="button" onClick={() => KeycloakService.login()}>Login</button> 
-                )}
-                {!!KeycloakService.getLoggedIn() && (
-                    <button className="text-red-700" type="button" onClick={() => KeycloakService.logout()}>Logout</button> 
-                )}
-
-                {!!KeycloakService.getLoggedIn() && (
-                    <p>
-                            isLoggedIn: {KeycloakService.getLoggedIn() ? "true" : "false"}
-                            <br />
-                            getPreferredUsername: {KeycloakService.getPreferredUsername()}
-                            <br />
-                            getEmail: {KeycloakService.getEmail()}
-                            <br />
-                            getEmailVerified: {KeycloakService.getEmailVerified() ? "true" : "false"}
-                            <br />
-                            getName: {KeycloakService.getName()}
-                            <br />
-                            getGivenName: {KeycloakService.getGivenName()}
-                            <br />
-                            getFamilyName: {KeycloakService.getFamilyName()}
-                            <br />
-                            hasRole("user"): {KeycloakService.hasRole(["user"]) ? "true" : "false"}
-                            <br />
-                            hasRole("admin"): {KeycloakService.hasRole(["admin"]) ? "true" : "false"}
-                    </p>
-                )}
-
-                {/*!loggedIn &&
-                    <div>
-                        <button type="button" onClick={handleBtnLoginUserClick}>Login (as user)</button>
-                        <button type="button" onClick={handleBtnLoginAdminClick}>Login (as admin)</button>
-                    </div>
-                */}
-                {/*loggedIn &&
-                    <button type="button" onClick={handleBtnLogoutClick}>Logout</button>
-                */}
-
-                <div className='rounded-xl shadow-xl p-5 bg-gradient-to-br from-indigo-500'>
-                    TailwindCSS test (Header above ^)
-                </div>
+            <header className="app-header border-b-4 border-blue-800 grid grid-cols-[auto,_1fr,_auto] pt-2 px-4 pb-1 gap-4 md:pt-8">
+                <NavLink className="app-link col-start-2 justify-self-center self-end" to="/"><h1 className='text-xl md:text-3xl'>Human vs. Zombies</h1></NavLink>
+                
+                { !KeycloakService.getLoggedIn() &&
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded max-w-fit justify-self-center col-start-3 row-start-1 justify-self-center self-end text-sm md:text-lg" type="button" onClick={() => KeycloakService.login()}>Login</button> 
+                }
+                { KeycloakService.getLoggedIn() &&
+                <>
+                    <h2 className='col-start-1 row-start-1 justify-self-center self-end text-lg hidden sm:block md:text-2xl'>Welcome {KeycloakService.getGivenName()}</h2>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded max-w-fit justify-self-center col-start-3 row-start-1 justify-self-center self-end text-sm md:text-lg" type="button" onClick={() => KeycloakService.logout()}>Logout</button>
+                </> 
+                }
             </header>
         </>
     )
