@@ -32,7 +32,7 @@ export const gameMiddleware = ({ dispatch }) => next => action => {
                         apiRequest = GameAPI.getGamesForAdmin()
                     }
                     else {
-                        apiRequest = GameAPI.getGames()
+                        apiRequest = GameAPI.getGames(action.limit, action.offset)
                     }
                     break                                        
             }

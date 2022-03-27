@@ -1,46 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import KeycloakService from "../../../services/KeycloakService";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
 import TdDeleteGamesTable from "./hoc/TdDeleteGamesTable";
 import TdEditGamesTable from "./hoc/TdEditGamesTable";
 import TdGamesTable from "./hoc/TdGamesTable";
-import TdMessageGamesTable from "./hoc/TdMessageGamesTable";
 
 const AvailableGame = ({ index, game }) => {
 
     const dispatch = useDispatch()
     const loggedIn = KeycloakService.getLoggedIn()
     const hasAdminRole = KeycloakService.hasRole(["admin"])
-    const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage } = useSelector(state => state.gameReducer)
 
     // Tailwind class-variables
     let rowBg = index % 2 === 0 ? "bg-white" : "bg-gray-100"
-    let rowHover = ""
-    if (game !== undefined) {
-        rowHover = loggedIn && (game.state === "REGISTRATION" || game.state === "IN_PROGRESS") ? "hover:bg-gray-200 cursor-pointer" : ""
-    }
+    let rowGridCols = loggedIn ? "grid-cols-[auto,_270px,_120px,_120px,_80px,_80px]" : "grid-cols-[auto,_270px,_120px,_120px]"
+    let rowHover = loggedIn && (game.state === "REGISTRATION" || game.state === "IN_PROGRESS") ? "hover:bg-gray-200 cursor-pointer" : ""
 
-    const TrGamesTable = ({ children }) => {
-        return (
-            <>
-                { (
-                    gamesGetAttempting ||
-                    (gamesGetSuccess && game === undefined) ||
-                    gamesGetError
-                    ) && 
-                    <tr className={`border grid grid-cols-1 px-4 ${rowBg}`}>
-                        { children }
-                    </tr>
-                }
-                { gamesGetSuccess && game !== undefined &&
-                    <tr className={`border grid grid-cols-[auto,_270px,_120px,_120px,_80px,_80px] gap-4 px-4 ${rowBg} ${rowHover}`} onClick={ handleRowClick }>
-                        { children }
-                    </tr>
-                }
-            </>
-        )
-    }
-
+    // Event handlers
     const handleRowClick = event => {
         if (loggedIn) {
             dispatch(sessionCurrentGameSetAction(game.id))
@@ -72,36 +48,34 @@ const AvailableGame = ({ index, game }) => {
         return game.players.length + "/" + game.participants;
     }
 
+    // Local component
+    const TrGamesTable = ({ children }) => {
+        return (
+            <>
+                <tr className={`border grid ${rowGridCols} gap-4 px-4 ${rowBg} ${rowHover}`} onClick={ handleRowClick }>
+                    { children }
+                </tr>
+            </>
+        )
+    }
+
 
     return (
         <>
-            
-                <TrGamesTable>
-                { gamesGetAttempting &&
-                    <TdMessageGamesTable>Loading...</TdMessageGamesTable>
+            <TrGamesTable>
+            <>
+                <TdGamesTable gameState={ game.state }>{ game.name }</TdGamesTable>
+                <TdGamesTable gameState={ game.state }>{ formattedDateFrom() }</TdGamesTable>
+                <TdGamesTable gameState={ game.state }>{ formattedPertisipants() }</TdGamesTable>
+                <TdGamesTable gameState={ game.state }>{ formattedGameState() }</TdGamesTable>
+                { loggedIn && hasAdminRole &&
+            <>
+                <TdEditGamesTable>Edit</TdEditGamesTable>
+                <TdDeleteGamesTable gameId={ game.id }>Delete</TdDeleteGamesTable>
+            </>
                 }
-                { gamesGetSuccess && game === undefined &&
-                    <TdMessageGamesTable>No games found</TdMessageGamesTable>
-                }
-                { gamesGetError &&
-                    <TdMessageGamesTable>{ gamesGetErrorMessage }</TdMessageGamesTable>
-                }
-                { gamesGetSuccess && game !== undefined &&
-                <>
-                    <TdGamesTable gameState={ game.state }>{ game.name }</TdGamesTable>
-                    <TdGamesTable gameState={ game.state }>{ formattedDateFrom() }</TdGamesTable>
-                    <TdGamesTable gameState={ game.state }>{ formattedPertisipants() }</TdGamesTable>
-                    <TdGamesTable gameState={ game.state }>{ formattedGameState() }</TdGamesTable>
-                    { loggedIn && hasAdminRole &&
-                <>
-                    <TdEditGamesTable>Edit</TdEditGamesTable>
-                    <TdDeleteGamesTable gameId={ game.id }>Delete</TdDeleteGamesTable>
-                </>
-                    }
-                </>
-                }
-                </TrGamesTable>
-
+            </>
+            </TrGamesTable>
         </>
     )
 }
