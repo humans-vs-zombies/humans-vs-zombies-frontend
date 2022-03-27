@@ -10,16 +10,6 @@ const Header = () => {
         <>
             <header className="app-header border-b-4 border-blue-800 grid grid-cols-3">
                 <h1 className='col-start-2'>Human vs. Zombies</h1>
-                <nav>
-                    <ul>
-                        <li>
-                            <NavLink className="app-link" to="/">Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="app-link" to="/game">Game</NavLink>
-                        </li>
-                    </ul>
-                </nav>
 
                 { KeycloakService.getLoggedIn() && 
                 <h2 className='col-start-1 row-start-1'>Welcome {KeycloakService.getGivenName()}</h2>
