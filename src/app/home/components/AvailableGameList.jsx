@@ -19,7 +19,7 @@ const AvailableGameList = () => {
     const radioBtnContainerStyle = "inline-block"
     const radioBtnStyle = "hidden peer"
     const radioBtnLableStyle = "inline-grid bg-blue-500 hover:bg-blue-700 ml-4 my-1 text-white font-bold py-2 px-4 rounded peer-checked:bg-blue-800 focus:outline-none"
-    let rowGridCols = loggedIn ? "grid-cols-[auto,_270px,_120px,_120px,_80px,_80px]" : "grid-cols-[auto,_270px,_120px,_120px]"
+    let rowGridCols = hasAdminRole ? "lg:grid-cols-[auto,_270px,_120px,_120px,_80px,_80px]" : "lg:grid-cols-[auto,_270px,_120px,_120px]"
     
     useEffect(() => {
         if (offset === 0) {
@@ -104,36 +104,36 @@ const AvailableGameList = () => {
                         <label className={ radioBtnLableStyle } htmlFor="complete">Complete</label>
                     </div>
                 </fieldset>
-                    <table className="border-collapse border-4 mt-3 min-w-full">
-                        <thead className="bg-gray-100 grid w-full">
-                            <tr className={`border-2 grid ${rowGridCols} gap-4 px-4`}>
-                                <ThGamesTable>Title</ThGamesTable>
-                                <ThGamesTable>Date</ThGamesTable>
-                                <ThGamesTable>Participants</ThGamesTable>
-                                <ThGamesTable>State</ThGamesTable>
-                                { loggedIn && hasAdminRole && !gamesGetError && (games.length > 0) &&
-                            <>
-                                <ThGamesTable></ThGamesTable>
-                                <ThGamesTable></ThGamesTable>
-                            </>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-64 w-full" onScroll={ handleScroll }>
-                            <TrGamesTable />
-                            <TrMessageGamesTable>
-                            { gamesGetAttempting &&
-                                <TdMessageGamesTable>Loading...</TdMessageGamesTable>
+                <table className="border-collapse border-4 mt-3 min-w-full grid grid-cols-[auto,_1fr] lg:block">
+                    <thead className="bg-gray-100 grid w-full">
+                        <tr className={`border-2 grid ${rowGridCols} gap-4 px-4`}>
+                            <ThGamesTable>Title</ThGamesTable>
+                            <ThGamesTable>Date</ThGamesTable>
+                            <ThGamesTable>Participants</ThGamesTable>
+                            <ThGamesTable>State</ThGamesTable>
+                            { loggedIn && hasAdminRole && !gamesGetError && (games.length > 0) &&
+                        <>
+                            <ThGamesTable></ThGamesTable>
+                            <ThGamesTable></ThGamesTable>
+                        </>
                             }
-                            { gamesGetSuccess && (games.length <= 0) &&
-                                <TdMessageGamesTable>No games found</TdMessageGamesTable>
-                            }
-                            { gamesGetError &&
-                                <TdMessageGamesTable>{ gamesGetErrorMessage }</TdMessageGamesTable>
-                            }
-                            </TrMessageGamesTable>
-                        </tbody>
-                    </table>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-64 w-full" onScroll={ handleScroll }>
+                        <TrGamesTable />
+                        <TrMessageGamesTable>
+                        { gamesGetAttempting &&
+                            <TdMessageGamesTable>Loading...</TdMessageGamesTable>
+                        }
+                        { gamesGetSuccess && (games.length <= 0) &&
+                            <TdMessageGamesTable>No games found</TdMessageGamesTable>
+                        }
+                        { gamesGetError &&
+                            <TdMessageGamesTable>{ gamesGetErrorMessage }</TdMessageGamesTable>
+                        }
+                        </TrMessageGamesTable>
+                    </tbody>
+                </table>
             </main>
         </>
     )
