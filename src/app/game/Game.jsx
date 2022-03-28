@@ -31,7 +31,7 @@ const Game = () => {
         <GameHeader />
 
         <div className="h-full flex flex-grow h-100 overflow-clip">
-          <div className="flex-grow-0 text-center sm:block hidden bg-blue-600 md:px-2 overflow-y-scroll relative md:p-2">
+          <div className="flex-grow-0 text-center sm:block hidden bg-gray-100 md:px-2 relative md:p-2">
             {!currentSquad &&
               <>
                  <h1 className="font-semibold">Squads</h1>
@@ -43,7 +43,7 @@ const Game = () => {
                 <h1 className="font-semibold">Current squad</h1>
                 {currentSquad.squadMembers.map(member => <SquadPlayerListElement player={member.player} />)}
               </>}
-            {currentSquad && <button className="absolute bg-red-600 w-full rounded left-0 bottom-0 p-2  " onClick={handleBtnLeaveSquadClick}>Leave</button>}
+            {currentSquad && <button className="absolute bg-blue-500 hover:bg-blue-600 w-full left-0 bottom-0 p-2 text-white" onClick={handleBtnLeaveSquadClick}>Leave</button>}
           </div>
           <div className="flex-grow bg-gray-400 text-center relative">
             <GameMap />

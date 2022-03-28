@@ -42,7 +42,8 @@ export const sessionReducer = (state = initialState, action) => {
         case ACTION_SESSION_CURRENT_GAME_SET:
             return {
                 ...state,
-                currentGameId: action.payload
+                currentSquad: state.currentGameId === action.payload ? state.currentSquad : undefined,
+                currentGameId: action.payload,
             }
 
         case ACTION_SESSION_CURRENT_SQUAD_SET:
