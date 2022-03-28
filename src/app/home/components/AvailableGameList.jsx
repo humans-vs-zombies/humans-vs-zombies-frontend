@@ -25,11 +25,11 @@ const AvailableGameList = () => {
     useEffect(() => {
         if (offset === 0) {
             dispatch(gameInitAction())
-            dispatch(gamesGetAttemptAction(7, offset, stateToFilterBy))
+            dispatch(gamesGetAttemptAction(20, offset, stateToFilterBy))
         }
         else {
             setTimeout(() => {
-                dispatch(gamesGetAttemptAction(7, offset, stateToFilterBy))
+                dispatch(gamesGetAttemptAction(20, offset, stateToFilterBy))
             }, 500);
         }
     }, [dispatch, offset, stateToFilterBy])
