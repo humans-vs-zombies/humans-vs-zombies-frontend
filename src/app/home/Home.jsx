@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import KeycloakService from "../../services/KeycloakService";
+import CenterChild from "../commonComponents/hoc/CenterChild";
 import AvailableGameList from "./components/AvailableGameList"
 
 const Home = () => {
@@ -14,12 +15,16 @@ const Home = () => {
 
     return (
         <>
-            <h1>Home Page</h1>
-            <AvailableGameList />
+            <CenterChild>
+                <h1>Available Games</h1>
+            </CenterChild>
+            <CenterChild>
+                <AvailableGameList />
+            </CenterChild>
             { loggedIn && hasAdminRole &&
-            <div className="grid my-10">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded max-w-fit justify-self-center" onClick={ handleBtnOnClickNewGame }>New Game</button>
-            </div>
+            <CenterChild>
+                <button className="my-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded max-w-fit justify-self-center" onClick={ handleBtnOnClickNewGame }>New Game</button>
+            </CenterChild>
             }
         </>
     )
