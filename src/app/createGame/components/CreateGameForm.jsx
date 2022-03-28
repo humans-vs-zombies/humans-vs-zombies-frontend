@@ -104,7 +104,7 @@ const CreateGameForm = () => {
 
     return (
         <>
-            <form className="md:grid md:grid md:grid-cols-2 lg:grid-cols-3 xl:gap-10" onSubmit={ handleSubmit(onFormSubmit) }>
+            <form className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:gap-10" onSubmit={ handleSubmit(onFormSubmit) }>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="title">Game title:</label>
                     <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />

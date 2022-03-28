@@ -216,7 +216,7 @@ const GameForm = () => {
                 <p>Updating next state...</p>
             }
             { gameGetSpecificSuccess &&
-                <form onSubmit={ handleSubmit(onFormSubmit) }>
+                <form className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:gap-10" onSubmit={ handleSubmit(onFormSubmit) }>
                     <fieldset>
                         <label className={ lableStyle } htmlFor="title">Title:</label>
                         <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />
@@ -225,14 +225,14 @@ const GameForm = () => {
                         <label className={ lableStyle } htmlFor="description">Description:</label>
                         <textarea className={ inputStyle } type="textarea" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
                     </fieldset>
-                    <fieldset>
-                        <label className={ lableStyle } htmlFor="dateFrom">Date:</label>
+                    <fieldset className="md:col-span-2 md:text-center md:grid md:grid-cols-[auto,_auto,_1fr] lg:col-span-3">
+                        <label className={ `${lableStyle} md:col-span-3 text-left` } htmlFor="dateFrom">Date:</label>
                         <input className={ datetimeStyle } type="datetime-local" id="dateFrom" name="dateFrom" value={ game.dateFrom } { ...register("dateFrom", datetimeConfig) } />
                         
                         <label className="block ml-4 my-1 text-lg" htmlFor="dateTo">to</label>
                         <input className={ datetimeStyle } type="datetime-local" id="dateTo" name="dateTo" value={ game.dateTo } { ...register("dateTo", datetimeConfig) } />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="lg:col-start-3 lg:row-start-1">
                         <label className={ lableStyle } htmlFor="participants">Max participants:</label>
                         
                         <div className={ radioBtnContainerStyle }>
@@ -256,8 +256,8 @@ const GameForm = () => {
                         </div>
                     </fieldset>
                     { currentGame.state !== "COMPLETE" &&
-                    <fieldset>
-                        <label className={ lableStyle } htmlFor="nextState">Go to next state?<br/> (from "{ currentState }" to "{ nextState }")</label>
+                    <fieldset className="md:col-span-2">
+                        <label className={ lableStyle } htmlFor="nextState">Go to next state?<br className="md:hidden"/> (from "{ currentState }" to "{ nextState }")</label>
                         
                         <div className={ radioBtnContainerStyle }>
                             <input className={ radioBtnStyle } type="radio" name="nextStateRadioOptions" id="dontGoToNextState" value="no" onChange={ handleNextStateChange } defaultChecked />
@@ -271,7 +271,7 @@ const GameForm = () => {
                     </fieldset>
                     }
 
-                    <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
+                    <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded max-w-[110px] justify-self-center md:ml-0 md:col-span-2 lg:col-span-3`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
                     { errorMessage }
                 </form>
             }
