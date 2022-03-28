@@ -1,3 +1,4 @@
+import CenterChild from "../commonComponents/hoc/CenterChild"
 import CreateGameForm from "./components/CreateGameForm"
 
 const CreateGame = () => {
@@ -6,7 +7,9 @@ const CreateGame = () => {
         <>
             <h1>Create game Page</h1>
             <main>
-                <CreateGameForm />
+                <CenterChild>
+                    <CreateGameForm />
+                </CenterChild>
             </main>
         </>
     )
