@@ -5,9 +5,11 @@ export const BiteCodeInput = () => {
     <input
     className="w-full h-full"
     placeholder="Bite code"
-    type="number"
     onKeyUp={(event) => {
-      if (event.which === 13) alert("Submit on enter test");
+      if (event.which === 13) {
+        event.target.value = ""
+        alert("Bitecode submitted");
+      }
     }}
   ></input>
   )
