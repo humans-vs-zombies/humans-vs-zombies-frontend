@@ -76,7 +76,7 @@ const AvailableGameList = () => {
         <>
             <main>
                 <fieldset>
-                    <label className="block text-lg mb-2 mt-6" htmlFor="participants">Filter:</label>
+                    <label className="block text-lg mb-2 lg:mt-10" htmlFor="participants">Filter:</label>
                     <div className={ radioBtnContainerStyle }>
                         <input className={ radioBtnStyle } type="radio" name="filterRadioOptions" id="all" value="ALL" onChange={ handleOnBtnClickFilterGames } defaultChecked />
                         <label className={ radioBtnLableStyle } htmlFor="all">All</label>
