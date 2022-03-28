@@ -1,8 +1,8 @@
 export const ACTION_SQUAD_INIT = "[squad] INIT"
 
-export const ACTION_SQUAD_GET_ATTEMPTING = "[getGames] ATTEMPT"
-export const ACTION_SQUAD_GET_SUCCESS = "[getGames] SUCCESS"
-export const ACTION_SQUAD_GET_ERROR = "[getGames] ERROR"
+export const ACTION_SQUAD_GET_ATTEMPTING = "[getSquads] ATTEMPT"
+export const ACTION_SQUAD_GET_SUCCESS = "[getSquads] SUCCESS"
+export const ACTION_SQUAD_GET_ERROR = "[getSquads] ERROR"
 
 export const squadInitAction = () => ({
     type: ACTION_SQUAD_INIT,
