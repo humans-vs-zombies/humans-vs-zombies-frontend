@@ -8,6 +8,7 @@ import EditGame from './editGame/EditGame';
 import NotAuthorized from './notAuthorized/NotAuthorized';
 import AuthorizedRoute from '../utils/AuthorizedRoute'
 import CreateGame from './createGame/CreateGame';
+import { GameRules } from './gameRules/GameRules';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/game/create" exact element={ < CreateGame /> } />
             <Route path="/game/edit" exact element={ < EditGame /> } />
           </Route>
+          <Route path="/rules" exact element={<GameRules />} />
           <Route path="/notauthorized" exact element={ < NotAuthorized /> } />
           <Route path="*" element={< NotFound />} />
         </Routes>
