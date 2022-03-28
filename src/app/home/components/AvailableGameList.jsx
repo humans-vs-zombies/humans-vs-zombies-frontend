@@ -119,7 +119,7 @@ const AvailableGameList = () => {
                             }
                         </tr>
                     </thead>
-                    <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-64 w-full" onScroll={ handleScroll }>
+                    <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-72 w-full xl:h-96" onScroll={ handleScroll }>
                         <TrGamesTable />
                         <TrMessageGamesTable>
                         { gamesGetAttempting &&
