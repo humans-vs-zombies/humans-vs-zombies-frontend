@@ -5,6 +5,7 @@ const initialState = {
     gamesGetSuccess: false,
     gamesGetError: false,
     gamesGetErrorMessage: "",
+    gamesGetNoMoreGamesToFetch: false,
     games: [],
 
     gameGetSpecificAttempting: false,
@@ -62,11 +63,30 @@ export const gameReducer = (state = initialState, action) => {
             }
 
         case ACTION_GAMES_GET_SUCCESS:
-            return {
-                ...state,
-                gamesGetAttempting: false,
-                gamesGetSuccess: true,
-                games: [...state.games, ...action.payload]
+            if (action.payload === []) {
+                return {
+                    ...state,
+                    gamesGetAttempting: false,
+                    gamesGetSuccess: true,
+                    gamesGetNoMoreGamesToFetch: true,
+                }   
+            }
+            else if (action.payload.length < 20) {
+                return {
+                    ...state,
+                    gamesGetAttempting: false,
+                    gamesGetSuccess: true,
+                    gamesGetNoMoreGamesToFetch: true,
+                    games: [...state.games, ...action.payload]
+                }
+            }
+            else {
+                return {
+                    ...state,
+                    gamesGetAttempting: false,
+                    gamesGetSuccess: true,
+                    games: [...state.games, ...action.payload]
+                }
             }
 
         case ACTION_GAMES_GET_ERROR:
