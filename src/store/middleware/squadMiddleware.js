@@ -5,7 +5,7 @@ export const squadMiddleware = ({ dispatch }) => next => action => {
 
     next(action)
 
-    switch (action.state) {
+    switch (action.type) {
 
         case ACTION_SQUAD_GET_ATTEMPTING:
             
