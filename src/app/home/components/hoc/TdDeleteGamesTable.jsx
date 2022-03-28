@@ -19,7 +19,7 @@ const TdDeleteGamesTable = ({ children, gameId }) => {
 
 
     return (
-        <td className="py-3 text-s text-center text-red-700 hover:underline" onClick={ handleDeleteGameClick }>{ children }</td>
+        <td className="py-3 text-s text-red-700 hover:underline lg:text-center" onClick={ handleDeleteGameClick }>{ children }</td>
     )
 }
 

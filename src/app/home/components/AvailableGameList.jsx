@@ -106,7 +106,7 @@ const AvailableGameList = () => {
                 </fieldset>
                 <table className="border-collapse border-4 mt-3 min-w-full grid grid-cols-[auto,_1fr] lg:block">
                     <thead className="bg-gray-100 grid w-full">
-                        <tr className={`border-2 grid ${rowGridCols} gap-4 px-4`}>
+                        <tr className={`border-2 grid ${rowGridCols} px-4 lg:gap-4`}>
                             <ThGamesTable>Title</ThGamesTable>
                             <ThGamesTable>Date</ThGamesTable>
                             <ThGamesTable>Participants</ThGamesTable>
