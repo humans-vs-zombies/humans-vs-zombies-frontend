@@ -17,7 +17,7 @@ const AvailableGameList = () => {
     const [ stateToFilterBy, setStateToFilterBy ] = useState("")
 
     // Style className constants
-    const radioBtnContainerStyle = "inline-block"
+    const radioBtnContainerStyle = "inline-block lg:self-end"
     const radioBtnStyle = "hidden peer"
     const radioBtnLableStyle = "inline-grid bg-blue-500 hover:bg-blue-700 ml-4 my-1 text-white font-bold py-2 px-4 rounded peer-checked:bg-blue-800 focus:outline-none w-32 text-center sm:w-fit"
     let rowGridCols = hasAdminRole ? "lg:grid-cols-[auto,_270px,_120px,_120px,_80px,_80px]" : "lg:grid-cols-[auto,_270px,_120px,_120px]"
@@ -77,7 +77,7 @@ const AvailableGameList = () => {
         <>
             <main className="px-2">
                 <CenterChild>
-                    <fieldset className="grid grid-cols-[auto,_1fr] sm:block">
+                    <fieldset className="grid grid-cols-[auto,_1fr] sm:block lg:grid lg:grid-cols-[auto,_auto,_auto,_auto,_auto,_auto]">
                         <label className="block text-lg self-center sm:mb-2 lg:mt-10" htmlFor="participants">Filter:</label>
                         <div className={ radioBtnContainerStyle }>
                             <input className={ radioBtnStyle } type="radio" name="filterRadioOptions" id="all" value="ALL" onChange={ handleOnBtnClickFilterGames } defaultChecked />
