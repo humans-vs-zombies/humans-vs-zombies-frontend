@@ -232,7 +232,7 @@ const GameForm = () => {
                         <label className="block ml-4 my-1 text-lg" htmlFor="dateTo">to</label>
                         <input className={ datetimeStyle } type="datetime-local" id="dateTo" name="dateTo" value={ game.dateTo } { ...register("dateTo", datetimeConfig) } />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="lg:col-start-3 lg:row-start-1">
                         <label className={ lableStyle } htmlFor="participants">Max participants:</label>
                         
                         <div className={ radioBtnContainerStyle }>
