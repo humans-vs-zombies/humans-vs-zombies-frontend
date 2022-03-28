@@ -206,15 +206,6 @@ const GameForm = () => {
 
     return (
         <>
-            { gameGetSpecificAttempting && 
-                <p>Loading...</p>
-            }
-            { gameUpdateAttempting && 
-                <p>Updating game...</p>
-            }
-            { gameNextStateUpdateAttempting && 
-                <p>Updating next state...</p>
-            }
             { gameGetSpecificSuccess &&
                 <form className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:gap-10" onSubmit={ handleSubmit(onFormSubmit) }>
                     <fieldset>
@@ -273,6 +264,16 @@ const GameForm = () => {
 
                     <button className={`${sumbitBtnBgStyle} ml-4 mt-4 text-white font-bold py-2 px-4 rounded max-w-[110px] justify-self-center md:ml-0 md:col-span-2 lg:col-span-3`} type="submit" disabled={ !hasUnsavedChanges }>Save</button>
                     { errorMessage }
+
+                    { gameGetSpecificAttempting && 
+                        <p>Loading...</p>
+                    }
+                    { gameUpdateAttempting && 
+                        <p>Updating game...</p>
+                    }
+                    { gameNextStateUpdateAttempting && 
+                        <p>Updating next state...</p>
+                    }
                 </form>
             }
             { gameGetSpecificError &&
