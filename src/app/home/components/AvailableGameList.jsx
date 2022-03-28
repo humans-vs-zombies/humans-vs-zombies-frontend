@@ -75,7 +75,7 @@ const AvailableGameList = () => {
 
     return (
         <>
-            <main>
+            <main className="px-2">
                 <CenterChild>
                     <fieldset className="grid grid-cols-[auto,_1fr] sm:block">
                         <label className="block text-lg self-center sm:mb-2 lg:mt-10" htmlFor="participants">Filter:</label>
