@@ -12,7 +12,7 @@ const AvailableGameList = () => {
     const dispatch = useDispatch()
     const loggedIn = KeycloakService.getLoggedIn()
     const hasAdminRole = KeycloakService.hasRole(["admin"])
-    const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage, games } = useSelector(state => state.gameReducer)
+    const { gamesGetAttempting, gamesGetSuccess, gamesGetError, gamesGetErrorMessage, games, gamesGetNoMoreGamesToFetch } = useSelector(state => state.gameReducer)
     const [ offset, setOffset ] = useState(0)
     const [ stateToFilterBy, setStateToFilterBy ] = useState("")
 
@@ -44,7 +44,9 @@ const AvailableGameList = () => {
     const handleScroll = event => {
         const bottom = event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight;
         if (bottom) {
-            setOffset(offset +1)
+            if (!gamesGetNoMoreGamesToFetch) {
+                setOffset(offset +1)   
+            }
         }
     }
 
@@ -125,6 +127,12 @@ const AvailableGameList = () => {
                     <tbody className="bg-grey-light grid auto-rows-min overflow-y-scroll h-72 w-full xl:h-96" onScroll={ handleScroll }>
                         <TrGamesTable />
                         <TrMessageGamesTable>
+                        { gamesGetSuccess && (games.length > 0) && !gamesGetNoMoreGamesToFetch &&
+                            <TdMessageGamesTable>Load more</TdMessageGamesTable>
+                        }
+                        { gamesGetSuccess && (games.length > 0) && gamesGetNoMoreGamesToFetch &&
+                            <TdMessageGamesTable>No more games to fetch</TdMessageGamesTable>
+                        }
                         { gamesGetAttempting &&
                             <TdMessageGamesTable>Loading...</TdMessageGamesTable>
                         }
