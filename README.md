@@ -2,7 +2,20 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-TODO: Fill out this long description.
+Noroff case: Humans vs. Zombies \
+Frontend component of the application \
+Other components
+- [Backend](https://github.com/humans-vs-zombies/humans-vs-zombies-backend)
+- [Keycloak](https://github.com/humans-vs-zombies/humans-vs-zombies-keycloak)
+
+Built using:
+  - React
+  - React Redux
+  - Tailwind CSS
+  - Keycloak JS
+  - Axios
+
+Hosted on: [Heroku](http://humans-vs-zombies-frontend.herokuapp.com/)
 
 ## Table of Contents
 
