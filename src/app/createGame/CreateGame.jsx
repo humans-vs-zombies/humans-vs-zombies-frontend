@@ -5,7 +5,9 @@ const CreateGame = () => {
 
     return (
         <>
-            <h1>Create game Page</h1>
+            <CenterChild>
+                <h1 className="">Create Game</h1>
+            </CenterChild>
             <main>
                 <CenterChild>
                     <CreateGameForm />
