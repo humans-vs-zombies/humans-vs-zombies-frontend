@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import KeycloakService from "../../../services/KeycloakService";
+import { gameGetSpecificAttemptAction } from "../../../store/actions/gameActions";
 import { sessionCurrentGameSetAction } from "../../../store/actions/sessionActions";
 import TdDeleteGamesTable from "./hoc/TdDeleteGamesTable";
 import TdEditGamesTable from "./hoc/TdEditGamesTable";
@@ -20,6 +21,7 @@ const AvailableGame = ({ index, game }) => {
     const handleRowClick = event => {
         if (loggedIn) {
             dispatch(sessionCurrentGameSetAction(game.id))
+            dispatch(gameGetSpecificAttemptAction(game.id))
         }
     }
 
