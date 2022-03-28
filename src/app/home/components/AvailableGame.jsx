@@ -14,7 +14,7 @@ const AvailableGame = ({ index, game }) => {
 
     // Tailwind class-variables
     let rowBg = index % 2 === 0 ? "bg-white" : "bg-gray-100"
-    let rowGridCols = loggedIn ? "grid-cols-[auto,_270px,_120px,_120px,_80px,_80px]" : "grid-cols-[auto,_270px,_120px,_120px]"
+    let rowGridCols = hasAdminRole ? "lg:grid-cols-[auto,_270px,_120px,_120px,_80px,_80px]" : "lg:grid-cols-[auto,_270px,_120px,_120px]"
     let rowHover = loggedIn && (game.state === "REGISTRATION" || game.state === "IN_PROGRESS") ? "hover:bg-gray-200 cursor-pointer" : ""
 
     // Event handlers
@@ -54,7 +54,7 @@ const AvailableGame = ({ index, game }) => {
     const TrGamesTable = ({ children }) => {
         return (
             <>
-                <tr className={`border grid ${rowGridCols} gap-4 px-4 ${rowBg} ${rowHover}`} onClick={ handleRowClick }>
+                <tr className={`border grid ${rowGridCols} lg:gap-4 px-4 ${rowBg} ${rowHover}`} onClick={ handleRowClick }>
                     { children }
                 </tr>
             </>
