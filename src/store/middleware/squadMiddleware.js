@@ -3,6 +3,7 @@ import { ACTION_SQUAD_GET_ATTEMPTING, squadsGetErrorAction, squadsGetSuccessActi
 
 export const squadMiddleware = ({ dispatch }) => next => action => {
 
+    next(action)
 
     switch (action.state) {
 
