@@ -80,7 +80,7 @@ const AvailableGameList = () => {
             <main className="px-2">
                 <CenterChild>
                     <fieldset className="grid grid-cols-[auto,_1fr] sm:block lg:grid lg:grid-cols-[auto,_auto,_auto,_auto,_auto,_auto]">
-                        <label className="block text-lg self-center sm:mb-2 lg:mt-10" htmlFor="participants">Filter:</label>
+                        <label className="block text-lg self-center col-span-2 sm:col-span-1 sm:mb-2 lg:mt-10" htmlFor="participants">Filter:</label>
                         <div className={ radioBtnContainerStyle }>
                             <input className={ radioBtnStyle } type="radio" name="filterRadioOptions" id="all" value="ALL" onChange={ handleOnBtnClickFilterGames } defaultChecked />
                             <label className={ radioBtnLableStyle } htmlFor="all">All</label>
