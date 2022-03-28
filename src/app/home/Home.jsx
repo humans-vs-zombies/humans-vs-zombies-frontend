@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <>
             <CenterChild>
-                <h1>Available Games</h1>
+                <h1 className="py-6 text-xl md:text-2xl">Available Games</h1>
             </CenterChild>
             <CenterChild>
                 <AvailableGameList />

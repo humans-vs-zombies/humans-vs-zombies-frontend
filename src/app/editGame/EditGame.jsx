@@ -7,7 +7,7 @@ const EditGame = () => {
     return (
         <>
             <CenterChild>
-                <h1 className="py-6 text-xl md:text-2xl">Edit game Page</h1>
+                <h1 className="py-6 text-xl md:text-2xl">Edit Game</h1>
             </CenterChild>
             <main>
                 <CenterChild>

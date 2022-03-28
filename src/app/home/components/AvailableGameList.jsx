@@ -75,7 +75,6 @@ const AvailableGameList = () => {
     return (
         <>
             <main>
-                <h2>Available games</h2>
                 <fieldset>
                     <label className="block text-lg mb-2 mt-6" htmlFor="participants">Filter:</label>
                     <div className={ radioBtnContainerStyle }>
