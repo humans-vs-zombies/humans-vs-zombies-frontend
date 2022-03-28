@@ -1,6 +1,6 @@
 const CenterChild = ({ children }) => {
     return (
-        <div className="py-6 flex justify-center">{ children }</div>
+        <div className="flex justify-center">{ children }</div>
     )
 }
 

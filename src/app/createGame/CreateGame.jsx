@@ -6,7 +6,7 @@ const CreateGame = () => {
     return (
         <>
             <CenterChild>
-                <h1 className="">Create Game</h1>
+                <h1 className="py-6 text-xl md:text-2xl">Create a New Game</h1>
             </CenterChild>
             <main>
                 <CenterChild>
