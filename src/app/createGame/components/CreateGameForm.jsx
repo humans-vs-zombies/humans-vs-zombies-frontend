@@ -104,7 +104,7 @@ const CreateGameForm = () => {
 
     return (
         <>
-            <form onSubmit={ handleSubmit(onFormSubmit) }>
+            <form className="md:grid md:grid grid-cols-2" onSubmit={ handleSubmit(onFormSubmit) }>
                 <fieldset>
                     <label className={ lableStyle } htmlFor="title">Game title:</label>
                     <input className={ inputStyle } type="text" id="title" name="title" value={ game.title } { ...register("title", titleConfig) } />
@@ -113,8 +113,8 @@ const CreateGameForm = () => {
                     <label className={ lableStyle } htmlFor="description">Game description:</label>
                     <textarea className={ inputStyle } type="textarea" id="description" name="description" value={ game.description } { ...register("description", descriptionConfig) } />
                 </fieldset>
-                <fieldset>
-                    <label className={ lableStyle } htmlFor="dateFrom">Game date:</label>
+                <fieldset className="md:col-span-2 md:text-center md:grid md:grid-cols-[1fr,_auto,_1fr]">
+                    <label className={ `${lableStyle} md:col-span-3 text-left` } htmlFor="dateFrom">Game date:</label>
                     <input className={ datetimeStyle } type="datetime-local" id="dateFrom" name="dateFrom" value={ game.dateFrom } { ...register("dateFrom", datetimeConfig) } />
                     
                     <label className="block ml-4 my-1 text-lg" htmlFor="dateTo">to</label>
@@ -144,7 +144,7 @@ const CreateGameForm = () => {
                     </div>
                 </fieldset>
 
-                <button className="bg-blue-500 hover:bg-blue-700 ml-4 mt-10 text-white font-bold py-2 px-4 rounded" type="submit">Create</button>
+                <button className="bg-blue-500 hover:bg-blue-700 ml-4 mt-10 text-white font-bold py-2 px-4 rounded max-w-[110px] justify-self-center md:col-span-2" type="submit">Create</button>
                 { errorMessage }
             </form>
         </>
