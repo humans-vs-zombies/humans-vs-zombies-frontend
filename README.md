@@ -15,7 +15,7 @@ Built using:
   - Keycloak JS
   - Axios
 
-Hosted on: [Heroku](http://humans-vs-zombies-frontend.herokuapp.com/)
+Hosted on: [Heroku](https://humans-vs-zombies-frontend.herokuapp.com/)
 
 ## Table of Contents
 
