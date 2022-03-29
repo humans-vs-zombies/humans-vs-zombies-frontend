@@ -4,7 +4,7 @@ const NotAuthorized = () => {
     return (
         <>
             <CenterChild>
-                <h1>401</h1>
+                <h1 className="py-6 text-xl md:text-2xl">401</h1>
             </CenterChild>
             <CenterChild>
                 <p>Not authorized</p>
