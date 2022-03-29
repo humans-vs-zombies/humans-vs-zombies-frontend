@@ -1,8 +1,14 @@
+import CenterChild from "../commonComponents/hoc/CenterChild"
+
 const NotAuthorized = () => {
     return (
         <>
-            <h1>401</h1>
-            <p>Not authorized</p>
+            <CenterChild>
+                <h1>401</h1>
+            </CenterChild>
+            <CenterChild>
+                <p>Not authorized</p>
+            </CenterChild>
         </>
     )
 }
